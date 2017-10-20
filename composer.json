@@ -1,0 +1,25 @@
+{
+    "name": "fmnii/s-show-server",
+    "description": "S Show Server of Fmnii",
+    "type": "project",
+    "keywords": [
+        "thinkphp",
+        "fmnii"
+    ],
+    "homepage": "http://www.fmnii.com/",
+    "license": "Apache-2.0",
+    "authors": [
+        {"name": "liu21st", "email": "liu21st@gmail.com"},
+        {"name": "McDanci", "email": "mcdanci@users.noreply.github.com"}
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "topthink/framework": "~5.0.0"
+    },
+    "extra": {
+        "think-path": "thinkphp"
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
