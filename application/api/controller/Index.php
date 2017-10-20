@@ -15,8 +15,12 @@ class Index extends Controller
 
     public function listIso3166()
     {
-        $numeric = '158';
-        $data = (new \League\ISO3166\ISO3166)->numeric($numeric);
-        return ['name' => $data];
+        $data = (new \League\ISO3166\ISO3166)->all();
+
+        foreach ($data as &$area) {
+            unset($area['alpha2'], $area['alpha3'], $area['currency']);
+        }
+
+        return $data;
     }
 }
