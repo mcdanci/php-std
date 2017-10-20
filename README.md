@@ -1,12 +1,11 @@
-ThinkPHP 5.0
-===============
-
+# S Show Server
 [![Total Downloads](https://poser.pugx.org/topthink/think/downloads)](https://packagist.org/packages/topthink/think)
 [![Latest Stable Version](https://poser.pugx.org/topthink/think/v/stable)](https://packagist.org/packages/topthink/think)
 [![Latest Unstable Version](https://poser.pugx.org/topthink/think/v/unstable)](https://packagist.org/packages/topthink/think)
 [![License](https://poser.pugx.org/topthink/think/license)](https://packagist.org/packages/topthink/think)
 
-## 版权信息
+## Copyright Information
+`// TODO`
 
 ThinkPHP遵循Apache2开源协议发布，并提供免费使用。
 
