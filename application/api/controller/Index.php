@@ -5,39 +5,32 @@
  */
 namespace app\api\controller;
 
-use think\Controller;
-
 class Index extends Controller
 {
     /**
-     * 跨域 header
-     * @param string $domainName 可信域，当且仅当「限定式跨域」时指定
+     * @return array
+     * @return int $-status
+     * @return string $-info
+     * @return string $-body
      */
-    protected static function setHeaders($domainName = '*')
-    {
-        static $methodList = [
-            'GET',
-            'POST',
-            'PUT',
-            'DELETE',
-        ];
-        static $time = 3628800;
-
-        header('Access-Control-Allow-Origin: ' . $domainName);
-        if ($domainName != '*') {
-            header('Access-Control-Allow-Credentials: true'); // TODO: 存取许可
-        }
-
-        $methodString = implode(', ', $methodList);
-        header('Access-Control-Allow-Methods: ' . $methodString); // TODO
-        header('Access-Control-Max-Age: ' . $time); // TODO
-    }
-
     public function index()
     {
-        return 'S Show Server';
+        return [
+            'status' => 200,
+            'info' => 'OK',
+            'body' => 'S Show Server',
+        ];
     }
 
+    /**
+     * @return array
+     * @return int $-status
+     * @return string $-info
+     * @return array $-body
+     * @return array $-- tuple
+     * @return array $--name
+     * @return array $--numeric
+     */
     public function listIso3166()
     {
         $data = (new \League\ISO3166\ISO3166)->all();
@@ -46,12 +39,10 @@ class Index extends Controller
             unset($area['alpha2'], $area['alpha3'], $area['currency']);
         }
 
-        return $data;
-    }
-
-    protected function _initialize()
-    {
-        parent::_initialize();
-        self::setHeaders();
+        return [
+            'status' => 200,
+            'info' => 'OK',
+            'body' => $data,
+        ];
     }
 }
