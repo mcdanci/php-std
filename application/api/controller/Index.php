@@ -10,6 +10,20 @@ use PHPMailer\PHPMailer\Exception;
 
 class Index extends Controller
 {
+    private static $EMAIL_TEMPLATE = <<<EOT
+Dear administrator,
+
+Please notice thar you have obtained a new {role} application.
+
+{ROLE} registration information:
+{body}
+EOT;
+
+    private static $MAP_EXHIBITOR = [
+        'exhibitor',
+        'visitor',
+    ]; // TODO
+
     /**
      * S Show Server Example
      * @return array
@@ -103,5 +117,27 @@ class Index extends Controller
                 'body' => 'Mailer error: ' . $mail->ErrorInfo,
             ];
         }
+    }
+
+    /**
+     * @return array
+     * @deprecated
+     */
+    public function message()
+    {
+        return [
+            'status' => [
+                'code' => 200,
+                'message' => 'OK',
+            ],
+            'info' => null, // Fmnii
+            'header' => [ // optional
+                null,
+                null,
+            ],
+            'content' => null, // CT
+            'msg' => null, // CT
+            'body' => new \stdClass(),
+        ];
     }
 }
