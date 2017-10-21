@@ -5,6 +5,9 @@
  */
 namespace app\api\controller;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class Registration extends Controller
 {
     private static $PARAM_COMMON = [
@@ -39,9 +42,56 @@ class Registration extends Controller
 
     private $paramList;
 
-    private static function exhibitorEmail($data)
+    private static function exhibitorEmail($data, $email_addr = '15812890021@qq.com')
     {
-        
+        static $mailerEmailAddr = 'web@fmnii.com';
+
+        // Begin
+        $mail = new PHPMailer(true);
+
+        try {
+            // Server settings
+            $mail->SMTPDebug = 2;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.exmail.qq.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = $mailerEmailAddr;
+            $mail->Password = '@Fmnii789';
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+
+            // Recipients
+            $mail->setFrom($mailerEmailAddr, 'Mailer');
+            $mail->addAddress($email_addr, 'Recipient');
+            $mail->addReplyTo($mailerEmailAddr, 'Reply to Address');
+            $mail->addCC($email_addr);
+            $mail->addBCC($email_addr);
+
+            // Content
+            $content = '';
+            foreach ($data as $key => &$val) {
+                $content .= $key . ': ' . $val . PHP_EOL;
+            }
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Fmnii S Show Subject';
+            $mail->Body = '<h1>Hello, buddy</h1>' . '<pre>' . $content . '</pre>';
+            $mail->AltBody = 'Guy!' . print_r($data);
+
+            $mail->send();
+
+            return [
+                'status' => 200,
+                'info' => 'Message has been sent',
+                'body' => $mail,
+            ];
+        } catch (Exception $e) {
+            return [
+                'status' => 500,
+                'info' => 'Message could note be sent',
+                'body' => 'Mailer error: ' . $mail->ErrorInfo,
+            ];
+        }
     }
 
     public function exhibitor()
