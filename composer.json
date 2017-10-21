@@ -29,5 +29,8 @@
             "type": "composer",
             "url": "https://packagist.phpcomposer.com"
         }
+    },
+    "scripts": {
+        "apigen": "apigen generate -q -s ./application/api/controller -d ./docs --access-levels=public --no-source-code && git add ./docs"
     }
 }
