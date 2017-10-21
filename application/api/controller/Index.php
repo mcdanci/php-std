@@ -8,6 +8,7 @@ namespace app\api\controller;
 class Index extends Controller
 {
     /**
+     * S Show Server Example
      * @return array
      * @return int $-status
      * @return string $-info
@@ -23,6 +24,7 @@ class Index extends Controller
     }
 
     /**
+     * 获取 ISO 3166 清单
      * @return array
      * @return int $-status
      * @return string $-info
