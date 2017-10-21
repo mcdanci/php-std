@@ -11,20 +11,26 @@ class Index extends Controller
 {
     /**
      * 跨域 header
-     * @param false|string $domainName 可信域
+     * @param string $domainName 可信域，当且仅当「限定式跨域」时指定
      */
-    protected static function setHeaders($domainName = false)
+    protected static function setHeaders($domainName = '*')
     {
-        // 限定式跨域
-        if ($domainName) {
-            header('Access-Control-Allow-Origin: ' . $domainName);
-            header('Access-Control-Allow-Credentials: true'); // 存取许可
-        } else {
-            header('Access-Control-Allow-Origin: *');
+        static $methodList = [
+            'GET',
+            'POST',
+            'PUT',
+            'DELETE',
+        ];
+        static $time = 3628800;
+
+        header('Access-Control-Allow-Origin: ' . $domainName);
+        if ($domainName != '*') {
+            header('Access-Control-Allow-Credentials: true'); // TODO: 存取许可
         }
 
-        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
-        header('Access-Control-Max-Age: 3628800'); // TODO
+        $methodString = implode(', ', $methodList);
+        header('Access-Control-Allow-Methods: ' . $methodString); // TODO
+        header('Access-Control-Max-Age: ' . $time); // TODO
     }
 
     public function index()
@@ -45,6 +51,7 @@ class Index extends Controller
 
     protected function _initialize()
     {
+        parent::_initialize();
         self::setHeaders();
     }
 }
