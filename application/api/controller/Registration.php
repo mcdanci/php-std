@@ -39,13 +39,30 @@ class Registration extends Controller
 
     private $paramList;
 
+    private static function exhibitorEmail($data)
+    {
+        
+    }
+
     public function exhibitor()
     {
         $this->paramList = array_merge(self::$PARAM_COMMON, self::$PARAM_EXHIBITOR);
 
+        $data = [];
+
+        foreach ($this->paramList as &$param) {
+            $value = input($param);
+            if (strlen($value)) {
+                $data[$param] = $value;
+            }
+        }
+
+        self::exhibitorEmail($data);
+
         return [
             'status' => 200,
-            'body' => $this->paramList,
+            'info' => 'OK',
+            'body' => $data,
         ];
     }
 
