@@ -7,11 +7,12 @@ namespace app\api\controller;
 
 /**
  * Class Controller
- * @package app\api\controller
+ *
  * # Status
  * Value | Meaning (`info`rmation)
  * --- | ---
  * 200 | OK
+ * @package app\api\controller
  */
 abstract class Controller extends \think\Controller
 {
