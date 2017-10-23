@@ -89,7 +89,8 @@ class Registration extends Controller
 
         try {
             // Server settings
-            $mail->SMTPDebug = 2;
+            //$mail->SMTPDebug = 2;
+            $mail->SMTPDebug = 0;
             $mail->isSMTP();
             $mail->Host = Config::get('phpmailer.host');
             $mail->SMTPAuth = true;
@@ -197,10 +198,10 @@ Exhibitor registration information:
         // Send email
         $data = self::exhibitorEmail($data);
 
-        return [
+        return json([
             'status' => 200,
             'body' => [$data, $result],
-        ];
+        ]);
     }
 
     //endregion
@@ -243,6 +244,10 @@ Exhibitor registration information:
         return $data;
     }
 
+    /**
+     * @return array
+     * @deprecated
+     */
     public function visitor()
     {
         $data = [];
@@ -274,10 +279,10 @@ Exhibitor registration information:
         // Send email
         $data = self::visitorEmail($data);
 
-        return [
+        return json([
             'status' => 200,
             'body' => [$data],
-        ];
+        ]);
     }
 
     //endregion
