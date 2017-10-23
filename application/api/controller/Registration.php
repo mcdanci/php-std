@@ -198,10 +198,11 @@ Exhibitor registration information:
         // Send email
         $data = self::exhibitorEmail($data);
 
-        return json([
-            'status' => 200,
-            'body' => [$data, $result],
-        ]);
+        return 'Submit successful';
+        //return [
+        //    'status' => 200,
+        //    'body' => [$data, $result],
+        //];
     }
 
     //endregion
@@ -279,10 +280,11 @@ Exhibitor registration information:
         // Send email
         $data = self::visitorEmail($data);
 
-        return jsonp([
-            'status' => 200,
-            'body' => [$data],
-        ]);
+        return 'Submit successful';
+        //return [
+        //    'status' => 200,
+        //    'body' => [$data],
+        //];
     }
 
     //endregion
