@@ -1,10 +1,10 @@
 <?php
 return [
     'type' => 'mysql',
-    'hostname' => '10.0.0.26',
+    'hostname' => '39.108.221.196',
     'database' => 's-show',
-    'username' => 's-show',
-    'password' => 'bqqcvALY6sE3Xc5j',
+    'username' => 'sshow',
+    'password' => 'sshowadmin888',
 
     // 连接dsn
     'dsn' => '',
