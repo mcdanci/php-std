@@ -12,7 +12,13 @@ use think\Db;
 
 class Registration extends Controller
 {
-    private static $PARAM_COMMON = [
+    //region Common
+
+    const
+        COMMON_TYPE_EXHIBITOR = 1,
+        COMMON_TYPE_VISITOR = 2;
+
+    private static $paramCommon = [
         'name_first',
         'name_last',
         'gender',
@@ -30,19 +36,20 @@ class Registration extends Controller
         'password',
     ];
 
-    private static $PARAM_EXHIBITOR = [
+    private static $paramExhibitor = [
         'c_opf',
         'mpt',
         'mc',
         'tse',
     ];
-    private static $PARAM_VISITOR = [
+    private static $paramVisitor = [
         'job_function',
         'brand',
         'f_man',
     ];
 
-    private static $PARAM_MAP = [
+    private static $paramMap = [
+        // common
         'name_first' => 'First Name',
         'name_last' => 'Last Name',
         'gender' => 'Gender',
@@ -58,15 +65,21 @@ class Registration extends Controller
         'website' => 'Company Website',
         'cat' => 'Category',
 
+        // exhibitor
         'c_opf' => 'Country(ies) with own production facility',
         'mpt' => 'Major Product Type(s)',
         'mc' => 'Major Customer(s)',
         'tse' => 'What other trade shows do you exhibit with (if any)',
+
+        // visitor
+        'job_function' => 'Job Function',
+        'brand' => 'Brand',
+        'f_man' => 'Footwear Manufacturer',
     ];
 
     private $paramList;
 
-    private static function sendEmail($emailBody)
+    private static function sendEmail($emailBody, $emailSubject)
     {
         $emailAddrMailer = Config::get('phpmailer.username');
         $emailAddr = Config::get('phpmailer.addr2b_sent');
@@ -93,7 +106,7 @@ class Registration extends Controller
             $mail->addBCC($emailAddr);
 
             $mail->isHTML(true);
-            $mail->Subject = 'Fmnii S Show Subject';
+            $mail->Subject = $emailSubject;
             $mail->Body = '<pre>' . $emailBody . '</pre>';
             $mail->AltBody = $emailBody;
 
@@ -112,6 +125,8 @@ class Registration extends Controller
             ];
         }
     }
+
+    //endregion
 
     //region Exhibitor
 
@@ -137,7 +152,7 @@ class Registration extends Controller
 
         // Content
         foreach ($data as $key => &$val) {
-            $content .= self::$PARAM_MAP[$key] . ': ' . $val . PHP_EOL;
+            $content .= self::$paramMap[$key] . ': ' . $val . PHP_EOL;
         }
 
         $emailBody = 'Dear Administrator,
@@ -146,7 +161,7 @@ Please notice that you have obtained a new exhibitor application.
 
 Exhibitor registration information:
 ' . $content;
-        self::sendEmail($emailBody);
+        self::sendEmail($emailBody, 'Fmnii S Show Exhibitor Registration');
 
         return $data;
     }
@@ -154,7 +169,7 @@ Exhibitor registration information:
     public function exhibitor()
     {
         $data = $swap = [];
-        $this->paramList = array_merge(self::$PARAM_COMMON, self::$PARAM_EXHIBITOR);
+        $this->paramList = array_merge(self::$paramCommon, self::$paramExhibitor);
 
         // input process
         foreach ($this->paramList as &$param) {
@@ -166,7 +181,9 @@ Exhibitor registration information:
 
         // save to database
         $data2 = $data;
-        foreach (self::$PARAM_EXHIBITOR as &$item) {
+        $data2['created'] = self::datetimeNow();
+        $data2['type'] = self::COMMON_TYPE_EXHIBITOR;
+        foreach (self::$paramExhibitor as &$item) {
             if (array_key_exists($item, $data2)) {
                 $swap[$item] = $data2[$item];
                 unset($data2[$item]); // todo: need or not?
@@ -177,6 +194,7 @@ Exhibitor registration information:
         $swap['common_id'] = Db::name('common')->getLastInsID();
         $result[] = Db::name('exhibitor')->insert($swap);
 
+        // Send email
         $data = self::exhibitorEmail($data);
 
         return [
@@ -191,12 +209,44 @@ Exhibitor registration information:
 
     private static function visitorEmail($data)
     {
+        $content = $emailBody = '';
+
+        // Data process, rip of dictionary items
+        // - Gender
+        if (array_key_exists('gender', $data)) {
+            $data['gender'] = ($data['gender'] == 2) ? 'Mr.' : 'Mrs.';
+        }
+        // - Country (`iso3166`)
+        if (array_key_exists('iso3166', $data)) {
+            $data['iso3166'] = (new \League\ISO3166\ISO3166)->numeric((string)$data['iso3166'])['name'];
+        }
+        // - TODO: Category
+
+        // - Password
+        if (array_key_exists('password', $data)) {
+            unset($data['password']);
+        }
+
+        // Content
+        foreach ($data as $key => &$val) {
+            $content .= self::$paramMap[$key] . ': ' . $val . PHP_EOL;
+        }
+
+        $emailBody = 'Dear Administrator,
+
+Please notice that you have obtained a new visitor application.
+
+Exhibitor registration information:
+' . $content;
+        self::sendEmail($emailBody, 'Fmnii S Show Visitor Registration');
+
+        return $data;
     }
 
     public function visitor()
     {
         $data = [];
-        $this->paramList = array_merge(self::$PARAM_COMMON, self::$PARAM_VISITOR);
+        $this->paramList = array_merge(self::$paramCommon, self::$paramVisitor);
 
         // input process
         foreach ($this->paramList as &$param) {
@@ -206,11 +256,27 @@ Exhibitor registration information:
             }
         }
 
-        self::exhibitorEmail($data);
+        // save to database
+        $data2 = $data;
+        $data2['created'] = self::datetimeNow();
+        $data2['type'] = self::COMMON_TYPE_VISITOR;
+        foreach (self::$paramVisitor as &$item) {
+            if (array_key_exists($item, $data2)) {
+                $swap[$item] = $data2[$item];
+                unset($data2[$item]); // todo: need or not?
+            }
+        }
+        $result[] = Db::name('common')->insert($data2);
+
+        $swap['common_id'] = Db::name('common')->getLastInsID();
+        $result[] = Db::name('visitor')->insert($swap);
+
+        // Send email
+        $data = self::visitorEmail($data);
 
         return [
             'status' => 200,
-            'body' => $this->paramList,
+            'body' => [$data],
         ];
     }
 

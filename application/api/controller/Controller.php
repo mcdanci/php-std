@@ -16,6 +16,13 @@ namespace app\api\controller;
  */
 abstract class Controller extends \think\Controller
 {
+    const FORMAT_DATETIME = 'Y-m-d H:i:s';
+
+    protected static function datetimeNow()
+    {
+        return date(self::FORMAT_DATETIME);
+    }
+
     /**
      * 跨域 header
      * @param string $domainName 可信域，当且仅当「限定式跨域」时指定
