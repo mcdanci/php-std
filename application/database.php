@@ -3,18 +3,16 @@ return [
     'type' => 'mysql',
     'hostname' => '10.0.0.26',
     'database' => 's-show',
-    'username' => '	s-show',
+    'username' => 's-show',
     'password' => 'bqqcvALY6sE3Xc5j',
 
-    // 端口
-    'hostport' => '', // 3306
     // 连接dsn
     'dsn' => '',
     // 数据库连接参数
     'params' => [],
 
     'charset' => 'utf8mb4',
-    'prefix' => 's_',
+    'prefix' => 'ss_reg_',
     'debug' => true,
     'deploy' => 0,
     'rw_separate' => false,

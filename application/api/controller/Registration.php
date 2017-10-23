@@ -8,6 +8,7 @@ namespace app\api\controller;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use think\Config;
+use think\Db;
 
 class Registration extends Controller
 {
@@ -152,7 +153,7 @@ Exhibitor registration information:
 
     public function exhibitor()
     {
-        $data = [];
+        $data = $swap = [];
         $this->paramList = array_merge(self::$PARAM_COMMON, self::$PARAM_EXHIBITOR);
 
         // input process
@@ -163,11 +164,24 @@ Exhibitor registration information:
             }
         }
 
+        // save to database
+        $data2 = $data;
+        foreach (self::$PARAM_EXHIBITOR as &$item) {
+            if (array_key_exists($item, $data2)) {
+                $swap[$item] = $data2[$item];
+                unset($data2[$item]); // todo: need or not?
+            }
+        }
+        $result[] = Db::name('common')->insert($data2);
+
+        $swap['common_id'] = Db::name('common')->getLastInsID();
+        $result[] = Db::name('exhibitor')->insert($swap);
+
         $data = self::exhibitorEmail($data);
 
         return [
             'status' => 200,
-            'body' => $data,
+            'body' => [$data, $result],
         ];
     }
 
