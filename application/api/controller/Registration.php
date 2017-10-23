@@ -279,7 +279,7 @@ Exhibitor registration information:
         // Send email
         $data = self::visitorEmail($data);
 
-        return json([
+        return jsonp([
             'status' => 200,
             'body' => [$data],
         ]);
