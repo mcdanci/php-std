@@ -104,6 +104,7 @@ class Registration extends Controller
         // exhibitor
         'c_opf' => 'Country(ies) with own production facility',
         'mpt' => 'Major Product Type(s)',
+        'npe' => 'What specific NEW product(s) are you going to exhibit in S-SHOW',
         'mc' => 'Major Customer(s)',
         'tse' => 'What other trade shows do you exhibit with (if any)',
 
@@ -114,6 +115,35 @@ class Registration extends Controller
     ];
 
     private $paramList;
+
+    /**
+     * 获取性别描述
+     * @param array $data
+     *
+     * Key | Value
+     * --- | ---
+     * 1 | Mrs.
+     * 2 | Mr.
+     */
+    private static function getGenderDesc(&$data)
+    {
+        if (array_key_exists('gender', $data)) {
+            $data['gender'] = ($data['gender'] == 2) ? 'Mr.' : 'Mrs.';
+        }
+    }
+
+    /**
+     * Country
+     *
+     * `iso3166`
+     * @param array $data
+     */
+    private static function getCountryDesc(&$data)
+    {
+        if (array_key_exists('iso3166', $data)) {
+            $data['iso3166'] = (new \League\ISO3166\ISO3166)->numeric((string)$data['iso3166'])['name'];
+        }
+    }
 
     /**
      * 分类拆出
@@ -141,29 +171,39 @@ class Registration extends Controller
     /**
      * 分类拆出并返回分类描述
      * @param string $dataIso3166
-     */
-    /**
-     * @param $dataIso3166
      * @return string
      */
-    private static function getCategoryDesc($dataIso3166)
+    private static function getCategoryDesc(&$data)
     {
-        $desc = [];
+        if (array_key_exists('cat', $data)) {
+            $desc = [];
 
-        $dataArr = self::getCategory($dataIso3166);
+            $dataArr = self::getCategory($data['cat']);
 
-        if ($dataArr) {
-            for ($counter = 1; $counter < count(Config::get('category_desc')) + 1; $counter++) {
-                if (in_array($counter, $dataArr)) {
-                    $desc[] = Config::get('category_desc.' . $counter);
+            if ($dataArr) {
+                for ($counter = 1; $counter < count(Config::get('category_desc')) + 1; $counter++) {
+                    if (in_array($counter, $dataArr)) {
+                        $desc[] = Config::get('category_desc.' . $counter);
+                    }
                 }
+
+                $desc = implode(', ', $desc);
+
+                $data['cat'] = $desc;
+            } else {
+                $data['cat'] = '';
             }
+        }
+    }
 
-            $desc = implode(', ', $desc);
-
-            return $desc;
-        } else {
-            return '';
+    /**
+     * 邮件内容卸除密码
+     * @param $data
+     */
+    private static function emailUnset(&$data)
+    {
+        if (array_key_exists('password', $data)) {
+            unset($data['password']);
         }
     }
 
@@ -225,47 +265,43 @@ class Registration extends Controller
 
     //region Exhibitor
 
-    private static function exhibitorEmail($data)
-    {
-        $content = $emailBody = '';
-
-        // Data process, rip of dictionary items
-        // - Gender
-        if (array_key_exists('gender', $data)) {
-            $data['gender'] = ($data['gender'] == 2) ? 'Mr.' : 'Mrs.';
-        }
-        // - Country (`iso3166`)
-        if (array_key_exists('iso3166', $data)) {
-            $data['iso3166'] = (new \League\ISO3166\ISO3166)->numeric((string)$data['iso3166'])['name'];
-        }
-
-        // - TODO: Category
-        for ($counter = 1; $counter < (6 + 1); $counter++) {
-            if (in_array($counter, $data['cat'])) {
-            }
-        }
-
-        // - Password
-        if (array_key_exists('password', $data)) {
-            unset($data['password']);
-        }
-
-        // Content
-        foreach ($data as $key => &$val) {
-            $content .= self::$paramMap[$key] . ': ' . $val . PHP_EOL;
-        }
-
-        $emailBody = 'Dear Administrator,
+    private static $emailExhibitorBody = <<<EOT
+Dear Administrator,
 
 Please notice that you have obtained a new exhibitor application.
 
 Exhibitor registration information:
-' . $content;
-        self::sendEmail($emailBody, 'Fmnii S Show Exhibitor Registration');
+EOT;
+
+    /**
+     * 发送 exhibitor 登记邮件给 administrator
+     * @param $data
+     * @return mixed
+     */
+    private static function exhibitorEmail($data)
+    {
+        $content = '';
+
+        // data process
+        self::getGenderDesc($data);
+        self::getCountryDesc($data);
+        self::getCategoryDesc($data);
+        self::emailUnset($data);
+
+        // content
+        foreach ($data as $key => &$val) {
+            $content .= self::$paramMap[$key] . ': ' . $val . PHP_EOL;
+        }
+
+        self::$emailExhibitorBody .= $content;
+        self::sendEmail(self::$emailExhibitorBody, 'Fmnii S Show Exhibitor Registration');
 
         return $data;
     }
 
+    /**
+     * @todo
+     */
     public function exhibitor()
     {
         $data = $swap = [];
@@ -308,45 +344,38 @@ Exhibitor registration information:
 
     //region Visitor
 
-    private static function visitorEmail($data)
-    {
-        $content = $emailBody = '';
-
-        // Data process, rip of dictionary items
-        // - Gender
-        if (array_key_exists('gender', $data)) {
-            $data['gender'] = ($data['gender'] == 2) ? 'Mr.' : 'Mrs.';
-        }
-        // - Country (`iso3166`)
-        if (array_key_exists('iso3166', $data)) {
-            $data['iso3166'] = (new \League\ISO3166\ISO3166)->numeric((string)$data['iso3166'])['name'];
-        }
-        // - TODO: Category
-
-        // - Password
-        if (array_key_exists('password', $data)) {
-            unset($data['password']);
-        }
-
-        // Content
-        foreach ($data as $key => &$val) {
-            $content .= self::$paramMap[$key] . ': ' . $val . PHP_EOL;
-        }
-
-        $emailBody = 'Dear Administrator,
+    private static $emailVisitorBody = <<<EOT
+Dear Administrator,
 
 Please notice that you have obtained a new visitor application.
 
 Exhibitor registration information:
-' . $content;
-        self::sendEmail($emailBody, 'Fmnii S Show Visitor Registration');
+EOT;
+
+    private static function visitorEmail($data)
+    {
+        $content = '';
+
+        // data process
+        self::getGenderDesc($data);
+        self::getCountryDesc($data);
+        self::getCategoryDesc($data);
+        self::emailUnset($data);
+
+        // content
+        foreach ($data as $key => &$val) {
+            $content .= self::$paramMap[$key] . ': ' . $val . PHP_EOL;
+        }
+
+        self::$emailVisitorBody .= $content;
+        self::sendEmail(self::$emailVisitorBody, 'Fmnii S Show Visitor Registration');
 
         return $data;
     }
 
     /**
      * @return array
-     * @deprecated
+     * @todo
      */
     public function visitor()
     {
