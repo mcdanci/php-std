@@ -8,6 +8,7 @@
 `// TODO`
 
 ThinkPHP遵循Apache2开源协议发布，并提供免费使用。
+> 具体的协议参考：http://www.apache.org/licenses/LICENSE-2.0
 
 本项目包含的第三方源码和二进制文件之版权信息另行标注。
 
