@@ -14,6 +14,41 @@ class Registration extends Controller
 {
     //region Common
 
+    /**
+     * Array 中的字符串转数码
+     * @param array $array
+     * @return array
+     * @throws \Exception
+     */
+    private static function string2intInArray(&$array)
+    {
+        foreach ($array as &$item) {
+            if (is_numeric($item)) {
+                $item = (int)$item;
+            } else {
+                throw new \Exception('error');
+            }
+        }
+
+        return $array;
+    }
+
+    /**
+     * 登记完毕后提示用户所用
+     * @param string $message
+     * @param null|string $url
+     * @see \traits\controller\Jump::success
+     */
+    private function successfulTip($message = '', $url = null)
+    {
+        config('default_return_type', 'html');
+        $this->success($message, $url);
+    }
+
+    //endregion
+
+    //region Application Common
+
     const
         COMMON_TYPE_EXHIBITOR = 1,
         COMMON_TYPE_VISITOR = 2;
@@ -42,6 +77,7 @@ class Registration extends Controller
         'mc',
         'tse',
     ];
+
     private static $paramVisitor = [
         'job_function',
         'brand',
@@ -79,6 +115,64 @@ class Registration extends Controller
 
     private $paramList;
 
+    /**
+     * 分类拆出
+     * @param string $dataIso3166
+     * @return array
+     * @throws \Exception
+     */
+    private static function getCategory($dataIso3166)
+    {
+        $dataArr = [];
+
+        if (strlen($dataIso3166)) {
+            $dataArr = explode(',', $dataIso3166);
+
+            if (is_array($dataArr)) {
+                self::string2intInArray($dataArr);
+            } else {
+                $dataArr = [];
+            }
+        }
+
+        return $dataArr;
+    }
+
+    /**
+     * 分类拆出并返回分类描述
+     * @param string $dataIso3166
+     */
+    /**
+     * @param $dataIso3166
+     * @return string
+     */
+    private static function getCategoryDesc($dataIso3166)
+    {
+        $desc = [];
+
+        $dataArr = self::getCategory($dataIso3166);
+
+        if ($dataArr) {
+            for ($counter = 1; $counter < count(Config::get('category_desc')) + 1; $counter++) {
+                if (in_array($counter, $dataArr)) {
+                    $desc[] = Config::get('category_desc.' . $counter);
+                }
+            }
+
+            $desc = implode(', ', $desc);
+
+            return $desc;
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * @param $emailBody
+     * @param $emailSubject
+     * @return array
+     * @todo
+     */
     private static function sendEmail($emailBody, $emailSubject)
     {
         $emailAddrMailer = Config::get('phpmailer.username');
@@ -144,7 +238,12 @@ class Registration extends Controller
         if (array_key_exists('iso3166', $data)) {
             $data['iso3166'] = (new \League\ISO3166\ISO3166)->numeric((string)$data['iso3166'])['name'];
         }
+
         // - TODO: Category
+        for ($counter = 1; $counter < (6 + 1); $counter++) {
+            if (in_array($counter, $data['cat'])) {
+            }
+        }
 
         // - Password
         if (array_key_exists('password', $data)) {
@@ -198,7 +297,7 @@ Exhibitor registration information:
         // Send email
         $data = self::exhibitorEmail($data);
 
-        return 'Submit successful';
+        $this->successfulTip('Submitted successful.');
         //return [
         //    'status' => 200,
         //    'body' => [$data, $result],
@@ -280,7 +379,7 @@ Exhibitor registration information:
         // Send email
         $data = self::visitorEmail($data);
 
-        return 'Submit successful';
+        $this->successfulTip('Submitted successful.');
         //return [
         //    'status' => 200,
         //    'body' => [$data],
