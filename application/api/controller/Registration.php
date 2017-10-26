@@ -5,7 +5,7 @@
  */
 namespace app\api\controller;
 
-//region TODO: Check
+//region TODO: check
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use think\Config;
@@ -63,7 +63,7 @@ class Registration extends Controller
         COMMON_TYPE_VISITOR = 2;
 
     /**
-     * @var array attr for common
+     * @var array Attr. for common
      */
     private static $paramCommon = [
         'name_first',
@@ -84,7 +84,7 @@ class Registration extends Controller
     ];
 
     /**
-     * @var array attr for exhibitor
+     * @var array Attr. for exhibitor
      */
     private static $paramExhibitor = [
         'c_opf',
@@ -94,7 +94,7 @@ class Registration extends Controller
     ];
 
     /**
-     * @var array attr for exhibitor
+     * @var array Attr. for exhibitor
      */
     private static $paramVisitor = [
         'job_function',
@@ -103,14 +103,17 @@ class Registration extends Controller
     ];
 
     /**
-     * @var array map for attr which is using in email
+     * @var array Map for attr which is using in email
      */
     private static $paramMap;
 
+    /**
+     * @var array Param. list used by current object
+     */
     private $paramList;
 
     /**
-     * 获取性别描述
+     * Getting description of gender
      * @param array $data
      *
      * Key | Value
@@ -126,7 +129,7 @@ class Registration extends Controller
     }
 
     /**
-     * Country
+     * Getting description of country
      *
      * `iso3166`
      * @param array $data
@@ -139,7 +142,7 @@ class Registration extends Controller
     }
 
     /**
-     * 分类拆出
+     * Sept. categories
      * @param string $dataIso3166
      * @return array
      * @throws \Exception
@@ -162,9 +165,8 @@ class Registration extends Controller
     }
 
     /**
-     * 分类拆出并返回分类描述
-     * @param string $dataIso3166
-     * @return string
+     * Sept. categories and return category description
+     * @param array $data
      */
     private static function getCategoryDesc(&$data)
     {
@@ -190,8 +192,8 @@ class Registration extends Controller
     }
 
     /**
-     * 邮件内容卸除密码
-     * @param $data
+     * Unset password (from email)
+     * @param array $data
      */
     private static function emailUnset(&$data)
     {
@@ -200,7 +202,8 @@ class Registration extends Controller
         }
     }
 
-    /** Email data process
+    /**
+     * Email data process
      * @param array $data
      */
     private static function emailProcessSet(&$data)
@@ -212,10 +215,11 @@ class Registration extends Controller
     }
 
     /**
+     * Sending email
      * @param $emailBody
      * @param $emailSubject
      * @return array
-     * @todo
+     * @todo check
      */
     private static function sendEmail($emailBody, $emailSubject)
     {
@@ -265,7 +269,11 @@ class Registration extends Controller
         }
     }
 
-    public function _initialize()
+    /**
+     * Setup var.
+     * @see \app\api\controller\Registration::$paramMap
+     */
+    protected function _initialize()
     {
         parent::_initialize();
         self::$paramMap = Config::get('map_attr_desc');
@@ -285,7 +293,7 @@ Exhibitor registration information:
 EOT;
 
     /**
-     * 发送 exhibitor 登记邮件给 administrator
+     * Sending exhibitor registration successful email to administrator
      * @param $data
      * @return mixed
      */
@@ -307,6 +315,7 @@ EOT;
     }
 
     /**
+     * exhibitor process
      * @todo
      */
     public function exhibitor()
@@ -360,6 +369,11 @@ Exhibitor registration information:
 
 EOT;
 
+    /**
+     * Sending visitor registration successful email to administrator
+     * @param $data
+     * @return mixed
+     */
     private static function visitorEmail($data)
     {
         $content = '';
@@ -378,7 +392,7 @@ EOT;
     }
 
     /**
-     * @return array
+     * Visitor process
      * @todo
      */
     public function visitor()
