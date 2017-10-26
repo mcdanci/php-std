@@ -207,6 +207,17 @@ class Registration extends Controller
         }
     }
 
+    /** Email data process
+     * @param array $data
+     */
+    private static function emailProcessSet(&$data)
+    {
+        self::getGenderDesc($data);
+        self::getCountryDesc($data);
+        self::getCategoryDesc($data);
+        self::emailUnset($data);
+    }
+
     /**
      * @param $emailBody
      * @param $emailSubject
@@ -271,6 +282,7 @@ Dear Administrator,
 Please notice that you have obtained a new exhibitor application.
 
 Exhibitor registration information:
+
 EOT;
 
     /**
@@ -282,11 +294,7 @@ EOT;
     {
         $content = '';
 
-        // data process
-        self::getGenderDesc($data);
-        self::getCountryDesc($data);
-        self::getCategoryDesc($data);
-        self::emailUnset($data);
+        self::emailProcessSet($data);
 
         // content
         foreach ($data as $key => &$val) {
@@ -350,17 +358,14 @@ Dear Administrator,
 Please notice that you have obtained a new visitor application.
 
 Exhibitor registration information:
+
 EOT;
 
     private static function visitorEmail($data)
     {
         $content = '';
 
-        // data process
-        self::getGenderDesc($data);
-        self::getCountryDesc($data);
-        self::getCategoryDesc($data);
-        self::emailUnset($data);
+        self::emailProcessSet($data);
 
         // content
         foreach ($data as $key => &$val) {
