@@ -5,8 +5,19 @@
  */
 return [
     'host' => 'smtp.exmail.qq.com',
-    'username' => 'info@sshow-online.com',
-    'password' => 'UN20#17*oct25e',
+    'port' => 465,
 
-    'addr2b_sent' => '15812890021@qq.com', // TODO: for dev
+    // TODO: for dev
+    'username' => 'web@fmnii.com',
+    'password' => '@Fmnii789',
+
+    'recipient' => [ // `to`, `cc` and `bcc` could be set below
+        'to' => [
+            //'admin@sshow-online.com', // deployment
+            '15812890021@qq.com', // TODO: for dev
+        ],
+        'bcc' => [
+            '15812890021@qq.com', // TODO: for dev
+        ],
+    ],
 ];

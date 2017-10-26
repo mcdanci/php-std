@@ -18,7 +18,7 @@
 // | Author: yunwuxin <448901948@qq.com>
 
 return [
-    //'app_trace' => true, // TODO: for debug
+    'app_trace' => true, // TODO: for debug
 
 
     // descriptions of categories

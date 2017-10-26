@@ -16,15 +16,11 @@ use think\Db;
  */
 class Registration extends Controller
 {
-    /**
-     * @todo
-     */
     //region Common
 
     /**
      * String to digit within array
      * @param array $array
-     * @return array
      * @throws \Exception
      */
     private static function string2intInArray(&$array)
@@ -33,15 +29,107 @@ class Registration extends Controller
             if (is_numeric($item)) {
                 $item = (int)$item;
             } else {
-                throw new \Exception('error');
+                throw new \Exception;
+            }
+        }
+    }
+
+    //endregion
+
+    //region Fmnii Common
+
+    /**
+     * Fmnii return template
+     * @param int $statusCode
+     * @param null $statusMessage
+     * @param null $body
+     * @return array
+     */
+    protected static function returnTemplate($statusCode = 200, $statusMessage = null, $body = null)
+    {
+        $return = ['status' => $statusCode];
+        $templateFmnii = [
+            'info' => $statusMessage,
+            'body' => $body,
+        ];
+
+        foreach ($templateFmnii as $k => &$v) {
+            if ($v != null) {
+                $return[$k] = $v;
             }
         }
 
-        return $array;
+        return $return;
+    }
+
+    //endregion
+
+    //region Application Common
+
+    /**
+     * Sending email
+     * @param string $emailBody
+     * @param string $subject
+     * @return array
+     */
+    private static function sendEmail($emailBody, $subject)
+    {
+        $mail = new PHPMailer(true);
+        try {
+            static $RECIPIENT_TYPE_MAP = [
+                'to' => 'addAddress',
+                'cc' => 'addCC',
+                'bcc' => 'addBCC',
+            ];
+
+            // Server settings
+
+            // TODO
+            //$mail->SMTPDebug = 0;
+            $mail->SMTPDebug = 2;
+
+            $mail->isSMTP();
+
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = Config::get('phpmailer.host');
+            $mail->Username = Config::get('phpmailer.username');
+            $mail->Password = Config::get('phpmailer.password');
+            $mail->Port = Config::get('phpmailer.port');
+
+            $mail->setFrom(Config::get('phpmailer.username'), 'S Show');
+
+
+            // Recipients
+            $recipientTypeList = array_keys($RECIPIENT_TYPE_MAP);
+            $confRecipient = Config::get('phpmailer.recipient');
+
+
+            foreach (array_keys($confRecipient) as &$confRecipientType) {
+                if (in_array($confRecipientType, $recipientTypeList, true)) {
+                    foreach ($confRecipient[$confRecipientType] as &$recipient) {
+                        $mail->{$RECIPIENT_TYPE_MAP[$confRecipientType]}($recipient);
+                    }
+                }
+            }
+
+
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body = '<pre>' . $emailBody . '</pre>';
+            $mail->AltBody = $emailBody;
+
+            $mail->send();
+
+            return self::returnTemplate(200, 'Message has been sent', $mail);
+        } catch (Exception $e) {
+            return self::returnTemplate(500, 'Message could note be sent', 'Mailer error: ' . $mail->ErrorInfo);
+        }
     }
 
     /**
-     * For giving tip to user after submitted
+     * Giving tip to user after submitted
      * @param string $message
      * @param null|string $url
      * @see \traits\controller\Jump::success
@@ -57,7 +145,7 @@ class Registration extends Controller
     /**
      * @todo
      */
-    //region Application Common
+    //region Application Common Original
 
     /**
      * Common type definition
@@ -219,60 +307,7 @@ class Registration extends Controller
         self::emailUnset($data);
     }
 
-    /**
-     * Sending email
-     * @param $emailBody
-     * @param $emailSubject
-     * @return array
-     * @todo check
-     */
-    private static function sendEmail($emailBody, $emailSubject)
-    {
-        $emailAddrMailer = Config::get('phpmailer.username');
-        $emailAddr = Config::get('phpmailer.addr2b_sent');
 
-        // Begin
-        $mail = new PHPMailer(true);
-
-        try {
-            // Server settings
-            //$mail->SMTPDebug = 2;
-            $mail->SMTPDebug = 0;
-            $mail->isSMTP();
-            $mail->Host = Config::get('phpmailer.host');
-            $mail->SMTPAuth = true;
-            $mail->Username = $emailAddrMailer;
-            $mail->Password = Config::get('phpmailer.password');
-            $mail->SMTPSecure = 'ssl';
-            $mail->Port = 465;
-
-            // Recipients
-            $mail->setFrom($emailAddrMailer, 'Mailer');
-            $mail->addAddress($emailAddr, 'Recipient');
-            $mail->addReplyTo($emailAddrMailer, 'Reply to Address');
-            $mail->addCC($emailAddr);
-            $mail->addBCC($emailAddr);
-
-            $mail->isHTML(true);
-            $mail->Subject = $emailSubject;
-            $mail->Body = '<pre>' . $emailBody . '</pre>';
-            $mail->AltBody = $emailBody;
-
-            $mail->send();
-
-            return [
-                'status' => 200,
-                'info' => 'Message has been sent',
-                'body' => $mail,
-            ];
-        } catch (Exception $e) {
-            return [
-                'status' => 500,
-                'info' => 'Message could note be sent',
-                'body' => 'Mailer error: ' . $mail->ErrorInfo,
-            ];
-        }
-    }
 
     /**
      * Setup var.
@@ -286,11 +321,11 @@ class Registration extends Controller
 
     //endregion
 
-    /**
-     * @todo
-     */
     //region Exhibitor
 
+    /**
+     * @var string Exhibitor Template
+     */
     private static $emailExhibitorBody = <<<EOT
 Dear Administrator,
 
@@ -302,8 +337,8 @@ EOT;
 
     /**
      * Sending exhibitor registration successful email to administrator
-     * @param $data
-     * @return mixed
+     * @param array $data
+     * @return array
      */
     private static function exhibitorEmail($data)
     {
@@ -366,11 +401,11 @@ EOT;
 
     //endregion
 
-    /**
-     * @todo
-     */
     //region Visitor
 
+    /**
+     * @var string Visitor template
+     */
     private static $emailVisitorBody = <<<EOT
 Dear Administrator,
 
@@ -382,8 +417,8 @@ EOT;
 
     /**
      * Sending visitor registration successful email to administrator
-     * @param $data
-     * @return mixed
+     * @param array $data
+     * @return array
      */
     private static function visitorEmail($data)
     {
