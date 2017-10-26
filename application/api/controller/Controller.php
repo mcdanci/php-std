@@ -88,6 +88,13 @@ abstract class Controller extends \think\Controller
 
     //region Application Common
 
+    /**
+     * Common type definition
+     */
+    const
+        COMMON_TYPE_EXHIBITOR = 1,
+        COMMON_TYPE_VISITOR = 2;
+
     protected function _initialize()
     {
         parent::_initialize();

@@ -120,13 +120,6 @@ class Registration extends Controller
     //region Application Common Original
 
     /**
-     * Common type definition
-     */
-    const
-        COMMON_TYPE_EXHIBITOR = 1,
-        COMMON_TYPE_VISITOR = 2;
-
-    /**
      * @var array Attr. for common
      */
     private static $paramCommon = [
