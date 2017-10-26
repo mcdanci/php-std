@@ -5,12 +5,4 @@
  */
 return [
     'default_return_type' => 'json',
-
-    // PHPMailer
-    'phpmailer' => [
-        'host' => 'smtp.exmail.qq.com',
-        'username' => 'web@fmnii.com',
-        'password' => '@Fmnii789',
-        'addr2b_sent' => '15812890021@qq.com',
-    ],
 ];

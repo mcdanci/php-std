@@ -5,17 +5,23 @@
  */
 namespace app\api\controller;
 
+//region TODO: Check
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use think\Config;
 use think\Db;
+//endregion
 
+/**
+ * Registration for Stage 1
+ * @package app\api\controller
+ */
 class Registration extends Controller
 {
     //region Common
 
     /**
-     * Array 中的字符串转数码
+     * String to digit within array
      * @param array $array
      * @return array
      * @throws \Exception
@@ -34,7 +40,7 @@ class Registration extends Controller
     }
 
     /**
-     * 登记完毕后提示用户所用
+     * For giving tip to user after submitted
      * @param string $message
      * @param null|string $url
      * @see \traits\controller\Jump::success
@@ -49,10 +55,16 @@ class Registration extends Controller
 
     //region Application Common
 
+    /**
+     * Common type definition
+     */
     const
         COMMON_TYPE_EXHIBITOR = 1,
         COMMON_TYPE_VISITOR = 2;
 
+    /**
+     * @var array attr for common
+     */
     private static $paramCommon = [
         'name_first',
         'name_last',
@@ -71,6 +83,9 @@ class Registration extends Controller
         'password',
     ];
 
+    /**
+     * @var array attr for exhibitor
+     */
     private static $paramExhibitor = [
         'c_opf',
         'mpt',
@@ -78,41 +93,19 @@ class Registration extends Controller
         'tse',
     ];
 
+    /**
+     * @var array attr for exhibitor
+     */
     private static $paramVisitor = [
         'job_function',
         'brand',
         'f_man',
     ];
 
-    private static $paramMap = [
-        // common
-        'name_first' => 'First Name',
-        'name_last' => 'Last Name',
-        'gender' => 'Gender',
-        'email' => 'Email',
-        'tel' => 'Telephone',
-        'tel_cell' => 'Cell Phone',
-        'company' => 'Company Name',
-        'street' => 'Street',
-        'city' => 'City',
-        'state' => 'State (Required for U.S. and Canada Only)',
-        'zip' => 'Zip Code',
-        'iso3166' => 'Country',
-        'website' => 'Company Website',
-        'cat' => 'Category',
-
-        // exhibitor
-        'c_opf' => 'Country(ies) with own production facility',
-        'mpt' => 'Major Product Type(s)',
-        'npe' => 'What specific NEW product(s) are you going to exhibit in S-SHOW',
-        'mc' => 'Major Customer(s)',
-        'tse' => 'What other trade shows do you exhibit with (if any)',
-
-        // visitor
-        'job_function' => 'Job Function',
-        'brand' => 'Brand',
-        'f_man' => 'Footwear Manufacturer',
-    ];
+    /**
+     * @var array map for attr which is using in email
+     */
+    private static $paramMap;
 
     private $paramList;
 
@@ -270,6 +263,12 @@ class Registration extends Controller
                 'body' => 'Mailer error: ' . $mail->ErrorInfo,
             ];
         }
+    }
+
+    public function _initialize()
+    {
+        parent::_initialize();
+        self::$paramMap = Config::get('map_attr_desc');
     }
 
     //endregion
