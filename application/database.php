@@ -2,7 +2,7 @@
 return [
     'type' => 'mysql',
     'hostname' => '39.108.221.196',
-    'database' => 's-show',
+    'database' => 'sshowapi',
     'username' => 'sshow',
     'password' => 'sshowadmin888',
 
