@@ -24,15 +24,6 @@ abstract class Controller extends \think\Controller
     const FORMAT_DATETIME = 'Y-m-d H:i:s';
 
     /**
-     * Returning presentation of current in MySQL DATETIME
-     * @return bool|string
-     */
-    protected static function datetimeNow()
-    {
-        return date(self::FORMAT_DATETIME);
-    }
-
-    /**
      * Cross-domain header
      * @param string $domainName Trusted domain, spec. when limited domain for deployment
      */
@@ -54,6 +45,31 @@ abstract class Controller extends \think\Controller
         // TODO: check
         header('Access-Control-Allow-Methods: ' . implode(', ', $METHOD_LIST));
         header('Access-Control-Max-Age: ' . $PERIOD);
+    }
+
+    /**
+     * Returning presentation of current in MySQL DATETIME
+     * @return bool|string
+     */
+    protected static function datetimeNow()
+    {
+        return date(self::FORMAT_DATETIME);
+    }
+
+    /**
+     * String to digit within array
+     * @param array $array
+     * @throws \Exception
+     */
+    protected static function string2intInArray(&$array)
+    {
+        foreach ($array as &$item) {
+            if (is_numeric($item)) {
+                $item = (int)$item;
+            } else {
+                throw new \Exception;
+            }
+        }
     }
 
     //endregion

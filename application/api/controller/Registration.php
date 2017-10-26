@@ -16,26 +16,6 @@ use think\Db;
  */
 class Registration extends Controller
 {
-    //region Common
-
-    /**
-     * String to digit within array
-     * @param array $array
-     * @throws \Exception
-     */
-    private static function string2intInArray(&$array)
-    {
-        foreach ($array as &$item) {
-            if (is_numeric($item)) {
-                $item = (int)$item;
-            } else {
-                throw new \Exception;
-            }
-        }
-    }
-
-    //endregion
-
     //region Application Common
 
     /**
