@@ -31,6 +31,6 @@
         }
     },
     "scripts": {
-        "apigen": "apigen generate -q -s ./application/api/controller -d ./public/docs --access-levels=public --no-source-code && git add ./public/docs"
+        "apigen": "apigen generate -q -s ./application/api/controller -d ./public/docs --access-levels=public --no-source-code"
     }
 }
