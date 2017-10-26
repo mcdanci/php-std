@@ -1,4 +1,10 @@
+# Editor
 .idea
+
+# Development
 composer.lock
 /thinkphp
+/public/docs
+
+# Runtime
 *.log
