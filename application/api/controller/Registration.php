@@ -5,12 +5,10 @@
  */
 namespace app\api\controller;
 
-//region TODO: check
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use think\Config;
 use think\Db;
-//endregion
 
 /**
  * Registration for Stage 1
@@ -18,6 +16,9 @@ use think\Db;
  */
 class Registration extends Controller
 {
+    /**
+     * @todo
+     */
     //region Common
 
     /**
@@ -53,6 +54,9 @@ class Registration extends Controller
 
     //endregion
 
+    /**
+     * @todo
+     */
     //region Application Common
 
     /**
@@ -282,6 +286,9 @@ class Registration extends Controller
 
     //endregion
 
+    /**
+     * @todo
+     */
     //region Exhibitor
 
     private static $emailExhibitorBody = <<<EOT
@@ -359,6 +366,9 @@ EOT;
 
     //endregion
 
+    /**
+     * @todo
+     */
     //region Visitor
 
     private static $emailVisitorBody = <<<EOT

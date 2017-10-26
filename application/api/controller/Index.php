@@ -8,6 +8,11 @@ namespace app\api\controller;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+/**
+ * Class Index
+ * @package app\api\controller
+ * @todo
+ */
 class Index extends Controller
 {
     private static $EMAIL_TEMPLATE = <<<EOT
