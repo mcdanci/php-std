@@ -30,7 +30,7 @@ EOT;
     ]; // TODO
 
     /**
-     * S Show Server Example
+     * S Show (API) Server Echo
      * @return array
      * @return int $-status
      * @return string $-info
@@ -38,11 +38,7 @@ EOT;
      */
     public function index()
     {
-        return [
-            'status' => 200,
-            'info' => 'OK',
-            'body' => 'S Show Server',
-        ];
+        return self::returnTemplate(200, 'OK', 'S Show Server');
     }
 
     /**

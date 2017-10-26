@@ -36,34 +36,6 @@ class Registration extends Controller
 
     //endregion
 
-    //region Fmnii Common
-
-    /**
-     * Fmnii return template
-     * @param int $statusCode
-     * @param null $statusMessage
-     * @param null $body
-     * @return array
-     */
-    protected static function returnTemplate($statusCode = 200, $statusMessage = null, $body = null)
-    {
-        $return = ['status' => $statusCode];
-        $templateFmnii = [
-            'info' => $statusMessage,
-            'body' => $body,
-        ];
-
-        foreach ($templateFmnii as $k => &$v) {
-            if ($v != null) {
-                $return[$k] = $v;
-            }
-        }
-
-        return $return;
-    }
-
-    //endregion
-
     //region Application Common
 
     /**
