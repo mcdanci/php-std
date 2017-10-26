@@ -18,86 +18,7 @@ class Registration extends Controller
 {
     //region Application Common
 
-    /**
-     * Sending email
-     * @param string $emailBody
-     * @param string $subject
-     * @return array
-     */
-    private static function sendEmail($emailBody, $subject)
-    {
-        $mail = new PHPMailer(true);
-        try {
-            static $RECIPIENT_TYPE_MAP = [
-                'to' => 'addAddress',
-                'cc' => 'addCC',
-                'bcc' => 'addBCC',
-            ];
-
-            // Server settings
-
-            // TODO
-            //$mail->SMTPDebug = 0;
-            $mail->SMTPDebug = 2;
-
-            $mail->isSMTP();
-
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = 'ssl';
-            $mail->Host = Config::get('phpmailer.host');
-            $mail->Username = Config::get('phpmailer.username');
-            $mail->Password = Config::get('phpmailer.password');
-            $mail->Port = Config::get('phpmailer.port');
-
-            $mail->setFrom(Config::get('phpmailer.username'), 'S Show');
-
-
-            // Recipients
-            $recipientTypeList = array_keys($RECIPIENT_TYPE_MAP);
-            $confRecipient = Config::get('phpmailer.recipient');
-
-
-            foreach (array_keys($confRecipient) as &$confRecipientType) {
-                if (in_array($confRecipientType, $recipientTypeList, true)) {
-                    foreach ($confRecipient[$confRecipientType] as &$recipient) {
-                        $mail->{$RECIPIENT_TYPE_MAP[$confRecipientType]}($recipient);
-                    }
-                }
-            }
-
-
-            // Content
-            $mail->isHTML(true);
-            $mail->Subject = $subject;
-            $mail->Body = '<pre>' . $emailBody . '</pre>';
-            $mail->AltBody = $emailBody;
-
-            $mail->send();
-
-            return self::returnTemplate(200, 'Message has been sent', $mail);
-        } catch (Exception $e) {
-            return self::returnTemplate(500, 'Message could note be sent', 'Mailer error: ' . $mail->ErrorInfo);
-        }
-    }
-
-    /**
-     * Giving tip to user after submitted
-     * @param string $message
-     * @param null|string $url
-     * @see \traits\controller\Jump::success
-     */
-    private function successfulTip($message = '', $url = null)
-    {
-        config('default_return_type', 'html');
-        $this->success($message, $url);
-    }
-
-    //endregion
-
-    /**
-     * @todo
-     */
-    //region Application Common Original
+    const MAIL_FROM_DISP = 'S Show';
 
     /**
      * @var array Attr. for common
@@ -121,32 +42,12 @@ class Registration extends Controller
     ];
 
     /**
-     * @var array Attr. for exhibitor
-     */
-    private static $paramExhibitor = [
-        'c_opf',
-        'mpt',
-        'npe',
-        'mc',
-        'tse',
-    ];
-
-    /**
-     * @var array Attr. for exhibitor
-     */
-    private static $paramVisitor = [
-        'job_function',
-        'brand',
-        'f_man',
-    ];
-
-    /**
-     * @var array Map for attr which is using in email
+     * @var array Map for attr. which is using in email
      */
     private static $paramMap;
 
     /**
-     * @var array Param. list used by current object
+     * @var array Param list used by current object
      */
     private $paramList;
 
@@ -252,7 +153,79 @@ class Registration extends Controller
         self::emailUnset($data);
     }
 
+    /**
+     * Sending email
+     * @param string $emailBody
+     * @param string $subject
+     * @return array
+     */
+    private static function sendEmail($emailBody, $subject)
+    {
+        $mail = new PHPMailer(true);
+        try {
+            static $RECIPIENT_TYPE_MAP = [
+                'to' => 'addAddress',
+                'cc' => 'addCC',
+                'bcc' => 'addBCC',
+            ];
 
+            // Server settings
+
+            // TODO
+            //$mail->SMTPDebug = 0;
+            $mail->SMTPDebug = 2;
+
+            $mail->isSMTP();
+
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = Config::get('phpmailer.host');
+            $mail->Username = Config::get('phpmailer.username');
+            $mail->Password = Config::get('phpmailer.password');
+            $mail->Port = Config::get('phpmailer.port');
+
+            $mail->setFrom(Config::get('phpmailer.username'), self::MAIL_FROM_DISP);
+
+
+            // Recipients
+            $recipientTypeList = array_keys($RECIPIENT_TYPE_MAP);
+            $confRecipient = Config::get('phpmailer.recipient');
+
+
+            foreach (array_keys($confRecipient) as &$confRecipientType) {
+                if (in_array($confRecipientType, $recipientTypeList, true)) {
+                    foreach ($confRecipient[$confRecipientType] as &$recipient) {
+                        $mail->{$RECIPIENT_TYPE_MAP[$confRecipientType]}($recipient);
+                    }
+                }
+            }
+
+
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body = '<pre>' . $emailBody . '</pre>';
+            $mail->AltBody = $emailBody;
+
+            $mail->send();
+
+            return self::returnTemplate(200, 'Message has been sent', $mail);
+        } catch (Exception $e) {
+            return self::returnTemplate(500, 'Message could note be sent', 'Mailer error: ' . $mail->ErrorInfo);
+        }
+    }
+
+    /**
+     * Giving tip to user after submitted
+     * @param string $message
+     * @param null|string $url
+     * @see \traits\controller\Jump::success
+     */
+    private function successfulTip($message = '', $url = null)
+    {
+        config('default_return_type', 'html');
+        $this->success($message, $url);
+    }
 
     /**
      * Setup var.
@@ -267,6 +240,17 @@ class Registration extends Controller
     //endregion
 
     //region Exhibitor
+
+    /**
+     * @var array Attr. for exhibitor
+     */
+    private static $paramExhibitor = [
+        'c_opf',
+        'mpt',
+        'npe',
+        'mc',
+        'tse',
+    ];
 
     /**
      * @var string Exhibitor Template
@@ -347,6 +331,15 @@ EOT;
     //endregion
 
     //region Visitor
+
+    /**
+     * @var array Attr. for exhibitor
+     */
+    private static $paramVisitor = [
+        'job_function',
+        'brand',
+        'f_man',
+    ];
 
     /**
      * @var string Visitor template
