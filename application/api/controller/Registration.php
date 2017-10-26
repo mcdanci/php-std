@@ -89,6 +89,7 @@ class Registration extends Controller
     private static $paramExhibitor = [
         'c_opf',
         'mpt',
+        'npe',
         'mc',
         'tse',
     ];
