@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
-const APP_NAMESPACE = 'application';
+const APP_NAMESPACE = 'app';
 
 const PROJECT_DIR = __DIR__ . DIRECTORY_SEPARATOR;
 
