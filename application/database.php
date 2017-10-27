@@ -1,10 +1,17 @@
 <?php
 return [
     'type' => 'mysql',
-    'hostname' => '39.108.221.196',
-    'database' => 'sshowapi',
-    'username' => 'sshow',
-    'password' => 'sshowadmin888',
+
+    // TODO: for dev
+    'hostname' => 'develop-1.fmnii.e13.cc',
+    'database' => 's-show',
+    'username' => 's-show',
+    'password' => 'bqqcvALY6sE3Xc5j',
+
+    //'hostname' => '39.108.221.196',
+    //'database' => 'sshowapi',
+    //'username' => 'sshow',
+    //'password' => 'sshowadmin888',
 
     // 连接dsn
     'dsn' => '',
