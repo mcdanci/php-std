@@ -2,8 +2,10 @@
 .idea
 
 # Development
-composer.lock
 /thinkphp
+composer.lock
+/vendor/
+
 /public/docs
 
 # Deployment

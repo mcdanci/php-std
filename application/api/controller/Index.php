@@ -38,7 +38,7 @@ EOT;
      */
     public function index()
     {
-        return self::returnTemplate(200, 'OK', 'S Show Server');
+        return self::fmniiTemplate(200, 'OK', 'S Show Server');
     }
 
     /**
@@ -140,5 +140,10 @@ EOT;
             'msg' => null, // CT
             'body' => new \stdClass(),
         ];
+    }
+
+    public function msgDisp()
+    {
+        return self::fmniiTemplate(200, 'debug', [[['hello']]]);
     }
 }
