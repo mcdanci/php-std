@@ -7,6 +7,12 @@ namespace Fmnii;
 
 /**
  * Fmnii Controller Common
+ *
+ * # Status
+ * Value | Meaning (`info`rmation)
+ * --- | ---
+ * 200 | OK
+ *
  * @package Fmnii
  */
 trait ControllerCommon
