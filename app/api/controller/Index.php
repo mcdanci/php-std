@@ -141,9 +141,4 @@ EOT;
             'body' => new \stdClass(),
         ];
     }
-
-    public function msgDisp()
-    {
-        return self::fmniiTemplate(200, 'debug', [[['hello']]]);
-    }
 }
