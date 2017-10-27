@@ -18,8 +18,8 @@ h1{font-size: 100px; font-weight: normal; margin-bottom: 12px;}
 p{line-height: 1.6em; font-size: 42px}
 --></style>
 <div style="padding: 24px 48px;">
-    <h1>:)</h1>
-    <p>S Show</p>
+    <h1>:) Welcome</h1>
+    <p>S Show API</p>
 </div>';
     }
 }
