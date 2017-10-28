@@ -6,12 +6,6 @@ return [
 
     //region development environment
 
-    // TODO: intranet
-    'hostname' => 'develop-1.fmnii.e13.cc',
-    'username' => 's-show',
-    'password' => 'bqqcvALY6sE3Xc5j',
-    'database' => 's-show',
-
     // TODO: Internet
     //'hostname' => '39.108.221.196',
     //'username' => 'sshow',

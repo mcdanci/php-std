@@ -12,22 +12,14 @@
  * @author <outieyi@milianjie.com>
  */
 
-// | ThinkPHP [ WE CAN DO IT JUST THINK ]
-// | Copyright (c) 2006-2016 http://thinkphp.cn All rights reserved.
+// TODO
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// | Author: yunwuxin <448901948@qq.com>
-// | ThinkPHP [ WE CAN DO IT JUST THINK ]
-// | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// | Author: liu21st <liu21st@gmail.com>
-// | ThinkPHP [ WE CAN DO IT JUST THINK ]
-// | Copyright (c) 2006-2016 http://thinkphp.cn All rights reserved.
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// | Author: liu21st <liu21st@gmail.com>
 
 return [
     'app_trace' => true, // TODO: for debug
 
+    // TODO: for deployment
+    'app_status' => 'dev-intranet',
 
     // descriptions of categories
     'category_desc' => [
