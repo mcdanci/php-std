@@ -73,6 +73,8 @@ trait Convention
             } else {
                 $ret = array_merge($ret, $body);
             }
+        } else {
+            throw new \Exception('Message body is not an array');
         }
 
         return $ret;
