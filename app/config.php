@@ -18,9 +18,6 @@
 return [
     'app_trace' => true, // TODO: for debug
 
-    // TODO: for deployment
-    'app_status' => 'dev-intranet',
-
     // descriptions of categories
     'category_desc' => [
         1 => 'material',
