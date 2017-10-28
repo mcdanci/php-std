@@ -34,8 +34,8 @@ trait Convention
      * @param null|array $body
      * @return array
      * @return ->status Status code
-     * @return ->info *optional* Status message
-     * @return ->... *optional* Message body
+     * @return ->info Status message *optional*
+     * @return ->... Message body *optional*
      * @throws \Exception
      */
     protected static function retTemp($statusCode = 1, $statusMessage = null, $body = null)
