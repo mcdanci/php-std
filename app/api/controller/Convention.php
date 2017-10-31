@@ -8,7 +8,7 @@ namespace app\api\controller;
 use think\Config;
 
 /**
- * Class in Fmnii Convention
+ * In Fmnii Convention
  * @package app\api\controller
  */
 class Convention extends Controller
@@ -19,13 +19,14 @@ class Convention extends Controller
      * Getting data in merged or not
      * @param bool $merge True for merging while false for not
      * @return mixed
+     * @todo Unit test
      */
     private static function getFileMustData($merge = false)
     {
         $data = Config::get('field_must');
 
         if ($merge) {
-            foreach (['exhibitor'] as &$role) {
+            foreach (['exhibitor', 'visitor'] as &$role) {
                 $data[$role] = array_merge($data['common'], $data[$role]);
             }
             unset($data['common']);
@@ -42,6 +43,7 @@ class Convention extends Controller
      * ->exhibitor
      * ->visitor
      * @throws \Exception
+     * @todo Unit test
      */
     public function getFieldMust($merge = false)
     {
