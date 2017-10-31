@@ -8,7 +8,8 @@ namespace app\api\controller;
 use think\Config;
 
 /**
- * In Fmnii Convention
+ * Convention
+ * In Fmnii convention
  * @package app\api\controller
  */
 class Convention extends Controller
@@ -40,12 +41,15 @@ class Convention extends Controller
      * @param bool $merge True for merging while false for not
      * @return array
      * ->common *optional*
+     *
      * ->exhibitor
+     *
      * ->visitor
+     *
      * @throws \Exception
      * @todo Unit test
      */
-    public function getFieldMust($merge = false)
+        public function getFieldMust($merge = false)
     {
         return self::retTemp(self::$scSucceeded, null, self::getFileMustData($merge));
     }
