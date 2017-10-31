@@ -40,7 +40,6 @@ trait Common
      *
      * ->... Message body *optional*
      * @throws \Exception
-     * @todo Message body 若为 string?
      */
     protected static function retTemp($statusCode = 200, $statusMessage = null, $body = null)
     {
@@ -61,24 +60,10 @@ trait Common
         /**
          * Message body set
          */
-        if (is_array($body)) {
-            // Check if `status` or `info` is in `body` or not
-            $statusKeyWithinBody = [];
-
-            foreach (['status', 'info'] as &$key2bChecked) {
-                if (array_key_exists($key2bChecked, $body)) {
-                    $statusKeyWithinBody[] = $key2bChecked;
-                }
-            }
-
-            if ($statusKeyWithinBody) {
-                $eDesc = 'Message body with key ' . implode(' and ', $statusKeyWithinBody);
-                throw new \Exception($eDesc);
-            } else {
-                $ret = array_merge($ret, $body);
-            }
+        if (is_array($body) || is_string($body)) {
+            $ret['body'] = $body;
         } elseif ($body !== null) {
-            throw new \Exception('Message body is not an array');
+            throw new \Exception('Message body is not in type between array and string');
         }
 
         return $ret;

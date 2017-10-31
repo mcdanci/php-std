@@ -40,6 +40,7 @@ trait Convention
      *
      * ->... Message body *optional*
      * @throws \Exception
+     * @todo Message body 若为 string?
      */
     protected static function retTemp($statusCode = 1, $statusMessage = null, $body = null)
     {

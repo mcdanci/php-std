@@ -15,10 +15,6 @@ class Index extends Controller
      * S Show API Echo
      * @return array
      * ->status int
-     *
-     * ->info string
-     *
-     * ->body string
      * @throws \Exception
      */
     public function index()

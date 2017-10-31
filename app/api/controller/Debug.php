@@ -9,7 +9,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 /**
- * Class Index
  * @package app\api\controller
  * @todo
  */
@@ -28,8 +27,6 @@ EOT;
         'exhibitor',
         'visitor',
     ]; // TODO
-
-
 
     /**
      * @return array
@@ -96,7 +93,6 @@ EOT;
                 'code' => 200,
                 'message' => 'OK',
             ],
-            'info' => null, // Fmnii
             'header' => [ // optional
                 null,
                 null,
