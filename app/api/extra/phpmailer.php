@@ -16,8 +16,9 @@ return [
             //'admin@sshow-online.com', // TODO: for deployment
             '15812890021@qq.com', // TODO: for dev
         ],
+        // TODO: for dev
         //'bcc' => [
-        //    '15812890021@qq.com', // TODO: for dev
+        //    '15812890021@qq.com',
         //],
     ],
 ];

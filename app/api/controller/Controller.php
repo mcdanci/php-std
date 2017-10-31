@@ -34,6 +34,7 @@ abstract class Controller extends \think\Controller
 
     /**
      * Init.
+     * @todo Unit test
      */
     protected function _initialize()
     {

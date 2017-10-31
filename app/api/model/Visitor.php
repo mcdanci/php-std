@@ -8,6 +8,7 @@ namespace app\api\model;
 /**
  * Visitor
  * @package app\api\model
+ * @todo
  */
 class Visitor extends Registrant
 {

@@ -16,6 +16,7 @@ class Index extends Controller
      * @return array
      * ->status int
      * @throws \Exception
+     * @todo Unit test
      */
     public function index()
     {
@@ -36,6 +37,7 @@ class Index extends Controller
      * ->->->name string
      *
      * ->->->numeric string
+     * @todo Unit test
      */
     public function listIso3166()
     {

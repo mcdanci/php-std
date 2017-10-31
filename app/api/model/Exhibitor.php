@@ -5,6 +5,11 @@
  */
 namespace app\api\model;
 
+/**
+ * Exhibitor
+ * @package app\api\model
+ * @todo
+ */
 class Exhibitor extends Registrant
 {
 }

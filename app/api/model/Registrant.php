@@ -8,6 +8,7 @@ namespace app\api\model;
 /**
  * Registrant
  * @package app\api\model
+ * @todo
  */
 class Registrant
 {

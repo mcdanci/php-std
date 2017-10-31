@@ -35,4 +35,7 @@ $mad = [
     ],
 ];
 
+/**
+ * @todo could be opt.
+ */
 return array_merge($mad['common'], $mad['exhibitor'], $mad['visitor']);
