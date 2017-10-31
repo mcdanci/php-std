@@ -7,8 +7,10 @@
 $confDB = [
     //'hostname' => 'develop-1.fmnii.e13.cc', // TODO: for dev
     'hostname' => '127.0.0.1',
-    'username' => 's-show',
-    'password' => 'bqqcvALY6sE3Xc5j',
+    //'username' => 's-show',
+    //'password' => 'bqqcvALY6sE3Xc5j',
+    'username' => 'root',
+    'password' => 'root',
     'database' => 's-show',
 ];
 
