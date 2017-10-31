@@ -4,6 +4,7 @@
  * @author <mcdanci@users.noreply.github.com>
  */
 return [
-    'app_status' => 'dev-intranet', // TODO: for deployment
+    // `dev-intranet`, `dev-internet`
+    'app_status' => 'dev-internet', // TODO: for dev
     'default_return_type' => 'json',
 ];

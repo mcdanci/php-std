@@ -5,7 +5,7 @@
  */
 
 $confDB = [
-    'hostname' => 'develop-1.fmnii.e13.cc', // TODO: for dev
+    'hostname' => 'dev-1.intranet.fmnii.e13.cc',
     'username' => 's-show',
     'password' => 'bqqcvALY6sE3Xc5j',
     'database' => 's-show',
