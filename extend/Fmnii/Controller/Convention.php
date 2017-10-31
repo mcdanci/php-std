@@ -29,13 +29,16 @@ trait Convention
 
     /**
      * Template for message returned
+     * for **Fmnii**
      * @param int $statusCode
      * @param null|string $statusMessage
      * @param null|array $body
      * @return array
-     * @return ->status Status code
-     * @return ->info Status message *optional*
-     * @return ->... Message body *optional*
+     * ->status Status code
+     *
+     * ->info Status message *optional*
+     *
+     * ->... Message body *optional*
      * @throws \Exception
      */
     protected static function retTemp($statusCode = 1, $statusMessage = null, $body = null)

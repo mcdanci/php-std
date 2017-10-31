@@ -14,6 +14,14 @@
 
 // TODO
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// | Copyright (c) 2006-2016 http://thinkphp.cn All rights reserved.
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// | Author: 流年 <liu21st@gmail.com>
+// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// | Copyright (c) 2006-2016 http://thinkphp.cn All rights reserved.
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// | Author: yunwuxin <448901948@qq.com>
 
 return [
     'app_trace' => true, // TODO: for debug
@@ -36,4 +44,6 @@ return [
     'lang_switch_on' => true,
     'default_lang' => 'zh-hk',
 
+    'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+    'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
 ];

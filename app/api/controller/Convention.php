@@ -45,7 +45,6 @@ class Convention extends Controller
      * ->exhibitor
      *
      * ->visitor
-     *
      * @throws \Exception
      * @todo Unit test
      */

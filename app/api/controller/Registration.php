@@ -209,9 +209,9 @@ class Registration extends Controller
 
             $mail->send();
 
-            return self::fmniiTemplate(200, 'Message has been sent', $mail);
+            return self::retTemp(self::$scOK, 'Message has been sent', $mail);
         } catch (Exception $e) {
-            return self::fmniiTemplate(500, 'Message could note be sent', 'Mailer error: ' . $mail->ErrorInfo);
+            return self::retTemp(self::$scNotFound, 'Message could note be sent', 'Mailer error: ' . $mail->ErrorInfo);
         }
     }
 

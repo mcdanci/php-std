@@ -11,7 +11,7 @@ namespace app\api\controller;
  */
 abstract class Controller extends \think\Controller
 {
-    use \Fmnii\ControllerCommon;
+    use \Fmnii\Controller\Common;
     use \McDanci\ControllerCommon;
 
     //region Common

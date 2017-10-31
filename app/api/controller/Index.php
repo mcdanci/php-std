@@ -38,7 +38,7 @@ EOT;
      */
     public function index()
     {
-        return self::fmniiTemplate(200, 'OK', 'S Show Server');
+        return self::retTemp(200, 'OK', 'S Show Server');
     }
 
     /**
