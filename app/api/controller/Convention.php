@@ -16,15 +16,35 @@ class Convention extends Controller
     use \Fmnii\Controller\Convention;
 
     /**
+     * Getting data in merged or not
+     * @param bool $merge True for merging while false for not
+     * @return mixed
+     */
+    private static function getFileMustData($merge = false)
+    {
+        $data = Config::get('field_must');
+
+        if ($merge) {
+            foreach (['exhibitor'] as &$role) {
+                $data[$role] = array_merge($data['common'], $data[$role]);
+            }
+            unset($data['common']);
+        }
+
+        return $data;
+    }
+
+    /**
      * Getting fields that must not be blank
+     * @param bool $merge True for merging while false for not
      * @return array
-     * ->common
+     * ->common *optional*
      * ->exhibitor
      * ->visitor
      * @throws \Exception
      */
-    public function getFieldMust()
+    public function getFieldMust($merge = false)
     {
-        return self::retTemp(self::$scSucceeded, null, Config::get('field_must'));
+        return self::retTemp(self::$scSucceeded, null, self::getFileMustData($merge));
     }
 }
