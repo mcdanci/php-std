@@ -11,10 +11,10 @@ namespace app\api\controller;
  */
 abstract class Controller extends \think\Controller
 {
+    //region Common
+
     use \Fmnii\Controller\Common;
     use \McDanci\ControllerCommon;
-
-    //region Common
 
     /**
      * Format for MySQL DATATIME

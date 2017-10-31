@@ -40,6 +40,7 @@ trait Common
      *
      * ->... Message body *optional*
      * @throws \Exception
+     * @todo Message body 若为 string?
      */
     protected static function retTemp($statusCode = 200, $statusMessage = null, $body = null)
     {
@@ -76,7 +77,7 @@ trait Common
             } else {
                 $ret = array_merge($ret, $body);
             }
-        } else {
+        } elseif ($body !== null) {
             throw new \Exception('Message body is not an array');
         }
 
