@@ -17,6 +17,14 @@ class Convention extends Controller
     use \Fmnii\Controller\Convention;
 
     /**
+     * @todo deleted
+     */
+    public function dbg()
+    {
+        return self::retTemp(self::$scSucceeded, null, ['body' => Config::get('category_desc')]);
+    }
+
+    /**
      * Getting data in merged or not
      * @param bool $merge True for merging while false for not
      * @return mixed
@@ -48,7 +56,7 @@ class Convention extends Controller
      * @throws \Exception
      * @todo Unit test
      */
-        public function getFieldMust($merge = false)
+    public function getFieldMust($merge = false)
     {
         return self::retTemp(self::$scSucceeded, null, self::getFileMustData($merge));
     }
