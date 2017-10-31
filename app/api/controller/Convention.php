@@ -21,7 +21,11 @@ class Convention extends Controller
      */
     public function dbg()
     {
-        return self::retTemp(self::$scSucceeded, null, ['body' => Config::get('category_desc')]);
+        return self::retTemp(self::$scSucceeded, null, [
+            'body' => [
+                Config::get('category_desc'),
+            ]
+        ]);
     }
 
     /**
