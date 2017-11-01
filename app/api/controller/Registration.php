@@ -11,11 +11,118 @@ use think\Config;
 use think\Db;
 
 /**
- * Registration for Stage 1
+ * Registration for Phase 1
  * @package app\api\controller
  */
 class Registration extends Controller
 {
+    //region Email Processor
+
+    /**
+     * Sending email to registrant
+     * @param $emailAddr
+     * @param $nameDisp
+     * @param $password
+     * @param string $domainWithProtocol
+     * @param string $subject
+     * @return bool
+     * @throws \Exception
+     * @todo Unit test
+     * @todo opt.
+     */
+    private function sendEmailRegistrant(
+        $emailAddr,
+        $nameDisp,
+        $password,
+        $role,
+        $domainWithProtocol = 'http://www.sshow-online.com',
+        $subject = 'Exhibitor Registration'
+    )
+    {
+        $mailer = Config::get('phpmailer.mailer')['admin'];
+        $mail = new PHPMailer(true);
+        try {
+            // server settings
+            $mail->isSMTP();
+
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = Config::get('phpmailer.host');
+            $mail->Port = Config::get('phpmailer.port');
+            $mail->Username = $mailer['username'];
+            $mail->Password = $mailer['password'];
+
+            $mail->setFrom($mailer['username'], self::MAIL_FROM_DISP);
+
+
+            // recipient
+            $mail->addAddress($emailAddr, $nameDisp);
+
+
+            // content
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body = $this->fetch('Registration/email-confirm-registrant', [
+                'domain_with_protocol' => $domainWithProtocol,
+                'email' => $emailAddr,
+                'password' => $password,
+                'role' => $role,
+                'role_cap' => ucfirst($role),
+            ]);
+
+            // TODO: validate
+            $mail->send();
+
+            return true;
+        } catch (Exception $e) {
+            throw new \Exception('Mailer error: ' . $mail->ErrorInfo);
+        }
+    }
+
+    /**
+     * @param $emailAddr
+     * @param $nameDisp
+     * @param $password
+     * @return bool
+     * @throws \Exception
+     * @todo Unit test
+     */
+    private static function sendEmailExhibitor($emailAddr, $nameDisp, $password)
+    {
+        return self::sendEmailRegistrant($emailAddr, $nameDisp, $password, 'exhibitor');
+    }
+
+    /**
+     * @param $emailAddr
+     * @param $nameDisp
+     * @param $password
+     * @return bool
+     * @throws \Exception
+     * @todo Unit test
+     */
+    private static function sendEmailVisitor($emailAddr, $nameDisp, $password)
+    {
+        return self::sendEmailRegistrant($emailAddr, $nameDisp, $password, 'visitor');
+    }
+
+    //endregion
+
+    //region TODO: Common to be checked
+
+    /**
+     * Setup var.
+     * @see \app\api\controller\Registration::$paramMap
+     * @todo
+     * @todo Unit test
+     */
+    protected function _initialize()
+    {
+        parent::_initialize();
+        self::$paramMap = Config::get('map_attr_desc');
+    }
+
+    //endregion
+
     //region Application Common
 
     const MAIL_FROM_DISP = 'S Show';
@@ -45,11 +152,13 @@ class Registration extends Controller
 
     /**
      * @var array Map for attr. which is using in email
+     * @todo
      */
     private static $paramMap;
 
     /**
      * @var array Param list used by current object
+     * @todo
      */
     private $paramList;
 
@@ -72,6 +181,8 @@ class Registration extends Controller
                 3 => 'Ms.',
             ];
             $data['gender'] = $map[$data['gender']];
+        } else {
+            throw new \Exception('Gender process error');
         }
     }
 
@@ -79,6 +190,7 @@ class Registration extends Controller
      * Getting description of country
      * `iso3166`
      * @param array $data
+     * @todo
      * @todo Unit test
      */
     private static function getCountryDesc(&$data)
@@ -93,6 +205,7 @@ class Registration extends Controller
      * @param string $dataIso3166
      * @return array
      * @throws \Exception
+     * @todo
      * @todo Unit test
      */
     private static function getCategory($dataIso3166)
@@ -115,6 +228,7 @@ class Registration extends Controller
     /**
      * Separating categories and return category description
      * @param array $data
+     * @todo
      * @todo Unit test
      */
     private static function getCategoryDesc(&$data)
@@ -143,6 +257,7 @@ class Registration extends Controller
     /**
      * Unset password (from email)
      * @param array $data
+     * @todo
      * @todo Unit test
      */
     private static function emailUnset(&$data)
@@ -155,6 +270,7 @@ class Registration extends Controller
     /**
      * Email data process
      * @param array $data
+     * @todo
      * @todo Unit test
      */
     private static function emailProcessSet(&$data)
@@ -170,6 +286,7 @@ class Registration extends Controller
      * @param string $emailBody
      * @param string $subject
      * @return array
+     * @todo
      * @todo Unit test
      */
     private static function sendEmail($emailBody, $subject)
@@ -228,23 +345,13 @@ class Registration extends Controller
         }
     }
 
-    /**
-     * Setup var.
-     * @see \app\api\controller\Registration::$paramMap
-     * @todo Unit test
-     */
-    protected function _initialize()
-    {
-        parent::_initialize();
-        self::$paramMap = Config::get('map_attr_desc');
-    }
-
     //endregion
 
     //region Exhibitor
 
     /**
      * @var array Attr. for exhibitor
+     * @todo
      */
     private static $paramExhibitor = [
         'c_opf',
@@ -256,6 +363,7 @@ class Registration extends Controller
 
     /**
      * @var string Exhibitor Template
+     * @todo
      */
     private static $emailExhibitorBody = <<<EOT
 Dear Administrator,
@@ -270,6 +378,7 @@ EOT;
      * Sending exhibitor registration successful email to administrator
      * @param array $data
      * @return array
+     * @todo
      * @todo Unit test
      */
     private static function exhibitorEmail($data)
@@ -290,76 +399,6 @@ EOT;
     }
 
     /**
-     * Sending email to registrant
-     * @param $emailAddr
-     * @param $nameDisp
-     * @param $password
-     * @param string $domainWithProtocol
-     * @param string $subject
-     * @return bool
-     * @throws \Exception
-     * @todo Unit test
-     * @todo opt.
-     */
-    private function sendEmail2RegistrantExhibitor(
-        $emailAddr,
-        $nameDisp,
-        $password,
-        $role,
-        $domainWithProtocol = 'http://www.sshow-online.com',
-        $subject = 'Exhibitor Registration'
-    )
-    {
-        $mailer = Config::get('phpmailer.mailer')['admin'];
-        $mail = new PHPMailer(true);
-        try {
-            // server settings
-
-            //$mail->SMTPDebug = 0; // TODO: for dev
-            $mail->SMTPDebug = 2;
-
-            $mail->isSMTP();
-
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = 'ssl';
-            $mail->Host = Config::get('phpmailer.host');
-            $mail->Port = Config::get('phpmailer.port');
-            $mail->Username = $mailer['username'];
-            $mail->Password = $mailer['password'];
-
-            $mail->setFrom($mailer['username'], self::MAIL_FROM_DISP);
-
-
-            // recipient
-            $mail->addAddress($emailAddr, $nameDisp);
-
-
-            // content
-            $mail->isHTML(true);
-            $mail->Subject = $subject;
-            $mail->Body = $this->fetch('Registration/email-confirm-registrant', [
-                'domain_with_protocol' => $domainWithProtocol,
-                'email' => $emailAddr,
-                'password' => $password,
-                'role' => $role,
-                'role_cap' => ucfirst($role),
-            ]);
-
-            // TODO: validate
-            $mail->send();
-
-            return true;
-        } catch (Exception $e) {
-            throw new \Exception('Mailer error: ' . $mail->ErrorInfo);
-        }
-    }
-
-    public function debug()
-    {
-        return self::sendEmail2RegistrantExhibitor('15812890021@qq.com', 'My Lord', 'no password', 'exhibitor');
-    }
-
-    /**
      * exhibitor process
      * @todo opt.
      * @todo Unit test
@@ -376,6 +415,8 @@ EOT;
                 $data[$param] = $value;
             }
         }
+
+        self::sendEmailExhibitor($data['email'], $data['name_first'], $data);
 
         // save to database
         $data2 = $data;
@@ -408,6 +449,7 @@ EOT;
 
     /**
      * @var array Attr. for exhibitor
+     * @todo
      */
     private static $paramVisitor = [
         'job_function',
@@ -417,6 +459,7 @@ EOT;
 
     /**
      * @var string Visitor template
+     * @todo
      */
     private static $emailVisitorBody = <<<EOT
 Dear Administrator,
@@ -431,6 +474,7 @@ EOT;
      * Sending visitor registration successful email to administrator
      * @param array $data
      * @return array
+     * @todo
      * @todo Unit test
      */
     private static function visitorEmail($data)
@@ -467,6 +511,8 @@ EOT;
                 $data[$param] = $value;
             }
         }
+
+        self::sendEmailVisitor($data['email'], $data['name_first'], $data);
 
         // save to database
         $data2 = $data;

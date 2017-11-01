@@ -18,12 +18,8 @@ return [
         ],
         'admin' => [
             USERNAME => 'admin@sshow-online.com',
-            PASSWORD => 'USA20#17*10&25xc1',
+            PASSWORD => '7dJVAysBukX4kgao',
         ],
-        'info' => [
-            USERNAME => 'info@sshow-online.com',
-            PASSWORD => 'UN20#17*oct25e&1',
-        ]
     ],
 
     // TODO: for dev
