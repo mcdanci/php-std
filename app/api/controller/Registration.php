@@ -305,11 +305,12 @@ EOT;
         $emailAddr,
         $nameDisp,
         $password,
+        $role,
         $domainWithProtocol = 'http://www.sshow-online.com',
         $subject = 'Exhibitor Registration'
     )
     {
-        $mailer = Config::get('phpmailer.mailer')['web'];
+        $mailer = Config::get('phpmailer.mailer')['admin'];
         $mail = new PHPMailer(true);
         try {
             // server settings
@@ -336,13 +337,15 @@ EOT;
             // content
             $mail->isHTML(true);
             $mail->Subject = $subject;
-            $mail->Body = $this->fetch('Registration/email-confirm-exhibitor', [
+            $mail->Body = $this->fetch('Registration/email-confirm-registrant', [
                 'domain_with_protocol' => $domainWithProtocol,
                 'email' => $emailAddr,
                 'password' => $password,
+                'role' => $role,
+                'role_cap' => ucfirst($role),
             ]);
 
-            //exit($mail);
+            // TODO: validate
             $mail->send();
 
             return true;
@@ -353,7 +356,7 @@ EOT;
 
     public function debug()
     {
-        return self::sendEmail2RegistrantExhibitor('15812890021@qq.com', 'My Lord', 'no password');
+        return self::sendEmail2RegistrantExhibitor('15812890021@qq.com', 'My Lord', 'no password', 'exhibitor');
     }
 
     /**
