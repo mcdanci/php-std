@@ -6,7 +6,7 @@
 namespace app\api\controller;
 
 /**
- * Abstract Controller
+ * Abstracted
  * @package app\api\controller
  */
 abstract class Controller extends \think\Controller
@@ -20,6 +20,19 @@ abstract class Controller extends \think\Controller
      * Format for MySQL DATATIME
      */
     const FORMAT_DATETIME = 'Y-m-d H:i:s';
+
+    /**
+     * Giving tip to user after submitted
+     * @param string $message
+     * @param null|string $url
+     * @see \traits\controller\Jump::success
+     * @todo Unit test
+     */
+    protected function successfulTip($message = '', $url = null)
+    {
+        config('default_return_type', 'html');
+        $this->success($message, $url);
+    }
 
     //endregion
 

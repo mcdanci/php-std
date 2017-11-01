@@ -216,18 +216,6 @@ class Registration extends Controller
     }
 
     /**
-     * Giving tip to user after submitted
-     * @param string $message
-     * @param null|string $url
-     * @see \traits\controller\Jump::success
-     */
-    private function successfulTip($message = '', $url = null)
-    {
-        config('default_return_type', 'html');
-        $this->success($message, $url);
-    }
-
-    /**
      * Setup var.
      * @see \app\api\controller\Registration::$paramMap
      */
