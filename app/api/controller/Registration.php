@@ -87,9 +87,9 @@ class Registration extends Controller
      * @throws \Exception
      * @todo Unit test
      */
-    private static function sendEmailExhibitor($emailAddr, $nameDisp, $password)
+    private function sendEmailExhibitor($emailAddr, $nameDisp, $password)
     {
-        return self::sendEmailRegistrant($emailAddr, $nameDisp, $password, 'exhibitor');
+        return $this->sendEmailRegistrant($emailAddr, $nameDisp, $password, 'exhibitor');
     }
 
     /**
@@ -100,9 +100,9 @@ class Registration extends Controller
      * @throws \Exception
      * @todo Unit test
      */
-    private static function sendEmailVisitor($emailAddr, $nameDisp, $password)
+    private function sendEmailVisitor($emailAddr, $nameDisp, $password)
     {
-        return self::sendEmailRegistrant($emailAddr, $nameDisp, $password, 'visitor');
+        return $this->sendEmailRegistrant($emailAddr, $nameDisp, $password, 'visitor');
     }
 
     //endregion
@@ -416,7 +416,7 @@ EOT;
             }
         }
 
-        self::sendEmailExhibitor($data['email'], $data['name_first'], $data);
+        $this->sendEmailExhibitor($data['email'], $data['name_first'], $data['password']);
 
         // save to database
         $data2 = $data;
@@ -512,7 +512,7 @@ EOT;
             }
         }
 
-        self::sendEmailVisitor($data['email'], $data['name_first'], $data);
+        $this->sendEmailVisitor($data['email'], $data['name_first'], $data['password']);
 
         // save to database
         $data2 = $data;
