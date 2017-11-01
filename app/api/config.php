@@ -9,7 +9,9 @@ return [
     // `dev-intranet`, `dev-internet` // TODO: checking availability
     'app_status' => 'dev-internet', // TODO: for dev
 
+    //'view_suffix' => 'tpl', // TODO
+
     'default_return_type' => 'json',
-    'dispatch_success_tmpl'  => TEMPLATE_DISPATCH,
-    'dispatch_error_tmpl'    => TEMPLATE_DISPATCH,
+    'dispatch_success_tmpl' => TEMPLATE_DISPATCH,
+    'dispatch_error_tmpl' => TEMPLATE_DISPATCH,
 ];
