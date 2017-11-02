@@ -11,7 +11,7 @@ class Index extends Controller
 {
     /**
      * Welcome
-     * @return string
+     * @return string Welcome information
      */
     public function index()
     {
