@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>跳转提示</title>
+    <title>Registration Tip & Jumping</title>
     <style type="text/css">
         *{ padding: 0; margin: 0; }
         body{ background: #fff; font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif; color: #333; font-size: 16px; }
@@ -28,7 +28,7 @@
     <?php } ?>
     <p class="detail"></p>
     <p class="jump">
-        Finishing... Back to <a id="href" href="<?php echo($url);?>">here</a> in <b id="wait"><?php echo($wait);?></b>
+        Registration submitted successful. Back to <a id="href" href="<?php echo($url);?>">here</a> in <b id="wait"><?php echo($wait);?></b>
     </p>
 </div>
 <script type="text/javascript">

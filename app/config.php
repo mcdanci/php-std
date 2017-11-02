@@ -17,6 +17,7 @@
 // | Author: 流年 <liu21st@gmail.com>
 // | Author: yunwuxin <448901948@qq.com>
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // | Copyright (c) 2006-2016 http://thinkphp.cn All rights reserved.
 
 return [

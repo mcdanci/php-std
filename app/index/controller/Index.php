@@ -32,8 +32,8 @@ p {line-height: 1.6em; font-size: 42px}
 
 <body>
 <div style="padding: 24px 48px;">
-    <h1>:) Welcome</h1>
-    <p>S Show API</p>
+<h1>:) Welcome</h1>
+<p>S Show API</p>
 </div>
 </body>
 </html>';

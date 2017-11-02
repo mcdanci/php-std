@@ -6,8 +6,9 @@
 const TEMPLATE_DISPATCH = APP_PATH . 'api' . DS . 'view' . DS . 'Registration' . DS . 'dispatch_jump.tpl';
 
 return [
-    // `dev-intranet`, `dev-internet` // TODO: checking availability
-    'app_status' => 'dev-internet', // TODO: for dev
+    // app status: `status-dev-intranet`, `status-dev-internet` or `status-prod`
+    // TODO: for dev, checking availability of `status-dev-intranet`
+    'app_status' => 'status-dev-internet',
 
     //'view_suffix' => 'tpl', // TODO
 

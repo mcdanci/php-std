@@ -23,7 +23,7 @@ class Convention extends Controller
     {
         return self::retTemp(self::$scSucceeded, null, [
             'body' => [
-                Config::get('category_desc'),
+                'category_desc' => Config::get('category_desc'),
             ]
         ]);
     }
