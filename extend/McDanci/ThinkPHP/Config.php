@@ -26,7 +26,7 @@ class Config extends \think\Config
             if ($counter > 2) {
                 $v = parent::get($keyList[0] . '.' . $keyList[1], $range);
 
-                for ($c = 2; $c > $counter; $c++) {
+                for ($c = 2; $c < $counter; $c++) {
                     $v = $v[$keyList[$c]];
                 }
 
