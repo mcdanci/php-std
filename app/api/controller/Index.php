@@ -5,6 +5,8 @@
  */
 namespace app\api\controller;
 
+use McDanci\ThinkPHP\Config;
+
 /**
  * Overview
  * @package app\api\controller
@@ -32,21 +34,50 @@ class Index extends Controller
      *
      * ->body array
      *
-     * ->-> array tuple
+     * ->-> array Tuple
      *
      * ->->->name string
      *
      * ->->->numeric string
      * @todo Unit test
      */
-    public function listIso3166()
+    public function listOptionIso3166()
     {
         $data = (new \League\ISO3166\ISO3166)->all();
 
         foreach ($data as &$area) {
-            unset($area['alpha2'], $area['alpha3'], $area['currency']);
+            foreach (['alpha2', 'alpha3', 'currency'] as &$key) {
+                unset($area[$key]);
+            }
         }
 
         return self::retTemp(self::$scOK, 'OK', $data);
+    }
+
+    /**
+     * @return array
+     * @deprecated
+     */
+    public function listIso3166()
+    {
+        return $this->listOptionIso3166();
+    }
+
+    /**
+     * Getting data as list of gender
+     * @return array
+     * ->status int
+     *
+     * ->info string
+     *
+     * ->body array
+     *
+     * ->-> array Tuple in `value: HTML`
+     * @throws \Exception
+     * @todo Unit test
+     */
+    public function listOptionGender()
+    {
+        return self::retTemp(self::$scOK, 'OK', Config::getByDot('option-gender'));
     }
 }

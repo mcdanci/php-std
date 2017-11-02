@@ -6,7 +6,7 @@
 namespace McDanci\ThinkPHP;
 
 /**
- * Configuration Operation
+ * Configuration Operation for
  * @package McDanci\ThinkPHP
  */
 class Config extends \think\Config
