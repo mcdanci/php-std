@@ -11,7 +11,8 @@ class IndexTest extends TestCase
 {
     public function testIndex()
     {
-        $this->visit('/')->see('<h1>:) Welcome</h1>');
-        $this->visit('/')->see('<p>S Show API</p>');
+        $this->visit('/')
+            ->see('<h1>:) Welcome</h1>')
+            ->see('<p>S Show API</p>');
     }
 }
