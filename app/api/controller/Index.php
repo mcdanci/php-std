@@ -16,7 +16,7 @@ class Index extends Controller
     /**
      * S Show API Echo
      * @return array
-     * ->status int
+     * ->**status** int
      * @throws \Exception
      * @todo Unit test
      */
@@ -28,17 +28,17 @@ class Index extends Controller
     /**
      * Getting data as list of ISO 3166
      * @return array
-     * ->status int
+     * ->**status** int
      *
-     * ->info string
+     * ->**info** string
      *
-     * ->body array
+     * ->**body** array
      *
      * ->-> array Tuple
      *
-     * ->->->name string
+     * ->->->**name** string
      *
-     * ->->->numeric string
+     * ->->->**numeric** string
      * @todo Unit test
      */
     public function listOptionIso3166()
@@ -66,11 +66,11 @@ class Index extends Controller
     /**
      * Getting data as list of gender
      * @return array
-     * ->status int
+     * ->**status** int
      *
-     * ->info string
+     * ->**info** string
      *
-     * ->body array
+     * ->**body** array
      *
      * ->-> array Tuple in `value: HTML`
      * @throws \Exception
