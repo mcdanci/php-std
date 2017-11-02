@@ -118,7 +118,12 @@ class Registration extends Controller
     protected function _initialize()
     {
         parent::_initialize();
-        self::$paramMap = Config::get('map_attr_desc');
+
+        if (Config::has('map_attr_desc_all')) {
+            self::$paramMap = Config::get('map_attr_desc_all');
+        } else {
+            throw new \Exception('Missing map of attr. desc. in all');
+        }
     }
 
     //endregion

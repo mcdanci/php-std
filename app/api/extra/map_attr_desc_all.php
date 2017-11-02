@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright since 9:59 26/10/2017
+ * @copyright since 15:37 2/11/2017
  * @author <mcdanci@users.noreply.github.com>
  */
-return [
+$mad = [
     'common' => [
         'name_first' => 'First Name',
         'name_last' => 'Last Name',
@@ -33,3 +33,5 @@ return [
         'f_man' => 'Footwear Manufacturer',
     ],
 ];
+
+return array_merge($mad['common'], $mad['exhibitor'], $mad['visitor']);
