@@ -17,6 +17,7 @@ class Config extends \think\Config
      * @param null $name Name of param. within configuration (separating with `.` supported)
      * @param string $range Range functional
      * @return mixed
+     * @todo Test unit
      */
     public static function getByDot($name = null, $range = '')
     {
