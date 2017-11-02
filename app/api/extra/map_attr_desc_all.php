@@ -2,6 +2,7 @@
 /**
  * @copyright since 15:37 2/11/2017
  * @author <mcdanci@users.noreply.github.com>
+ * @deprecated
  */
 $mad = [
     'common' => [
