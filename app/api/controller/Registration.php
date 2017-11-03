@@ -341,9 +341,11 @@ class Registration extends Controller
 
             $mail->send();
 
-            return self::retTemp(self::$scOK, 'Message has been sent', $mail);
+            return true;
+            //return self::retTemp(self::$scOK, 'Message has been sent', $mail);
         } catch (Exception $e) {
-            return self::retTemp(self::$scNotFound, 'Message could note be sent', 'Mailer error: ' . $mail->ErrorInfo);
+            return false;
+            //return self::retTemp(self::$scNotFound, 'Message could note be sent', 'Mailer error: ' . $mail->ErrorInfo);
         }
     }
 
@@ -418,6 +420,9 @@ EOT;
             }
         }
 
+        if (self::checkInputtedData($data) === false) {
+            return [self::$scNotFound];
+        }
         self::processInputtedCategory($data);
 
         $this->sendEmailExhibitor($data['email'], $data['name_first'], $data['password']);
@@ -441,10 +446,10 @@ EOT;
         $data = self::exhibitorEmail($data);
 
         //$this->successfulTip('Submitted successful.');
-        return self::retTemp(self::$scOK, 'OK', [
+        return [self::$scOK , 'OK', [
             'data' => $data,
             'result' => $result,
-        ]);
+        ]];
     }
 
     //endregion
@@ -516,6 +521,9 @@ EOT;
             }
         }
 
+        if (self::checkInputtedData($data) === false) {
+            return [self::$scNotFound];
+        }
         self::processInputtedCategory($data);
 
         $this->sendEmailVisitor($data['email'], $data['name_first'], $data['password']);
@@ -542,11 +550,34 @@ EOT;
         self::retTemp(self::$scOK, 'OK', $data);
     }
 
+    //endregion
+
+    //region Okay
+
+    /**
+     * Checking the fields that must not null
+     * @param $data
+     * @return bool
+     * @todo opt.
+     * @todo Unit test
+     */
+    private static function checkInputtedData(&$data)
+    {
+        foreach (['email', 'password', 'gender', 'name_first'] as &$fieldId) {
+            if (array_key_exists($fieldId, $data) || (!strlen($data[$fieldId]))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     /**
      * Process inputted data `category`
      * Imploded with comma
      * @param $data
      * @todo opt.
+     * @todo Unit test
      */
     private static function processInputtedCategory(&$data)
     {
