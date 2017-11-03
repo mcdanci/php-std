@@ -564,7 +564,7 @@ EOT;
     private static function checkInputtedData(&$data)
     {
         foreach (['email', 'password', 'gender', 'name_first'] as &$fieldId) {
-            if (array_key_exists($fieldId, $data) || (!strlen($data[$fieldId]))) {
+            if (!array_key_exists($fieldId, $data) || !strlen($data[$fieldId])) {
                 return false;
             }
         }
