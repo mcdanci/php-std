@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-dns-prefetch-control" content="on"/>
+    <link rel="dns-prefetch" href="//s-show.com"/>
+    <link rel="dns-prefetch" href="//www.s-show-online.com"/>
+    <link rel="dns-prefetch" href="//www.sshow-online.com"/>
+    <title>Visitor Registration</title>
+    <style>
+        <!--
+        label {
+            display: block;
+        }
+
+        input {
+            display: block;
+        }
+        -->
+    </style>
+</head>
+
+<body>
+<h1>Visitor</h1>
+
+<form id="registerform" method="post" name="registerform" novalidate="novalidate">
+    <p><span style="font-family: Lato;"><label for="name_first"><br/> <span
+            style="font-family: lato2;"> First Name <span class="rdW"> *</span></span><br/> <span
+            style="font-family: lato2;"> <input id="name_first" class="input" name="name_first"
+                                                type="text"/></span></label>
+		</span><span style="font-family: lato2;"><label for="name_last"><br/> Last Name <span class="rdW"> *</span><br/>
+        <input id="name_last" class="input" name="name_last" type="text"/><br/> </label>
+		</span><span style="font-family: lato2;"><label for="gender"> Gender <span class="rdW"> *</span><br/>
+        <select id="gender" class="input" name="gender">
+            <option value="male">Mr.</option>
+            <option value="female">Mrs.</option>
+            <option value="ms">Ms.</option>
+        </select><br/> </label>
+		</span><span style="font-family: lato2;"><label for="email"><br/> Job Function <span class="rdW"> *</span><br/>
+        <input id="job_function" class="input" name="email" type="text"/></label><label for="email"><br/> Email <span class="rdW"> *</span><br/>
+        <input id="email" class="input" name="email" type="text"/><br/></label></span>Please
+        note that the confirmation of the online registration will be sent to this email address. The email address will
+        serve as your username when logging in.
+    </p>
+    <p><span style="font-family: lato2;"><label for="tel"><br/> Telephone<br/> <input id="tel" class="input" name="tel"
+                                                                                      type="text"/></label></span><span
+            style="font-family: lato2;"><label for="tel_cell"><br/> Cell Phone <span class="rdW"> *</span><br/> <input
+            id="tel_cell" class="input" name="tel_cell" type="text"/></label>
+		</span><span style="font-family: lato2;"><label for="company"><br/> Company Name<br/> <input id="company"
+                                                                                                     class="input"
+                                                                                                     name="company"
+                                                                                                     type="text"/></label></span><span
+            style="font-family: lato2;"><label for="street"><br/> Street<br/> <input id="street" class="input"
+                                                                                     name="street" type="text"/></label></span><span
+            style="font-family: lato2;"><label for="city"><br/> City<br/> <input id="city" class="input" name="city"
+                                                                                 type="text"/></label></span><span
+            style="font-family: lato2;"><label for="state"><br/> State (Required for U.S. and Canada Only)<br/> <input
+            id="state" class="input" name="state" type="text"/></label></span><span style="font-family: lato2;"><label
+            for="zip"><br/> Zip Code<br/> <input id="zip" class="input" name="zip" type="text"/></label></span><span
+            style="font-family: lato2;"><br/> <label for="iso3166">Country (or Region)<br/><select id="iso3166"
+                                                                                                   class="input"
+                                                                                                   name="iso3166"></select><br/>
+    </label><br/> </span>
+        <span style="font-family: lato2;"><label for="website"><br/> Company Website<br/> <input
+                id="website" class="input" name="website" type="text"/></label></span><span
+                style="font-family: lato2;"><label for="c_opf"><br/> Country(ies) with own production facility<br/>
+            <input id="c_opf" class="input" name="c_opf" type="text"/></label></span><span style="font-family: lato2;">
+
+            <span style="font-family: lato2, sans-serif;">
+                <label>
+                    <br/>Which category do you like to exhibit with (multi selection)?<br/>
+                    <input name="cat[]" id="cat[]1" type="checkbox" value=1 />MATERIAL<br />
+                    <input name="cat[]" id="cat[]2" type="checkbox" value=2 />PROCESS/COMPONENT<br />
+                    <input name="cat[]" id="cat[]3" type="checkbox" value=3 />MACHINERY<br />
+                    <input name="cat[]" id="cat[]4" type="checkbox" value=4 />DEVICE/TOOLS<br />
+                    <input name="cat[]" id="cat[]5" type="checkbox" value=5 />CREATION TECHNOLOGY<br />
+                    <input name="cat[]" id="cat[]6" type="checkbox" value=6 />MANUFACTURE CONSULTATION<br />
+                </label>
+            </span>
+            <br />
+
+            <label><br/>
+                <span style="font-family: lato2;"> By registering for this event you acknowledge film, video and photographs are being taken at this event.By you entering this event and your presence, you give unqualified consent to: FMNII INC, its agents, licensees to record, use and publicize your voice, actions, likeness, and appearance, in any manner and media, worldwide in perpetuity. If you wish to avoid being recorded, please do not enter this event.<br/></span><br/>
+		<span style="font-family: lato2;"><label for="password"><span id="pwdInfo">Password</span> <br/> <input
+                onkeyup="checkPwd()" id="password" onclick="checkPwd()" class="input" name="password" type="password"/></label></span></span>
+    </p>
+    <p class="tipsP">Passwords need to be composed of eight characters with english letter and number included.</p>
+    <p><span style="font-family: lato2;"><label for="password_c"><br/> <span id="tInfo">Confirm Password</span><br/>
+        <input onkeyup="confirmPassword()" id="password_c" class="input" name="password_c" type="password"/><br/> </label>
+		</span>
+    </p>
+    <p id="reg_passmail"><span style="font-family: lato2;">Registration confirmation will be emailed to you.</span></p>
+    <p><br class="clear"/> <input name="redirect_to" type="hidden" value=""/></p><input onclick="clickP()" id="tnc"
+                                                                                        name="tnc" type="checkbox"
+                                                                                        value="tnc"/></label>By
+    registering for S-SHOW, you are agreeing to
+    <a href="#">the terms and conditions</a>.
+    <p class="submit">
+        <input
+                id="wp-submit"
+                class="button button-primary button-large"
+                name="wp-submit"
+                type="button"
+                value="Register"
+        /></p>
+    <p> </p>
+</form>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    <!--
+    function notNull() {
+        var my_id = new Array(
+                "name_first",
+                "name_last",
+                "job_function",
+                "email",
+                "tel_cell",
+                "street",
+                "city",
+                "password",
+                "password_c"
+        );
+
+        var buf = false;
+
+        $.each(my_id, function (index, value) {
+            if ($('#' + value).val() == '') {
+                $('#' + value).before("<span class='nnP'>Required field.</span>");
+                buf = true;
+            }
+        });
+        return buf;
+    }
+
+    $(function () {
+        $("#wp-submit").prop("disabled", true);
+
+        // click event
+        $("#wp-submit").click(function () {
+            var buff = notNull();
+
+            if (buff) {
+                return;
+            }
+
+            $.ajax({
+                dataType: "text",
+                type: "POST",
+                url: urlBegin + urlSuffixVisitor,
+                data: $("#registerform").serialize(),
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        })
+    });
+
+    // -->
+</script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"
+        integrity="sha256-0SGl1PJNDyJwcV5T+weg2zpEMrh7xvlwO4oXgvZCeZk="
+        crossorigin="anonymous"
+        defer
+        async="async"
+        data-main="script/main"
+></script>
+</html>
