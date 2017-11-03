@@ -80,6 +80,7 @@ class Registration extends Controller
     }
 
     /**
+     * Sending email to exhibitor
      * @param $emailAddr
      * @param $nameDisp
      * @param $password
@@ -93,6 +94,7 @@ class Registration extends Controller
     }
 
     /**
+     * Sending email to visitor
      * @param $emailAddr
      * @param $nameDisp
      * @param $password
@@ -409,6 +411,7 @@ EOT;
      */
     public function exhibitor()
     {
+        return self::retTemp(self::$scOK, null, input());
         $data = $swap = [];
         $this->paramList = array_merge(self::$paramCommon, self::$paramExhibitor);
 
