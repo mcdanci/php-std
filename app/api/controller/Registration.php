@@ -414,15 +414,23 @@ EOT;
 
         // input process
         foreach ($this->paramList as &$param) {
-            $value = input($param);
-            if (strlen($value)) {
-                $data[$param] = $value;
+            if ($param != 'cat') {
+                $value = input($param);
+                if (strlen($value)) {
+                    $data[$param] = $value;
+                }
+            } else {
+                $value = input()['cat'];
+                if ($value) {
+                    $data[$param] = $value;
+                }
             }
         }
 
         if (self::checkInputtedData($data) === false) {
             return [self::$scNotFound];
         }
+
         self::processInputtedCategory($data);
 
         $this->sendEmailExhibitor($data['email'], $data['name_first'], $data['password']);
