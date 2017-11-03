@@ -306,9 +306,8 @@ class Registration extends Controller
 
             // Server settings
 
-            // TODO
-            //$mail->SMTPDebug = 0;
-            $mail->SMTPDebug = 2;
+            // TODO: 4 debug
+            //$mail->SMTPDebug = 2;
 
             $mail->isSMTP();
 
@@ -441,11 +440,11 @@ EOT;
         // Send email
         $data = self::exhibitorEmail($data);
 
-        $this->successfulTip('Submitted successful.');
-        //return [
-        //    'status' => 200,
-        //    'body' => [$data, $result],
-        //];
+        //$this->successfulTip('Submitted successful.');
+        return self::retTemp(self::$scOK, 'OK', [
+            'data' => $data,
+            'result' => $result,
+        ]);
     }
 
     //endregion
@@ -537,11 +536,8 @@ EOT;
         // Send email
         $data = self::visitorEmail($data);
 
-        $this->successfulTip('Submitted successful.');
-        //return [
-        //    'status' => 200,
-        //    'body' => [$data],
-        //];
+        //$this->successfulTip('Submitted successful.');
+        self::retTemp(self::$scOK, 'OK', $data);
     }
 
     //endregion
