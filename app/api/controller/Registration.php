@@ -109,7 +109,7 @@ class Registration extends Controller
 
     //endregion
 
-    //region TODO: Common to be checked
+    //region TODO: Application Common to be checked
 
     /**
      * Setup var.
@@ -127,10 +127,6 @@ class Registration extends Controller
             throw new \Exception('Missing map of attr. desc. in all');
         }
     }
-
-    //endregion
-
-    //region Application Common
 
     const MAIL_FROM_DISP = 'S Show';
 
@@ -411,7 +407,6 @@ EOT;
      */
     public function exhibitor()
     {
-        return self::retTemp(self::$scOK, null, input());
         $data = $swap = [];
         $this->paramList = array_merge(self::$paramCommon, self::$paramExhibitor);
 
@@ -422,6 +417,8 @@ EOT;
                 $data[$param] = $value;
             }
         }
+
+        self::processInputtedCategory($data);
 
         $this->sendEmailExhibitor($data['email'], $data['name_first'], $data['password']);
 
@@ -519,6 +516,8 @@ EOT;
             }
         }
 
+        self::processInputtedCategory($data);
+
         $this->sendEmailVisitor($data['email'], $data['name_first'], $data['password']);
 
         // save to database
@@ -541,6 +540,19 @@ EOT;
 
         //$this->successfulTip('Submitted successful.');
         self::retTemp(self::$scOK, 'OK', $data);
+    }
+
+    /**
+     * Process inputted data `category`
+     * Imploded with comma
+     * @param $data
+     * @todo opt.
+     */
+    private static function processInputtedCategory(&$data)
+    {
+        if (array_key_exists('cat', $data) && is_array($data['cat'])) {
+            $data['cat'] = implode(',', $data['cat']);
+        }
     }
 
     //endregion
