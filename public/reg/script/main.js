@@ -105,8 +105,11 @@ function confirmPassword() {
     var pwd = $('#password').val();
     var pwdC = $('#password_c').val();
     if (pwd == pwdC) {
-        $('#tInfo').text('Confirm Password')
+        $('#tInfo').text('Confirm Password');
+        $('#tInfo').css('color', 'black');
     } else {
-        $('#tInfo').text('Unmatching')
+        $('#tInfo').text('Unmatching');
+        $('#tInfo').css('color', 'red');
     }
 }
+
