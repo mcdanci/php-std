@@ -554,8 +554,8 @@ EOT;
         // Send email
         $data = self::visitorEmail($data);
 
-        //$this->successfulTip('Submitted successful.');
-        self::retTemp(self::$scOK, 'OK', $data);
+        //self::retTemp(self::$scOK, 'OK', $data);
+        return 'Submitted successful.';
     }
 
     //endregion
