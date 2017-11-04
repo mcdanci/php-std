@@ -454,7 +454,7 @@ EOT;
         $data = self::exhibitorEmail($data);
 
         //$this->successfulTip('Submitted successful.');
-        return [self::$scOK , 'OK', [
+        return [self::$scOK , 'Submitted successful', [
             'data' => $data,
             'result' => $result,
         ]];
