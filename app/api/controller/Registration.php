@@ -149,7 +149,7 @@ class Registration extends Controller
         'zip',
         'iso3166',
         'website',
-        'cat',
+        //'cat',
         'password',
     ];
 
