@@ -8,21 +8,13 @@
     <link rel="dns-prefetch" href="//www.s-showonline.com/"/>
     <title>Exhibitor Registration</title>
     <style>
-        <!--
-        label {
-            display: block;
-        }
-
-        input {
-            display: block;
-        }
-        -->
+        label,input,select{display: block;width: 100%;margin-bottom: 20px;margin-top: 10px}input,select{height: 30px;}input[name="cat[]"]{display: inline;width: 17px;vertical-align: middle;}#gender{margin-bottom:20px;}#email{margin-bottom:0;}.tipsP>span{margin-bottom:30px;font-size:12px;}#password{margin-bottom:0}.tipsP{    margin-top: -24px;}
+        #panel-912-0-1-0 > div > div > h1{font-weight:500!important;text-align:center}#registerform > p:nth-child(10){margin-bottom:30px}#wp-submit{margin-bottom:0}#btxP{color:red}.nnP{color:red;font-size:12px;margin:0;float:right}#registerform > p:nth-child(12){margin-top:20px}#registerform > p:nth-child(8){margin-bottom:30px}.rdW{color: red}#tnc{display: inline;width: 20px;margin: 0;vertical-align: middle;}#wp-submit{ margin-bottom: 10px;width: auto;padding: 13px 25px;height: auto;}
     </style>
 </head>
 
 <body>
-<h1>Exhibitor</h1>
-
+<!-- <h1>Exhibitor</h1> -->
 <!--
 <form id="registerform" action="http:api.s-show.com/index.php/api/Registration/exhibitor" method="post" name="registerform" novalidate="novalidate" onsubmit="notNull()">
    <p><span style="font-family: lato2;"><label for="name_first">First Name <span class="rdW">&nbsp;*</span><input id="name_first" class="input" name="name_first" type="text"/></label><label for="name_last">Last Name <span class="rdW">&nbsp;*</span><input id="name_last" class="input" name="name_last" type="text" /></label><label for="gender">Gender <span class="rdW">&nbsp;*</span><i class="la la-chevron-down"></i><select id="gender" class="input" name="gender"> <option value="male">Mr.</option> <option value="female">Mrs.</option> <option value="ms">Ms.</option> </select></label></span></p>
@@ -46,7 +38,7 @@
             Last Name <span class="rdW">*</span><input id="name_last" class="input" name="name_last" type="text"/>
         </label>
         <label for="gender">
-            Gender <span class="rdW">*</span>
+            Salutation <span class="rdW">*</span>
             <select id="gender" class="input" name="gender">
                 <option value=1>Mr.</option>
                 <option value=2>Mrs.</option>
@@ -57,7 +49,7 @@
 
     <label for="email">Email <span class="rdW"> *</span><input id="email" class="input" name="email" type="text"/>
     </label>
-    <p class="tipsP"><span>Please note that the confirmation of the online registration will be sent to this email address. The email address will serve as your username when logging in.</span>
+    <p class="tipsP"><span><i>*Please note that the confirmation of the online registration will be sent to this email address. The email address will serve as your username when logging in.</i></span>
     </p>
 
     <label for="tel">Telephone <input id="tel" class="input" name="tel" type="text"/></label><label for="tel_cell">Cell
@@ -87,15 +79,21 @@
 
     <label>
         <input name="cat[]" id="cat[]1" type="checkbox" value=1 />MATERIAL
+        <br>
         <input name="cat[]" id="cat[]2" type="checkbox" value=2 />PROCESS/COMPONENT
+        <br>
         <input name="cat[]" id="cat[]3" type="checkbox" value=3 />MACHINERY
+        <br>
         <input name="cat[]" id="cat[]4" type="checkbox" value=4 />DEVICE/TOOLS
+        <br>
         <input name="cat[]" id="cat[]5" type="checkbox" value=5 />CREATION TECHNOLOGY
+        <br>
         <input name="cat[]" id="cat[]6" type="checkbox" value=6 />MANUFACTURE CONSULTATION
+        <br>
     </label>
 
-    <p style="font-family: lato2;">By registering for this event you acknowledge film, video and photographs are being
-        taken at this event.By you entering this event and your presence, you give unqualified consent to: FMNII INC,
+    <p style="font-family: lato2;">By registering for this event you acknowledge that film, video and photographs are being
+        taken at this event. By you entering this event and your presence, you give unqualified consent to: FMNII INC,
         its agents, licensees to record, use and publicize your voice, actions, likeness, and appearance, in any manner
         and media, worldwide in perpetuity. If you wish to avoid being recorded, please do not enter this event.</p>
     <label for="password"><span id="pwdInfo">Password </span><span class="rdW"> *</span><input onkeyup="checkPwd()"
@@ -104,7 +102,7 @@
                                                                                                name="password"
                                                                                                type="password"/></label>
     <p class="tipsP">
-        <span>Passwords need to be composed of eight characters with english letter and number included.</span></p>
+        <span><i>*Passwords need to be composed of eight characters with english letter and number included.</i></span></p>
     <label for="password_c"><span id="tInfo">Confirm Password<span class="rdW"> *</span></span> <input
             onkeyup="confirmPassword()" id="password_c" class="input" name="password_c" type="password"/></label><span
         style="font-family: lato2;">Registration confirmation will be emailed to you.</span><br
@@ -112,8 +110,8 @@
     <p class="submit">
         <label>
             <input id="tnc" name="tnc" type="checkbox" value="tnc" onclick="clickP()"/>
+            By registering for S-SHOW, you are agreeing to <a href="#">the terms and conditions</a>.
         </label>
-        By registering for S-SHOW, you are agreeing to <a href="#">the terms and conditions</a>.
         <input
                 id="wp-submit"
                 class="button button-primary button-large"
