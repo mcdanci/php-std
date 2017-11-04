@@ -419,7 +419,7 @@ EOT;
                 if (strlen($value)) {
                     $data[$param] = $value;
                 }
-            } else {
+            } elseif (in_array('cat', input())) {
                 $value = input()['cat'];
                 if ($value) {
                     $data[$param] = $value;
