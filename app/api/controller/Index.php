@@ -107,7 +107,7 @@ class Index extends Controller
      *
      * ->**body** array
      *
-     * ->->**value**:**HTML** array Entry
+     * ->->**value**:**HTML** array string
      * @throws \Exception
      * @todo Unit test
      */
