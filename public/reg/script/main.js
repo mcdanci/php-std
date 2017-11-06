@@ -12,6 +12,7 @@
 
 // TODO: do something here
 var
+    //urlBegin = "/api/public/index.php/", // TODO: production
     urlBegin = "http://s-show-api.intranet.fmnii.e13.cc/index.php/",
     urlSuffixIso3166 = "api/index/listIso3166",
     urlSuffixExhibitor = "api/registration/exhibitor";
@@ -33,7 +34,7 @@ function showCountryList() {
         var url = urlBegin + urlSuffixIso3166;
         var countryField = document.getElementById('iso3166');
 
-        xhrObj.open('POST', url, true);
+        xhrObj.open("GET", url, true);
         xhrObj.send(null);
         xhrObj.onreadystatechange = function () {
             // for debug
