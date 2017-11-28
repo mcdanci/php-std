@@ -63,7 +63,7 @@ EOT;
             // Content
             $mail->isHTML(true);
             $mail->Subject = 'Fmnii S Show Subject';
-            $mail->Body = '<h1>Hello, buddy</h1>';
+            $mail->Body = file_get_contents('http://www.fmnii.com/etc/daily/2017-11-16/email.html');
             $mail->AltBody = 'Guy!';
 
             $mail->send();
