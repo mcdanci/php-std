@@ -18,6 +18,25 @@
 <div id="app">{{message}}</div>
 <div id="app-2"><span v-bind:title="message">Data is here</span></div>
 <div id="app-3"><p v-if="seen">Now you see me</p></div>
+<div id="app-4">
+    <ol>
+        <li v-for="todo in todo_list">{{todo.text}}</li>
+    </ol>
+</div>
+<div id="app-6">
+    <label for="debug-input">{{message}}</label>:
+    <input type="text" id="debug-input" v-model="message"/>
+</div>
+<div id="app-7">
+    <ol>
+        <todo-item
+                v-for="item in grocery_list"
+                v-bind:todo="item"
+                v-bind:key="item.id"
+        >
+        </todo-item>
+    </ol>
+</div>
 
 <script>
     <!--
@@ -39,7 +58,39 @@
                 data: {
                     seen: true
                 }
+            }),
+            app4 = new Vue({
+                el: '#app-4',
+                data: {
+                    todo_list: [
+                        {text: 'string 1'},
+                        {text: 'string 2'},
+                        {text: 'string 3'}
+                    ]
+                }
+            }),
+            app6 = new Vue({
+                el: '#app-6',
+                data: {
+                    message: 'Hello Vue?'
+                }
+            }),
+            app7 = new Vue({
+                el: '#app-7',
+                data: {
+                    grocery_list: [
+                        {id: 0, text: 'text 1'},
+                        {id: 1, text: 'text 2'},
+                        {id: 2, text: 'text 3'}
+                    ]
+                }
             });
+
+    Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<li>{{todo.text}}</li>'
+    });
+    // TODO: This is a todo item
     //-->
 </script>
 </body>
