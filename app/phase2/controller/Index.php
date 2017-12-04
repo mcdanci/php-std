@@ -14,4 +14,9 @@ class Index
     {
         return Common::WELCOME_INFORMATION;
     }
+
+    public function debug()
+    {
+        return Env::get('database.//username');
+    }
 }
