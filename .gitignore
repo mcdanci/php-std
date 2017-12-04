@@ -1,15 +1,14 @@
-# Editor
+# Environment
+/.env
+
+## Development
 .idea
+/public/docs/
 
-# Development
-/thinkphp
-composer.lock
-/vendor/
-
-/public/docs
-
-# Deployment
+## Deployment TODO: check
 /.user.ini
 
 # Runtime
+/vendor/
+/thinkphp/
 *.log
