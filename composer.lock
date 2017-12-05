@@ -595,16 +595,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.11",
+            "version": "1.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7"
+                "reference": "1ce90ba27c42e4e44e6d8458241466380b51fa16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/sebastianbergmann/php-token-stream/e03f8f67534427a787e21a385a67ec3ca6978ea7.zip",
-                "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7",
+                "url": "https://files.phpcomposer.com/files/sebastianbergmann/php-token-stream/1ce90ba27c42e4e44e6d8458241466380b51fa16.zip",
+                "reference": "1ce90ba27c42e4e44e6d8458241466380b51fa16",
                 "shasum": ""
             },
             "require": {
@@ -640,7 +640,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-02-27T10:12:30+00:00"
+            "time": "2017-12-04T08:55:13+00:00"
         },
         {
             "name": "phpunit/phpunit",
@@ -1144,7 +1144,7 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v2.8.31",
+            "version": "v2.8.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
@@ -1259,16 +1259,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.0",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "b3d0c9c11be3831b84825967dc6b52b5a7b84e04"
+                "reference": "f6a99b95b338799645fe9f7880d7d4ca1bf79cc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/yaml/b3d0c9c11be3831b84825967dc6b52b5a7b84e04.zip",
-                "reference": "b3d0c9c11be3831b84825967dc6b52b5a7b84e04",
+                "url": "https://files.phpcomposer.com/files/symfony/yaml/f6a99b95b338799645fe9f7880d7d4ca1bf79cc1.zip",
+                "reference": "f6a99b95b338799645fe9f7880d7d4ca1bf79cc1",
                 "shasum": ""
             },
             "require": {
@@ -1313,7 +1313,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-29T13:28:14+00:00"
+            "time": "2017-12-04T18:15:22+00:00"
         },
         {
             "name": "topthink/framework",

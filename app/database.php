@@ -16,7 +16,8 @@ return [
 
     //region Project
 
-    'prefix' => 'ss_reg_',
+    //'prefix' => 'ss_reg_',
+    'prefix' => 'ss_',
 
     //endregion
 
@@ -25,4 +26,7 @@ return [
     'charset' => 'utf8mb4',
 
     //endregion
+
+    'database' => 'fmnii-dev',
+    'password' => 'root',
 ];
