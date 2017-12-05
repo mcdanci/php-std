@@ -38,7 +38,7 @@ class CreateDebugTable extends Migrator
         $table = $this->table('debug', [
             Phinx::TABLE_COMMENT => 'Debug',
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
-            Phinx::TABLE_SIGNED => false,
+            Phinx::SIGNED => false,
         ]);
         $table
             //->addColumn('id', 'integer', ['limit' => 11])
