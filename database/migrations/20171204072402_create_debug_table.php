@@ -22,10 +22,11 @@ class CreateDebugTable extends Migrator
     {
         $this->table('debug', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
-            Phinx::TABLE_COMMENT => 'Debug',
+            Phinx::COMMENT => 'Debug',
             Phinx::SIGNED => false,
         ])
-            ->addColumn('body', 'text')
+            ->addColumn('k', Phinx::COL_TYP_STRING, [Phinx::COMMENT => 'Key'])
+            ->addColumn('body', Phinx::COL_TYP_TEXT, [Phinx::COMMENT => '内容主体'])
             ->create();
     }
 }

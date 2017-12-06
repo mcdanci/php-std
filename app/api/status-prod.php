@@ -5,7 +5,7 @@
  */
 return [
     'database' => array_merge(\think\Config::get('database'), [
-        'hostname' => '47.254.19.66',
+        'hostname' => '127.0.0.1',
         'username' => 'sshow',
         'password' => 'guigusshow',
         'database' => 'sshow_part2',

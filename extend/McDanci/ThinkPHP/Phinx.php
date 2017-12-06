@@ -10,7 +10,7 @@ class Phinx
     const SIGNED = 'signed';
 
     const
-        TABLE_COMMENT = 'comment',
+        COMMENT = 'comment',
         TABLE_ENGINE = 'engine',
         TABLE_COLLATION = 'collation';
         //TABLE_SIGNED = self::SIGNED;
@@ -59,8 +59,7 @@ class Phinx
         COL_OPT_LENGTH = 'length',
         COL_OPT_DEFAULT = 'default',
         COL_OPT_NULL = 'null',
-        COL_OPT_AFTER = 'after',
-        COL_OPT_COMMENT = 'comment';
+        COL_OPT_AFTER = 'after';
 
     // For `decimal`
     const COL_OPT_PRECISION = 'precision';
