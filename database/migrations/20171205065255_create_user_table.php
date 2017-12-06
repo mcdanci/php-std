@@ -5,8 +5,8 @@ use McDanci\ThinkPHP\Phinx;
 class CreateUserTable extends Migrator
 {
     /**
+     * Create the user table.
      * @link http://blog.csdn.net/wchinaw/article/details/6660107
-     * @todo
      */
     public function change()
     {

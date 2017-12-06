@@ -15,14 +15,13 @@ class Phinx
         TABLE_COLLATION = 'collation';
         //TABLE_SIGNED = self::SIGNED;
 
-    const TABLE_ENGINE_INNO = 'InnoDB';
+    const
+        TABLE_ENGINE_INNO = 'InnoDB',
+        TABLE_ENGINE_MY_ISAM = 'MyISAM';
 
     const
         TABLE_COLLATION_U8G = 'utf8_general_ci',
         TABLE_COLLATION_U8MG = 'utf8mb4_general_ci';
-
-    // Other
-    const TABLE_MY_ISAM = 'MyISAM';
 
     const
         // MySQL adapter
@@ -87,22 +86,6 @@ class Phinx
     // For foreign key, trigger
     //const COL_OPT_UPDATE = 'update';
     const COL_OPT_DELETE = 'delete';
-
-    // For MySQL
-    const
-        COL_OPT_BLOG_TINY = 'BLOG_TINY', // `TINYBLOB`
-        COL_OPT_BLOB_REGULAR = 'BLOB_REGULAR', // `BLOG`
-        COL_OPT_BLOG_MEDIUM = 'BLOG_MEDIUM', // `MEDIUMELOG`
-        COL_OPT_BLOB_LONG = 'BLOB_LONG', // `LONGBLOB`
-        COL_OPT_TEXT_TINY = 'TEXT_TINY', // `TINYTEXT`
-        COL_OPT_TEXT_REGULAR = 'TEXT_REGULAR', // `TEXT`
-        COL_OPT_TEXT_MEDIUM = 'TEXT_MEDIUM', // `MEDIUMTEXT`
-        COL_OPT_TEXT_LONG = 'TEXT_LONG', // `LONGTEXT`
-        COL_OPT_INT_TINY = 'INT_TINY', // `TINYINT`
-        COL_OPT_INT_SMALL = 'INT_SMALL', // `SMALLINT`, for PostgreSQL too
-        COL_OPT_INT_MEDIUM = 'INT_MEDIUM', // `MEDIUMINT`
-        COL_OPT_INT = 'INT_REGULAR', // `INT`
-        COL_OPT_INT_BIG = 'INT_BIG'; // `BIGINT`
 
     // Index
     const IDX_OPT_UNIQUE = 'unique';
