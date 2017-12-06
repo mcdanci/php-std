@@ -28,5 +28,6 @@ return [
     //endregion
 
     'database' => 'fmnii-dev',
+    //'database' => 'test',
     'password' => 'root',
 ];
