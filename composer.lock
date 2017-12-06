@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fac61b3ccba11b92d521a6375c0330c9",
+    "content-hash": "33c5ac372ee7f23bc965aca943417b3c",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -1711,6 +1711,42 @@
                 "thinkphp5"
             ],
             "time": "2016-10-21T05:00:26+00:00"
+        },
+        {
+            "name": "zouxiang0639/thinkcms-auth",
+            "version": "v1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zouxiang0639/thinkcms-auth.git",
+                "reference": "4afe8f1afaa2745bb8944990ff3b0da7a95d09ab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/zouxiang0639/thinkcms-auth/4afe8f1afaa2745bb8944990ff3b0da7a95d09ab.zip",
+                "reference": "4afe8f1afaa2745bb8944990ff3b0da7a95d09ab",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "thinkcms\\auth\\": ""
+                },
+                "files": [
+                    "helper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "zouxiang",
+                    "email": "542506511@qq.com"
+                }
+            ],
+            "description": "The ThinkPHP5 thinkcms-auth Package.",
+            "time": "2017-08-17T02:51:12+00:00"
         }
     ],
     "packages-dev": [],

@@ -16,4 +16,9 @@ class Main extends Controller
         ]);
         return view();
     }
+
+    public function _empty()
+    {
+        return view();
+    }
 }
