@@ -11,6 +11,9 @@ class Main extends Controller
 {
     public function main()
     {
+        $this->assign([
+            'username' => 'Zain',
+        ]);
         return view();
     }
 }
