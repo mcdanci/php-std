@@ -18,7 +18,8 @@
         "phpmailer/phpmailer": "^6.0",
         "league/iso3166": "^2.0",
         "topthink/think-testing": "1.*",
-        "topthink/think-migration": "^1.1"
+        "topthink/think-migration": "^1.1",
+        "zoujingli/think-smarty": "^1.0"
     },
     "extra": {
         "think-path": "thinkphp"
