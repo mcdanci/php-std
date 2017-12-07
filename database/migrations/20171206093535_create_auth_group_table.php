@@ -6,6 +6,7 @@ class CreateAuthGroupTable extends Migrator
 {
     /**
      * Create authentication group table.
+     * @todo
      */
     public function change()
     {
@@ -21,7 +22,6 @@ class CreateAuthGroupTable extends Migrator
                 Phinx::COL_OPT_DEFAULT => '', // TODO
                 Phinx::COMMENT => '用户组中文名称', // TODO
             ])
-
             ->addColumn('status', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_LIMIT => 1,
                 Phinx::COL_OPT_NULL => true,
