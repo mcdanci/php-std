@@ -87,7 +87,7 @@ class Auth
     //默认配置
     protected $config = array(
         'auth_on' => true,                      // 认证开关
-        'auth_type' => 2,                         // 认证方式，1为实时认证；2为登录认证。 // TODO: 1 for original
+        'auth_type' => 2,                         // 认证方式，1为实时认证；2为登录认证。
         'auth_group' => 'auth_group',        // 用户组数据表名
         'auth_group_access' => 'auth_group_access', // 用户-用户组关系表
         'auth_rule' => 'auth_rule',         // 权限规则表
@@ -107,7 +107,7 @@ class Auth
      * @param uid  int           认证用户的id
      * @param string mode        执行check的模式
      * @param relation string    如果为 'or' 表示满足任一条规则即通过验证;如果为 'and'则表示需满足所有规则才能通过验证
-     * return boolean           通过验证返回true;失败返回false
+     * @return bool           通过验证返回true;失败返回false
      */
     public function check($name, $uid, $type = 1, $mode = 'url', $relation = 'or')
     {
