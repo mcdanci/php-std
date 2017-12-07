@@ -2,6 +2,10 @@
 use think\migration\Migrator;
 use McDanci\ThinkPHP\Phinx;
 
+/**
+ * Class CreateAuthRuleTable
+ * @see \think\Auth
+ */
 class CreateAuthRuleTable extends Migrator
 {
     /**
@@ -27,6 +31,7 @@ class CreateAuthRuleTable extends Migrator
                 Phinx::COL_OPT_DEFAULT => '', // TODO
                 Phinx::COMMENT => '规则名称',
             ])
+            // TODO: removed in doc
             ->addColumn('type', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_LIMIT => 1,
                 Phinx::COL_OPT_NULL => false,

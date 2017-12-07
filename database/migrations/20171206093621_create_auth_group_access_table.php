@@ -2,6 +2,10 @@
 use think\migration\Migrator;
 use McDanci\ThinkPHP\Phinx;
 
+/**
+ * Class CreateAuthGroupAccessTable
+ * @see \think\Auth
+ */
 class CreateAuthGroupAccessTable extends Migrator
 {
     /**
