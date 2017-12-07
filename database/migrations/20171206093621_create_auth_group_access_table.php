@@ -27,11 +27,12 @@ class CreateAuthGroupAccessTable extends Migrator
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COMMENT => '用户组 id', // TODO
             ])
+            ->addIndex(['uid'])
+            ->addIndex(['group_id'])
             ->addIndex(['uid', 'group_id'], [
-                Phinx::IDX_OPT_NAME => Phinx::IDX_NAME_PREFIX . 'uid_group_id',
+                Phinx::IDX_OPT_NAME => 'uid_group_id',
                 Phinx::IDX_OPT_UNIQUE => true,
             ])
-            ->addIndex(['uid', 'group_id'])
             ->create();
     }
 }
