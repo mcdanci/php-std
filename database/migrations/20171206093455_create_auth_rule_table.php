@@ -12,7 +12,7 @@ class CreateAuthRuleTable extends Migrator
         $this->table('auth_rule', [
             Phinx::TABLE_ENGINE => Phinx::TABLE_ENGINE_MY_ISAM,
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
-            Phinx::COMMENT => 'Authentication rule，规则表',
+            Phinx::COMMENT => 'Authentication rule，规则',
             Phinx::SIGNED => false,
         ])
             ->addColumn('name', Phinx::COL_TYP_STRING, [

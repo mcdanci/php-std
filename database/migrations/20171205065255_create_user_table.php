@@ -12,7 +12,6 @@ class CreateUserTable extends Migrator
     {
         $this->table('user', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
-            Phinx::COMMENT => 'User',
             Phinx::SIGNED => false,
         ])
             //->addTimestamps('created', 'updated')
