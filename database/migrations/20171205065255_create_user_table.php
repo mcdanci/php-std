@@ -33,13 +33,6 @@ class CreateUserTable extends Migrator
         //    //    Phinx::COL_OPT_DELETE => Phinx::SET_NULL,
         //    //    Phinx::COL_OPT_UPDATE => Phinx::NO_ACTION,
         //    //])
-        //
-        //    // TODO: debug
-        //    //->addColumn('login_status', 'boolean', array('limit' => 1, 'default' => 0, 'comment' => '登陆状态'))
-        //    //->addColumn('login_code', 'string', array('limit' => 32, 'default' => 0, 'comment' => '排他性登陆标识'))
-        //    //->addColumn('last_login_ip', 'integer', array('limit' => 11, 'default' => 0, 'comment' => '最后登录IP'))
-        //    //->addColumn('last_login_time', 'datetime', array('default' => 0, 'comment' => '最后登录时间'))
-        //
         //    ->create();
     }
 }

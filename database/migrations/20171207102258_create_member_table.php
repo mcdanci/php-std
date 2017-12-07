@@ -7,6 +7,8 @@ class CreateMemberTable extends Migrator
     /**
      * Create member table.
      * @link http://blog.csdn.net/wchinaw/article/details/6660107
+     * @todo Role 機制
+     * @todo `reg_id` 作外键
      */
     public function change()
     {
@@ -28,13 +30,6 @@ class CreateMemberTable extends Migrator
                 Phinx::COL_OPT_NULL => true,
                 Phinx::COMMENT => 'Registrant id',
             ])
-            //->addIndex(['username'], [Phinx::IDX_OPT_UNIQUE => true])
-
-            // TODO: `reg_id` 作外键
-            //->addForeignKey('id', 'reg_common', 'reg_id', [
-            //    Phinx::COL_OPT_DELETE => Phinx::SET_NULL,
-            //    Phinx::COL_OPT_UPDATE => Phinx::NO_ACTION,
-            //])
 
             // TODO: debug
             //->addColumn('login_status', 'boolean', array('limit' => 1, 'default' => 0, 'comment' => '登陆状态'))
