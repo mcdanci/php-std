@@ -18,19 +18,19 @@ class CreateAuthGroupTable extends Migrator
         ])
             ->addColumn('title', Phinx::COL_TYP_STRING, [
                 Phinx::COL_OPT_LIMIT => 100,
-                Phinx::COL_OPT_NULL => true,
+                Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => '', // TODO
                 Phinx::COMMENT => '用户组中文名称', // TODO
             ])
             ->addColumn('status', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_LIMIT => 1,
-                Phinx::COL_OPT_NULL => true,
+                Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => '状态 {1: "Enabled", 0: "Disabled"}',
             ])
             ->addColumn('rules', Phinx::COL_TYP_STRING, [
                 Phinx::COL_OPT_LIMIT => 80,
-                Phinx::COL_OPT_NULL => true,
+                Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => '', // TODO
                 Phinx::COMMENT => '用户组拥有的规则 id，多个规则用 `,` 隔开', // TODO
             ])
