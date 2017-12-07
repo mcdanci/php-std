@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright since 10:54 5/12/2017
- * @author <mcdanci@users.noreply.github.com>
+ * @author <mc@dancis.info>
  */
 namespace McDanci\ThinkPHP;
 
