@@ -5,7 +5,7 @@
  */
 namespace app\phase2\controller;
 
-class Controller extends \think\Controller
+abstract class Controller extends \think\Controller
 {
     protected $auth;
 

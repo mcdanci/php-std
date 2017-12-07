@@ -5,6 +5,11 @@
  */
 namespace app\phase2\model;
 
+/**
+ * Class User
+ * @package app\phase2\model
+ * @todo
+ */
 class User
 {
 }
