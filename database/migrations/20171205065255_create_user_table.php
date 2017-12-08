@@ -6,6 +6,7 @@ class CreateUserTable extends Migrator
 {
     /**
      * Create user table.
+     * @todo
      */
     public function change()
     {

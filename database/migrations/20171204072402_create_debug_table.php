@@ -32,6 +32,6 @@ class CreateDebugTable extends Migrator
             ])
             ->create();
 
-        // TODO: Set `id` into `unsigned`
+        // TODO: Set `id(10)` into `unsigned`
     }
 }

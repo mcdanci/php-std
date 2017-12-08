@@ -6,6 +6,7 @@ class CreateRegCommonTable extends Migrator
 {
     /**
      * @todo Opt. column type
+     * @todo Opt. `cat`
      */
     public function change()
     {
@@ -18,7 +19,8 @@ class CreateRegCommonTable extends Migrator
             ->addColumn('updated', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
             ->addColumn('deleted', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
 
-            ->addColumn('type', Phinx::COL_TYP_INT_SMALL, [
+            ->addColumn('type', Phinx::COL_TYP_INT, [
+                Phinx::COL_OPT_LIMIT => 1,
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Role type {1: exhibitor, 2: visitor, 3: admin}',
@@ -77,13 +79,13 @@ class CreateRegCommonTable extends Migrator
                 Phinx::COL_OPT_NULL => true,
                 Phinx::COMMENT => 'Zip code',
             ])
-            ->addColumn('iso3166', Phinx::COL_TYP_INT_SMALL, [
+            ->addColumn('iso3166', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_LIMIT => 3,
                 Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => true,
                 Phinx::COL_OPT_DEFAULT => 0,
                 Phinx::COMMENT => 'Country',
-            ]) // TODO: zerofill
+            ])
             ->addColumn('website', Phinx::COL_TYP_TEXT, [
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COMMENT => 'Company website',
@@ -92,12 +94,14 @@ class CreateRegCommonTable extends Migrator
                 Phinx::COL_OPT_LIMIT => 255,
                 Phinx::COL_OPT_NULL => true,
                 Phinx::COMMENT => 'Category',
-            ]) // TODO
+            ])
             ->addColumn('password', Phinx::COL_TYP_TEXT, [
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COMMENT => 'Password (after confirm)',
             ])
             ->addIndex(['type'])
             ->create();
+
+        // TODO: Set `id(10)` into `unsigned`, `iso3166 zerofill`
     }
 }
