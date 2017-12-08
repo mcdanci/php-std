@@ -23,6 +23,16 @@ class Phinx
         TABLE_COLLATION_U8G = 'utf8_general_ci',
         TABLE_COLLATION_U8MG = 'utf8mb4_general_ci';
 
+    /**
+     * For Postgres (>= 9.3) adapter
+     */
+    const
+        COL_TYP_INT_SMALL = 'smallint',
+        COL_TYP_JSONB = 'jsonb',
+        COL_TYP_CIDR = 'cidr',
+        COL_TYP_INET = 'inet',
+        COL_TYP_MAC = 'macaddr';
+
     const
         // MySQL adapter
         COL_TYP_ENUM = 'enum',
@@ -31,12 +41,7 @@ class Phinx
         COL_TYP_JSON = 'json', // MySQL >= 5.7
 
         // Postgres (>= 9.3) adapter
-        COL_TYP_INT_SMALL = 'smallint',
         //COL_TYP_JSON = 'json',
-        COL_TYP_JSONB = 'jsonb',
-        COL_TYP_CIDR = 'cidr',
-        COL_TYP_INET = 'inet',
-        COL_TYP_MAC = 'macaddr',
 
         // Common
         COL_TYP_INT_BIG = 'biginteger',
