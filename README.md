@@ -17,7 +17,16 @@ See [LICENSE.txt](LICENSE.txt) for detail.
 ## S Show Phase 2
 在资源（包含但不限于人才同工作时间）允许的情况下，S Show phase 2 生存周期同时采用 DDD 为主，TDD 为辅的策略进行。
 
-## 生存周期
+### Documentation
+- [干系人清单](docs/1.1%20干系人清单.md)
+- [需求方访谈原始记录](docs/1.2%20需求方访谈原始记录.md)
+- [需求说明](docs/2.%20需求说明.md)
+- [概要设计说明](docs/3.1%20概要设计说明.md)
+
+#### Other
+- [Asset](docs/Asset.md)
+
+### 生存周期
 `TODO`
 
 Phase 2 生存周期规划（未计展位模块），如下图所示：
