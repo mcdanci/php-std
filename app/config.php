@@ -20,16 +20,23 @@
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // | Copyright (c) 2006-2016 http://thinkphp.cn All rights reserved.
 
+const
+APP_TRACE = 'app_trace',
+TIMEZONE_DEFAULT = 'default_timezone',
+LANG_SWITCH = 'lang_switch_on',
+LANG_DEFAULT = 'default_lang',
+TEMPLATE_SUCCESS = 'dispatch_success_tmpl',
+TEMPLATE_ERROR = 'dispatch_success_tmpl';
+
 return [
-    'app_trace' => true, // TODO: for debug
-
     'app_namespace' => APP_NAMESPACE,
+    APP_TRACE => true, // TODO: for debug
 
-    'default_timezone' => 'Asia/Hong_Kong',
+    TIMEZONE_DEFAULT => 'Asia/Hong_Kong',
 
-    'lang_switch_on' => true,
-    'default_lang' => 'zh-hk',
+    LANG_SWITCH => true,
+    LANG_DEFAULT => 'zh-hk',
 
-    'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
-    'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+    TEMPLATE_SUCCESS => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+    TEMPLATE_ERROR => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
 ];
