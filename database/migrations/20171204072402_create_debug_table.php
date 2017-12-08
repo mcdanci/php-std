@@ -21,7 +21,7 @@ class CreateDebugTable extends Migrator
     {
         $this->table('debug', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
-            Phinx::SIGNED => false, // TODO
+            Phinx::SIGNED => false,
         ])
             ->addColumn('k', Phinx::COL_TYP_STRING, [
                 Phinx::COL_OPT_NULL => true,
@@ -31,5 +31,7 @@ class CreateDebugTable extends Migrator
                 Phinx::COL_OPT_NULL => true,
             ])
             ->create();
+
+        // TODO: Set `id` into `unsigned`
     }
 }
