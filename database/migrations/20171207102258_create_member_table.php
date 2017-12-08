@@ -9,12 +9,13 @@ class CreateMemberTable extends Migrator
      * @link http://blog.csdn.net/wchinaw/article/details/6660107
      * @todo Role 機制
      * @todo `reg_id` 作外键
+     * @todo
      */
     public function change()
     {
         $this->table('member', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
-            Phinx::SIGNED => false,
+            Phinx::SIGNED => false, // TODO
         ])
             //->addTimestamps('created', 'updated')
             ->addColumn('created', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => false])
