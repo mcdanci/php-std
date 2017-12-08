@@ -24,6 +24,19 @@ class Phinx
         TABLE_COLLATION_U8MG = 'utf8mb4_general_ci';
 
     /**
+     * MySQL adapter
+     */
+    const
+        COL_TYP_ENUM = 'enum',
+        COL_TYP_SET = 'set',
+        COL_TYP_BLOB = 'blob';
+
+    /**
+     * MySQL (>= 5.7) adapter
+     */
+    const COL_TYP_JSON = 'json';
+
+    /**
      * For Postgres (>= 9.3) adapter
      */
     const
@@ -34,12 +47,6 @@ class Phinx
         COL_TYP_MAC = 'macaddr';
 
     const
-        // MySQL adapter
-        COL_TYP_ENUM = 'enum',
-        COL_TYP_SET = 'set',
-        COL_TYP_BLOB = 'blob',
-        COL_TYP_JSON = 'json', // MySQL >= 5.7
-
         // Postgres (>= 9.3) adapter
         //COL_TYP_JSON = 'json',
 
