@@ -8,11 +8,11 @@ const TEMPLATE_DISPATCH = APP_PATH . 'api' . DS . 'view' . DS . 'Registration' .
 return [
     // app status: `status-dev-intranet`, `status-dev-internet` or `status-prod`
     // TODO: for dev, checking availability of `status-dev-intranet`
-    'app_status' => 'status-dev-internet',
+    APP_STATUS => 'status-dev-internet',
 
     //'view_suffix' => 'tpl', // TODO
 
-    'default_return_type' => 'json',
-    'dispatch_success_tmpl' => TEMPLATE_DISPATCH,
-    'dispatch_error_tmpl' => TEMPLATE_DISPATCH,
+    RETURN_TYPE_DEFAULT => 'json',
+    TEMPLATE_SUCCESS => TEMPLATE_DISPATCH,
+    TEMPLATE_ERROR => TEMPLATE_DISPATCH,
 ];
