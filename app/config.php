@@ -26,7 +26,10 @@ TIMEZONE_DEFAULT = 'default_timezone',
 LANG_SWITCH = 'lang_switch_on',
 LANG_DEFAULT = 'default_lang',
 TEMPLATE_SUCCESS = 'dispatch_success_tmpl',
-TEMPLATE_ERROR = 'dispatch_success_tmpl';
+TEMPLATE_ERROR = 'dispatch_success_tmpl',
+NAME_CONTROLLER_DEFAULT = 'default_controller',
+NAME_ACTION_DEFAULT = 'default_action',
+RETURN_TYPE_DEFAULT = 'default_return_type';
 
 return [
     'app_namespace' => APP_NAMESPACE,
