@@ -2,6 +2,7 @@
 namespace app\phase2\controller;
 
 use McDanci\ThinkPHP\Config;
+use think\Db;
 use think\Request;
 
 /**
@@ -10,6 +11,8 @@ use think\Request;
  */
 class Signing extends Controller
 {
+    use \Fmnii\Controller\Common;
+
     /**
      * Get init. data.
      * @return array
@@ -187,6 +190,13 @@ class Signing extends Controller
         ]);
 
         return $this->display('_tmp/payment');
+    }
+
+    public function listMember($page = 1, $rowMax = null)
+    {
+        $data = Db::name('member')->page($page, $rowMax)->select();
+
+        return self::retTemp(self::$scOK, 'OK', $data);
     }
 
     //endregion
