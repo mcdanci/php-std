@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
             $user['password'] = \app\phase2\model\Common::encryptPassword($user['password']);
         }
 
-        $this->insert('user', $data);
+        $this->insert('member', $data);
         $this->insert('debug', $log);
     }
 }

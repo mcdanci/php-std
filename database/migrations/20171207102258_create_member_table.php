@@ -21,7 +21,11 @@ class CreateMemberTable extends Migrator
             ->addColumn('created', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => false])
             ->addColumn('updated', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
             ->addColumn('deleted', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
-            ->addColumn('username', Phinx::COL_TYP_STRING, [Phinx::COL_OPT_LIMIT => 320, Phinx::COL_OPT_NULL => true])
+
+            ->addColumn('username', Phinx::COL_TYP_STRING, [
+                Phinx::COL_OPT_LIMIT => 320,
+                Phinx::COL_OPT_NULL => true,
+            ])
             ->addColumn('password', Phinx::COL_TYP_STRING, [
                 Phinx::COL_OPT_LIMIT => 255,
                 Phinx::COL_OPT_NULL => true,
@@ -37,6 +41,7 @@ class CreateMemberTable extends Migrator
             //->addColumn('login_code', 'string', array('limit' => 32, 'default' => 0, 'comment' => '排他性登陆标识'))
             //->addColumn('last_login_ip', 'integer', array('limit' => 11, 'default' => 0, 'comment' => '最后登录IP'))
             //->addColumn('last_login_time', 'datetime', array('default' => 0, 'comment' => '最后登录时间'))
+
             ->create();
     }
 }
