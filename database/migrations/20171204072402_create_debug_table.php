@@ -16,6 +16,7 @@ class CreateDebugTable extends Migrator
      * - addForeignKey
      *
      * Remember to call "create()" or "update()" and NOT "save()" when working with the Table class.
+     * @todo Set `id(10)` into `unsigned`
      */
     public function change()
     {
@@ -31,7 +32,5 @@ class CreateDebugTable extends Migrator
                 Phinx::COL_OPT_NULL => true,
             ])
             ->create();
-
-        // TODO: Set `id(10)` into `unsigned`
     }
 }

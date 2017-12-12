@@ -6,8 +6,10 @@ use \Phinx\Db\Adapter\MysqlAdapter;
 class CreateRegCommonTable extends Migrator
 {
     /**
-     * @todo Opt. column type
-     * @todo Opt. `cat`
+     * @todo Set `id(10)` into `unsigned`, `iso3166 zerofill`
+     * @todo Set `iso3166` into `zerofill` or mod. business logic
+     * @todo Opt. `password` with limitation
+     * @todo Opt. column type in all
      */
     public function change()
     {
@@ -16,9 +18,9 @@ class CreateRegCommonTable extends Migrator
             Phinx::COMMENT => 'Registrant information in common',
             Phinx::SIGNED => false,
         ])
-            ->addColumn('created', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => false])
-            //->addColumn('updated', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
-            ->addColumn('deleted', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
+            ->addColumn(Phinx::CREATED, Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => false])
+            //->addColumn(Phinx::UPDATED, Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
+            ->addColumn(Phinx::DELETED, Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
 
             ->addColumn('type', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
@@ -102,9 +104,5 @@ class CreateRegCommonTable extends Migrator
             ])
             ->addIndex(['type'])
             ->create();
-
-        // TODO: Set `id(10)` into `unsigned`, `iso3166 zerofill`
-        // TODO: Set `iso3166` into `zerofill` or mod. business logic
-        // TODO: Opt. `password` with limitation
     }
 }
