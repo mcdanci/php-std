@@ -2,7 +2,7 @@
 
 use think\migration\Seeder;
 
-class UserSeeder extends Seeder
+class MemberSeeder extends Seeder
 {
     /**
      * More information on writing seeders is available here:
