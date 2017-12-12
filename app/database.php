@@ -11,6 +11,8 @@ return [
     //'username' => 'sshow',
     //'password' => 'sshowadmin888',
     //'database' => 'sshowapi',
+
+    // TODO
     'username' => 'test',
     'password' => '71f12969bb',
     'database' => 'test',
