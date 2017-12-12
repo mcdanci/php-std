@@ -199,5 +199,10 @@ class Signing extends Controller
         return self::retTemp(self::$scOK, 'OK', $data);
     }
 
+    public function getConfigDatabase()
+    {
+        return Config::get('database');
+    }
+
     //endregion
 }
