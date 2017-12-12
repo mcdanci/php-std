@@ -1,6 +1,7 @@
 <?php
 use think\migration\Migrator;
 use McDanci\ThinkPHP\Phinx;
+use \Phinx\Db\Adapter\MysqlAdapter;
 
 class CreateRegCommonTable extends Migrator
 {
@@ -16,11 +17,11 @@ class CreateRegCommonTable extends Migrator
             Phinx::SIGNED => false,
         ])
             ->addColumn('created', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => false])
-            ->addColumn('updated', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
+            //->addColumn('updated', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
             ->addColumn('deleted', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
 
             ->addColumn('type', Phinx::COL_TYP_INT, [
-                Phinx::COL_OPT_LIMIT => 1,
+                Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Role type {1: exhibitor, 2: visitor, 3: admin}',
@@ -37,7 +38,7 @@ class CreateRegCommonTable extends Migrator
             ])
             ->addColumn('gender', Phinx::COL_TYP_INT, [
                 Phinx::SIGNED => false,
-                Phinx::COL_OPT_LIMIT => 1,
+                Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Gender: {1: Mrs., 2: Mr., 3: Ms.}',
@@ -77,14 +78,14 @@ class CreateRegCommonTable extends Migrator
             ->addColumn('zip', Phinx::COL_TYP_STRING, [
                 Phinx::COL_OPT_LIMIT => 255,
                 Phinx::COL_OPT_NULL => true,
-                Phinx::COMMENT => 'Zip code',
+                Phinx::COMMENT => 'ZIP code',
             ])
             ->addColumn('iso3166', Phinx::COL_TYP_INT, [
-                Phinx::COL_OPT_LIMIT => 3,
+                Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_SMALL,
                 Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => true,
                 Phinx::COL_OPT_DEFAULT => 0,
-                Phinx::COMMENT => 'Country',
+                Phinx::COMMENT => 'Country code',
             ])
             ->addColumn('website', Phinx::COL_TYP_TEXT, [
                 Phinx::COL_OPT_NULL => false,
@@ -103,5 +104,7 @@ class CreateRegCommonTable extends Migrator
             ->create();
 
         // TODO: Set `id(10)` into `unsigned`, `iso3166 zerofill`
+        // TODO: Set `iso3166` into `zerofill` or mod. business logic
+        // TODO: Opt. `password` with limitation
     }
 }

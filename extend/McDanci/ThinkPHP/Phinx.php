@@ -24,7 +24,7 @@ class Phinx
         TABLE_COLLATION_U8MG = 'utf8mb4_general_ci';
 
     /**
-     * MySQL adapter
+     * MySQL adapter.
      */
     const
         COL_TYP_ENUM = 'enum',
@@ -32,12 +32,12 @@ class Phinx
         COL_TYP_BLOB = 'blob';
 
     /**
-     * MySQL (>= 5.7) adapter
+     * MySQL (>= 5.7) adapter.
      */
     const COL_TYP_JSON = 'json';
 
     /**
-     * For Postgres (>= 9.3) adapter
+     * For Postgres (>= 9.3) adapter.
      */
     const
         COL_TYP_INT_SMALL = 'smallint',
@@ -112,4 +112,12 @@ class Phinx
     const CASCADE = 'CASCADE';
     const RESTRICT = 'RESTRICT';
     const CONSTRAINT = 'constraint';
+
+    /**
+     * DateTime set.
+     */
+    const
+        CREATED = 'created',
+        UPDATED = 'updated',
+        DELETED = 'deleted';
 }
