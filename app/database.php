@@ -11,9 +11,9 @@ return [
     //'username' => 'sshow',
     //'password' => 'sshowadmin888',
     //'database' => 'sshowapi',
-    'username' => 's-show',
-    'password' => 'bqqcvALY6sE3Xc5j',
-    'database' => 's-show',
+    'username' => 'test',
+    'password' => '71f12969bb',
+    'database' => 'test',
 
     //endregion
 
