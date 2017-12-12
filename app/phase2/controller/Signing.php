@@ -1,6 +1,7 @@
 <?php
 namespace app\phase2\controller;
 
+use McDanci\ControllerCommon;
 use McDanci\ThinkPHP\Config;
 use think\Db;
 use think\Request;
@@ -11,7 +12,9 @@ use think\Request;
  */
 class Signing extends Controller
 {
-    use \Fmnii\Controller\Common;
+    use
+        \Fmnii\Controller\Common,
+        ControllerCommon;
 
     /**
      * Get init. data.
@@ -194,6 +197,7 @@ class Signing extends Controller
 
     public function listMember($page = 1, $rowMax = null)
     {
+        self::setHeaders();
         $data = Db::name('member')->page($page, $rowMax)->select();
 
         return self::retTemp(self::$scOK, 'OK', $data);

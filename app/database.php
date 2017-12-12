@@ -30,11 +30,9 @@ return [
 
     //endregion
 
-    // TODO
-    //'database' => 'fmnii-dev',
-
     //'database' => 'test',
 
     // TODO
+    //'database' => 'fmnii-dev',
     //'password' => 'root',
 ];
