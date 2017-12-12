@@ -19,6 +19,7 @@ trait ControllerCommon
     /**
      * Cross-domain header
      * @param string $domainName Trusted domain, spec. when limited domain for deployment
+     * @link https://icewing.cc/post/about-cross-origin.html#access-control-allow-headers%E7%9A%84%E9%97%AE%E9%A2%98
      */
     protected static function setHeaders($domainName = '*')
     {
