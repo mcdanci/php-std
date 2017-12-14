@@ -6,10 +6,10 @@
 
 // descriptions of categories
 return [
-    1 => 'material',
-    2 => 'process / component',
-    3 => 'machinery',
-    4 => 'device / tools',
-    5 => 'creation technology',
-    6 => 'manufacture consultation',
+    1 => 'Material',
+    2 => 'Process & Component',
+    3 => 'Machinery',
+    4 => 'Device & Tools',
+    5 => 'Creation Technology',
+    6 => 'Manufacture Consultation',
 ];
