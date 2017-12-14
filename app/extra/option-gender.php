@@ -4,7 +4,8 @@
  * @author <mcdanci@users.noreply.github.com>
  */
 return [
-    1 => 'Mrs.',
-    3 => 'Ms.',
-    2 => 'Mr.',
+    null,
+    'Mrs.',
+    'Mr.',
+    'Ms.',
 ];

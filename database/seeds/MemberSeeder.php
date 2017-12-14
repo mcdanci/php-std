@@ -20,7 +20,7 @@ class MemberSeeder extends Seeder
         for ($i = 0; $i < 100; $i++) {
             $data[] = [
                 'created' => date('Y-m-d H:i:s'),
-                'username' => $faker->email,
+                'email' => $faker->email,
                 'password' => $faker->password,
                 'reg_id' => $i > 0 ? mt_rand(1, 9) : null,
             ];
@@ -31,7 +31,7 @@ class MemberSeeder extends Seeder
             $log[] = [
                 'k' => 'user',
                 'body' => json_encode([
-                    'username' => $user['username'],
+                    'email' => $user['username'],
                     'password' => $user['password'],
                 ])
             ];
