@@ -5,7 +5,7 @@ use McDanci\ThinkPHP\Phinx;
 class CreateDebugTable extends Migrator
 {
     /**
-     * Create debug table.
+     * Create table for debug.
      *
      * The following commands can be used in this method and Phinx will automatically reverse them when rolling back:
      * - createTable

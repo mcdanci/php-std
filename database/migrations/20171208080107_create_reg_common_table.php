@@ -6,6 +6,7 @@ use \Phinx\Db\Adapter\MysqlAdapter;
 class CreateRegCommonTable extends Migrator
 {
     /**
+     * Create table for registrant information in common.
      * @todo Set `id(10)` into `unsigned`, `iso3166 zerofill`
      * @todo Set `iso3166` into `zerofill` or mod. business logic
      * @todo Opt. `password` with limitation
