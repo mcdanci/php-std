@@ -7,10 +7,11 @@ namespace McDanci\ThinkPHP;
 
 class Phinx
 {
+    const ID = 'id';
     const SIGNED = 'signed';
+    const COMMENT = 'comment';
 
     const
-        COMMENT = 'comment',
         TABLE_ENGINE = 'engine',
         TABLE_COLLATION = 'collation';
         //TABLE_SIGNED = self::SIGNED;

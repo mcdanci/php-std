@@ -10,7 +10,7 @@ class CreateRegCommonTable extends Migrator
      * @todo Set `id(10)` into `unsigned`, `iso3166 zerofill`
      * @todo Set `iso3166` into `zerofill` or mod. business logic
      * @todo Opt. `password` with limitation
-     * @todo Opt. column type in all
+     * @todo Opt. in all
      */
     public function change()
     {
@@ -40,8 +40,8 @@ class CreateRegCommonTable extends Migrator
                 Phinx::COMMENT => 'Last name',
             ])
             ->addColumn('gender', Phinx::COL_TYP_INT, [
-                Phinx::SIGNED => false,
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
+                Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Gender: {1: Mrs., 2: Mr., 3: Ms.}',
