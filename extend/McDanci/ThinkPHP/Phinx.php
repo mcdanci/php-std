@@ -10,6 +10,7 @@ class Phinx
     const ID = 'id';
     const SIGNED = 'signed';
     const COMMENT = 'comment';
+    const KEY_PRIMARY = 'primary_key';
 
     const
         TABLE_ENGINE = 'engine',

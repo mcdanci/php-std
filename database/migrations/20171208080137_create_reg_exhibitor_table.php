@@ -4,9 +4,10 @@ use McDanci\ThinkPHP\Phinx;
 
 class CreateRegExhibitorTable extends Migrator
 {
+    const KEY_PRIMARY = 'common_id';
+
     /**
      * Create table for registrant information of exhibitor.
-     * @todo Set `id(10)` into `unsigned`
      * @todo Opt. in all
      */
     public function change()
@@ -14,8 +15,11 @@ class CreateRegExhibitorTable extends Migrator
         $this->table('reg_exhibitor', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
             Phinx::COMMENT => 'Registrant information of exhibitor',
-            Phinx::ID => 'common_id',
+            Phinx::ID => false,
+            Phinx::KEY_PRIMARY => self::KEY_PRIMARY,
+        ])->addColumn(self::KEY_PRIMARY, Phinx::COL_TYP_INT, [
             Phinx::SIGNED => false,
+            Phinx::COL_OPT_NULL => true,
         ])
             ->addColumn('c_opf', Phinx::COL_TYP_TEXT, [
                 Phinx::COL_OPT_NULL => false,

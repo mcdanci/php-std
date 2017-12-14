@@ -5,9 +5,10 @@ use Phinx\Db\Adapter\MysqlAdapter;
 
 class CreateRegVisitorTable extends Migrator
 {
+    const KEY_PRIMARY = 'common_id';
+
     /**
      * Create table for registrant information of visitor.
-     * @todo Set `id(10)` into `unsigned`
      * @todo Opt. in all
      */
     public function change()
@@ -15,8 +16,11 @@ class CreateRegVisitorTable extends Migrator
         $this->table('reg_visitor', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
             Phinx::COMMENT => 'Registrant information of visitor',
-            Phinx::ID => 'common_id',
+            Phinx::ID => false,
+            Phinx::KEY_PRIMARY => self::KEY_PRIMARY,
+        ])->addColumn(self::KEY_PRIMARY, Phinx::COL_TYP_INT, [
             Phinx::SIGNED => false,
+            Phinx::COL_OPT_NULL => true,
         ])
             ->addColumn('job_function', Phinx::COL_TYP_STRING, [
                 Phinx::COL_OPT_LIMIT => 255,

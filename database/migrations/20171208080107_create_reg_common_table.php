@@ -25,6 +25,7 @@ class CreateRegCommonTable extends Migrator
 
             ->addColumn('type', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
+                Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Role type {1: exhibitor, 2: visitor, 3: admin}',
@@ -86,7 +87,7 @@ class CreateRegCommonTable extends Migrator
             ->addColumn('iso3166', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_SMALL,
                 Phinx::SIGNED => false,
-                Phinx::COL_OPT_NULL => true,
+                Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 0,
                 Phinx::COMMENT => 'Country code',
             ])
@@ -101,7 +102,6 @@ class CreateRegCommonTable extends Migrator
             ])
             ->addColumn('password', Phinx::COL_TYP_TEXT, [
                 Phinx::COL_OPT_NULL => false,
-                Phinx::COMMENT => 'Password (after confirm)',
             ])
             ->addIndex(['type'])
             ->create();
