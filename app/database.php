@@ -13,9 +13,9 @@ return [
     //'database' => 'sshowapi',
 
     // TODO
-    'username' => 'test',
-    'password' => '71f12969bb',
-    'database' => 'test',
+    //'username' => 'test',
+    //'password' => '71f12969bb',
+    //'database' => 'test',
 
     //endregion
 
@@ -35,6 +35,6 @@ return [
     //'database' => 'test',
 
     // TODO
-    //'database' => 'fmnii-dev',
-    //'password' => 'root',
+    'database' => 'fmnii-dev',
+    'password' => 'root',
 ];
