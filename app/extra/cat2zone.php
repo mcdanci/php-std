@@ -4,7 +4,7 @@
  * @author <mc@dancis.info>
  */
 return [
-    ['A'],
+    [],
     ['A'],
     ['A'],
     ['A'],

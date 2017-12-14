@@ -27,7 +27,8 @@
     "topthink/think-migration": "^1.1",
     "zoujingli/think-smarty": "^1.0",
     "fzaninotto/faker": "^1.7",
-    "omnipay/paypal": "~2.0"
+    "omnipay/paypal": "~2.0",
+    "topthink/think-helper": "^1.0"
   },
   "extra": {
     "think-path": "thinkphp"
