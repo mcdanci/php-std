@@ -1,4 +1,7 @@
 <?php
+/**
+ * @todo
+ */
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
@@ -11,5 +14,5 @@ if (is_file($_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'])) {
     if (!isset($_SERVER['PATH_INFO'])) {
         $_SERVER['PATH_INFO'] = $_SERVER['REQUEST_URI'];
     }
-    require __DIR__ . "/index.php";
+    require __DIR__ . '/index.php';
 }
