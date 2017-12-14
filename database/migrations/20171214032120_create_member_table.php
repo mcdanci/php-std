@@ -29,7 +29,6 @@ class CreateMemberTable extends Migrator
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
                 Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => false,
-                Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Role type {1: exhibitor, 2: visitor}',
             ])
             ->addColumn('name_first', Phinx::COL_TYP_STRING, [
@@ -44,7 +43,6 @@ class CreateMemberTable extends Migrator
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
                 Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => false,
-                Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Gender: {1: Mrs., 2: Mr., 3: Ms.}',
             ])
             ->addColumn('email', Phinx::COL_TYP_STRING, [
@@ -97,8 +95,7 @@ class CreateMemberTable extends Migrator
                 Phinx::COL_OPT_LIMIT => 255,
                 Phinx::COL_OPT_NULL => true,
             ])
-
-            ->addColumn('reg_common_id', Phinx::COL_TYP_INT, [
+            ->addColumn('reg_id', Phinx::COL_TYP_INT, [
                 Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => true,
                 Phinx::COMMENT => 'Registrant id',

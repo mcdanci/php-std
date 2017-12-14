@@ -4,7 +4,7 @@ use McDanci\ThinkPHP\Phinx;
 
 class CreateRegExhibitorTable extends Migrator
 {
-    const KEY_PRIMARY = 'common_id';
+    const KEY_PRIMARY = 'reg_id';
 
     /**
      * Create table for registrant information of exhibitor.

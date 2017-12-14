@@ -3,7 +3,7 @@ use think\migration\Migrator;
 use McDanci\ThinkPHP\Phinx;
 use \Phinx\Db\Adapter\MysqlAdapter;
 
-class CreateRegCommonTable extends Migrator
+class CreateRegTable extends Migrator
 {
     /**
      * Create table for registrant information in common.
@@ -14,7 +14,7 @@ class CreateRegCommonTable extends Migrator
      */
     public function change()
     {
-        $this->table('reg_common', [
+        $this->table('reg', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
             Phinx::COMMENT => 'Registrant information in common',
             Phinx::SIGNED => false,
@@ -27,7 +27,6 @@ class CreateRegCommonTable extends Migrator
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
                 Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => false,
-                Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Role type {1: exhibitor, 2: visitor, 3: admin}',
             ])
             ->addColumn('name_first', Phinx::COL_TYP_STRING, [
@@ -42,7 +41,6 @@ class CreateRegCommonTable extends Migrator
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
                 Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => false,
-                Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Gender: {1: Mrs., 2: Mr., 3: Ms.}',
             ])
             ->addColumn('email', Phinx::COL_TYP_STRING, [

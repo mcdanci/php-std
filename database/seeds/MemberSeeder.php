@@ -1,5 +1,4 @@
 <?php
-
 use think\migration\Seeder;
 
 class MemberSeeder extends Seeder

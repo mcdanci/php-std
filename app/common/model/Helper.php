@@ -24,6 +24,10 @@ class Helper extends Model
         return false;
     }
 
+    /**
+     * @param string $a
+     * @return bool|int
+     */
     public static function getIdByA($a)
     {
         if (is_string($a)) {

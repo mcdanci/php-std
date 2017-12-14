@@ -5,7 +5,7 @@ use Phinx\Db\Adapter\MysqlAdapter;
 
 class CreateRegVisitorTable extends Migrator
 {
-    const KEY_PRIMARY = 'common_id';
+    const KEY_PRIMARY = 'reg_id';
 
     /**
      * Create table for registrant information of visitor.
