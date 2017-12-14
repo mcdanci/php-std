@@ -5,7 +5,13 @@
  */
 
 if (!function_exists('function_name')) {
-    function get_a_id()
+    /**
+     * @param $id
+     * @return bool|string
+     * @see \app\common\model\Helper::getAById
+     */
+    function get_a_by_id($id)
     {
+        return \app\common\model\Helper::getAById($id);
     }
 }
