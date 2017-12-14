@@ -5,8 +5,10 @@ use McDanci\ThinkPHP\Phinx;
 class CreateMemberTable extends Migrator
 {
     /**
-     * Create member table.
+     * Create table for member.
      * @link http://blog.csdn.net/wchinaw/article/details/6660107
+     * @link http://php.net/manual/zh/book.password.php
+     * @todo Set primary key into `unsigned`
      * @todo Role 機制
      * @todo `reg_id` 作外键
      * @todo
@@ -15,7 +17,7 @@ class CreateMemberTable extends Migrator
     {
         $this->table('member', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
-            Phinx::SIGNED => false, // TODO
+            Phinx::SIGNED => false,
         ])
             //->addTimestamps('created', 'updated')
             ->addColumn('created', Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => false])
@@ -29,9 +31,9 @@ class CreateMemberTable extends Migrator
             ->addColumn('password', Phinx::COL_TYP_STRING, [
                 Phinx::COL_OPT_LIMIT => 255,
                 Phinx::COL_OPT_NULL => true,
-                Phinx::COMMENT => '密码',
             ])
             ->addColumn('reg_id', Phinx::COL_TYP_INT, [
+                Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => true,
                 Phinx::COMMENT => 'Registrant id',
             ])

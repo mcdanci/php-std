@@ -6,10 +6,11 @@ use \Phinx\Db\Adapter\MysqlAdapter;
 class CreateRegCommonTable extends Migrator
 {
     /**
+     * Create table for registrant information in common.
      * @todo Set `id(10)` into `unsigned`, `iso3166 zerofill`
      * @todo Set `iso3166` into `zerofill` or mod. business logic
      * @todo Opt. `password` with limitation
-     * @todo Opt. column type in all
+     * @todo Opt. in all
      */
     public function change()
     {
@@ -24,6 +25,7 @@ class CreateRegCommonTable extends Migrator
 
             ->addColumn('type', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
+                Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Role type {1: exhibitor, 2: visitor, 3: admin}',
@@ -39,8 +41,8 @@ class CreateRegCommonTable extends Migrator
                 Phinx::COMMENT => 'Last name',
             ])
             ->addColumn('gender', Phinx::COL_TYP_INT, [
-                Phinx::SIGNED => false,
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
+                Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Gender: {1: Mrs., 2: Mr., 3: Ms.}',
@@ -85,7 +87,7 @@ class CreateRegCommonTable extends Migrator
             ->addColumn('iso3166', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_SMALL,
                 Phinx::SIGNED => false,
-                Phinx::COL_OPT_NULL => true,
+                Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 0,
                 Phinx::COMMENT => 'Country code',
             ])
@@ -100,7 +102,6 @@ class CreateRegCommonTable extends Migrator
             ])
             ->addColumn('password', Phinx::COL_TYP_TEXT, [
                 Phinx::COL_OPT_NULL => false,
-                Phinx::COMMENT => 'Password (after confirm)',
             ])
             ->addIndex(['type'])
             ->create();
