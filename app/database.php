@@ -1,4 +1,7 @@
 <?php
+use McDanci\ThinkPHP\Config;
+use think\Env;
+
 return [
     // TODO: development environment
     'debug' => true,
@@ -11,11 +14,6 @@ return [
     //'username' => 'sshow',
     //'password' => 'sshowadmin888',
     //'database' => 'sshowapi',
-
-    // TODO
-    //'username' => 'test',
-    //'password' => '71f12969bb',
-    //'database' => 'test',
 
     //endregion
 
@@ -35,6 +33,6 @@ return [
     //'database' => 'test',
 
     // TODO
-    'database' => 'fmnii-dev',
-    'password' => 'root',
+    'database' => Env::get('database.username', 'root'),
+    'password' => Env::get('database.password', Config::get('database.password')),
 ];

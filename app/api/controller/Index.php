@@ -114,6 +114,6 @@ class Index extends Controller
      */
     public function listOptionGender()
     {
-        return self::retTemp(self::$scOK, 'OK', Config::getByDot('option-gender'));
+        return self::retTemp(self::$scOK, 'OK', Config::get('option-gender'));
     }
 }

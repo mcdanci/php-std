@@ -9,6 +9,9 @@
  * @author <outieyi@milianjie.com>
  */
 
+/**
+ * Configuration name.
+ */
 const
 APP_TRACE = 'app_trace',
 TIMEZONE_DEFAULT = 'default_timezone',
@@ -27,7 +30,6 @@ NAME_ACTION_DEFAULT = 'default_action';
 return [
     'name' => 'S-SHOW API',
     'app_namespace' => APP_NAMESPACE,
-    APP_TRACE => true, // TODO: for debug
 
     TIMEZONE_DEFAULT => 'Asia/Hong_Kong',
 

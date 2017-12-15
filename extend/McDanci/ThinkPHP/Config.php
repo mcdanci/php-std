@@ -20,7 +20,7 @@ class Config extends \think\Config
      * @return mixed
      * @todo Test unit
      */
-    public static function getByDot($name = null, $range = '')
+    public static function get($name = null, $range = '')
     {
         if (is_string($name)) {
             $keyList = explode('.', $name);
