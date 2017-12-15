@@ -4,7 +4,7 @@ namespace app\phase2\controller;
 
 use think\Controller;
 use think\Request;
-use app\phase2\model;
+use app\common\model;
 
 class Reg extends Controller
 {

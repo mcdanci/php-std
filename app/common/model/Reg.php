@@ -1,8 +1,11 @@
 <?php
-namespace app\phase2\model;
+/**
+ * @copyright since 17:46 14/12/2017
+ * @author <mc@dancis.info>
+ */
+namespace app\common\model;
 
 use McDanci\ThinkPHP\Config;
-use think\Loader;
 use think\Model;
 use traits\model\SoftDelete;
 
