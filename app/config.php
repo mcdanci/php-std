@@ -34,4 +34,7 @@ return [
 
     TEMPLATE_SUCCESS => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
     TEMPLATE_ERROR => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+
+    NAME_CONTROLLER_DEFAULT => 'Main',
+    NAME_ACTION_DEFAULT => 'main',
 ];
