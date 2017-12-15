@@ -195,13 +195,5 @@ class Signing extends Controller
         return $this->display('_tmp/payment');
     }
 
-    public function listMember($page = 1, $rowMax = null)
-    {
-        self::setHeaders();
-        $data = Db::name('member')->page($page, $rowMax)->select();
-
-        return self::retTemp(self::$scOK, 'OK', $data);
-    }
-
     //endregion
 }
