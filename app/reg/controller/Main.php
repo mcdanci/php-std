@@ -5,6 +5,8 @@
  */
 namespace app\reg\controller;
 
+use app\common\model\Reg;
+use app\common\model\RegExhibitor;
 use McDanci\ThinkPHP\Config;
 use think\Controller;
 
@@ -20,6 +22,20 @@ class Main extends Controller
      */
     use \Fmnii\Controller\Common;
     use \McDanci\ControllerCommon;
+
+    /**
+     * @todo
+     */
+    //region Debug
+
+    public function debug()
+    {
+        $reg = Reg::get(1, ['reg_exhibitor', 'reg_visitor']);
+        return $reg;
+        //return $reg->regExhibitor->save(['mpt' => 'dfsdfsdfasdf']);
+    }
+
+    //endregion
 
     /**
      * List gender.
