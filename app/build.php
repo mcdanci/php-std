@@ -6,27 +6,26 @@ return [
     '__file__' => [
     ],
 
-    'v1' => [
+    'demo' => [
         '__file__' => [
-            'common.php',
         ],
         '__dir__' => [
             'controller',
             'model',
-            'view',
+            //'view',
             'behavior',
         ],
         'controller' => [
             'Main',
-            'Test',
-            'UserType',
+            //'Test',
+            //'UserType',
         ],
-        'model' => [
-            'User',
-            'UserType',
-        ],
-        'view' => [
-            'main/main',
-        ],
+        //'model' => [
+        //    'User',
+        //    'UserType',
+        //],
+        //'view' => [
+        //    'main/main',
+        //],
     ],
 ];
