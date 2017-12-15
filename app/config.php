@@ -29,8 +29,9 @@ NAME_ACTION_DEFAULT = 'default_action',
 DB_PREFIX = 'prefix';
 
 return [
-    'name' => 'S-SHOW API',
     'app_namespace' => APP_NAMESPACE,
+
+    'name' => 'S-SHOW API',
 
     TIMEZONE_DEFAULT => 'Asia/Hong_Kong',
 
