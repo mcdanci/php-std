@@ -14,24 +14,27 @@
  */
 const
 APP_TRACE = 'app_trace',
+
 TIMEZONE_DEFAULT = 'default_timezone',
+
 LANG_SWITCH = 'lang_switch_on',
 LANG_DEFAULT = 'default_lang',
+
 TEMPLATE_SUCCESS = 'dispatch_success_tmpl',
 TEMPLATE_ERROR = 'dispatch_success_tmpl',
 
 RETURN_TYPE_DEFAULT = 'default_return_type',
+
 APP_STATUS = 'app_status',
 
 NAME_MODULE_DEFAULT = 'default_module',
 NAME_CONTROLLER_DEFAULT = 'default_controller',
 NAME_ACTION_DEFAULT = 'default_action',
+
 DB_PREFIX = 'prefix';
 
 return [
     'app_namespace' => APP_NAMESPACE,
-
-    'name' => 'S-SHOW API',
 
     TIMEZONE_DEFAULT => 'Asia/Hong_Kong',
 
@@ -44,4 +47,6 @@ return [
     NAME_MODULE_DEFAULT => 'main',
     NAME_CONTROLLER_DEFAULT => 'Main',
     NAME_ACTION_DEFAULT => 'main',
+
+    'name' => 'S-SHOW API',
 ];

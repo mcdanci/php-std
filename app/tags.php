@@ -1,4 +1,7 @@
 <?php
+/**
+ * @todo
+ */
 return [
     'app_init' => [],
     'app_begin' => [],
