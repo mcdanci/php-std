@@ -12,10 +12,11 @@ namespace McDanci\ThinkPHP;
 class Config extends \think\Config
 {
     /**
-     * Getting param. within configurations
-     * getting all once set with `null`
-     * @param null $name Name of param. within configuration (separating with `.` supported)
-     * @param string $range Range functional
+     * Get configuration.
+     *
+     * Getting all configuration at once set parameter name with `null`.
+     * @param null|string $name Name of configuration parameter, level separation using `.`
+     * @param string $range functional range
      * @return mixed
      * @todo Test unit
      */
