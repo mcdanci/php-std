@@ -1,25 +1,21 @@
 <?php
+
 namespace app\phase2\controller;
 
-use McDanci\ThinkPHP\Config;
+use think\Controller;
 use think\Request;
+use app\phase2\model;
 
-/**
- * Class Audit
- * @package app\phase2\controller
- * @todo
- */
-class Audit extends Controller
+class Reg extends Controller
 {
     /**
      * 显示资源列表
      *
      * @return \think\Response
      */
-    public function main()
+    public function index()
     {
-        new \think\Response();
-        return null;
+        //
     }
 
     /**
@@ -29,7 +25,12 @@ class Audit extends Controller
      */
     public function create()
     {
-        //
+        $user = new model\Reg($_POST);
+        if ($user->allowField(true)->save()) {
+            // TODO
+        }
+
+        // TODO
     }
 
     /**

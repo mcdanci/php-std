@@ -20,5 +20,13 @@ abstract class Controller extends \think\Controller
         //if (!$this->auth->check($this->request->controller() . '-' . $this->request->action(), session('uid'))) {
         //    $this->error('You have no right to access.');
         //}
+
+        //try {
+        //    echo 1;
+        //} catch ($e) {
+        //    \think\Error::appShutdown();
+        //    \think\Error::appError($e);
+        //    \think\Error::appException($e);
+        //}
     }
 }
