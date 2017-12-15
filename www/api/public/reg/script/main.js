@@ -13,8 +13,9 @@
 // TODO: do something here
 var
     //urlBegin = "/api/public/index.php/", // TODO: production
-    urlBegin = "http://s-show-api.intranet.fmnii.e13.cc/index.php/",
-    urlSuffixIso3166 = "api/index/listIso3166",
+    //urlBegin = "http://s-show-api.intranet.fmnii.e13.cc/index.php/", // TODO: debug
+    urlBegin = "/api/public/index.php/",
+    urlSuffixIso3166 = "api/index/listiso3166",
     urlSuffixExhibitor = "api/registration/exhibitor";
 urlSuffixVisitor = "api/registration/visitor";
 

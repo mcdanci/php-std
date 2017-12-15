@@ -1,7 +1,8 @@
 <?php
-namespace app\phase2\controller;
+namespace app\backstage\controller;
 
 use McDanci\ThinkPHP\Config;
+use think\Controller;
 use think\Request;
 
 /**

@@ -35,7 +35,7 @@ class MemberSeeder extends Seeder
                 ])
             ];
 
-            $user['password'] = \app\phase2\model\Common::encryptPassword($user['password']);
+            $user['password'] = \app\common\model\Common::encryptPassword($user['password']);
         }
 
         $this->insert('member', $data);

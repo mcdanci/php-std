@@ -87,10 +87,10 @@ class CreateMemberTable extends Migrator
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COMMENT => 'Company website',
             ])
-            ->addColumn('cat', Phinx::COL_TYP_STRING, [
-                Phinx::COL_OPT_NULL => true,
-                Phinx::COMMENT => 'Category',
-            ])
+            //->addColumn('cat', Phinx::COL_TYP_STRING, [
+            //    Phinx::COL_OPT_NULL => true,
+            //    Phinx::COMMENT => 'Category',
+            //]) // TODO
             ->addColumn('password', Phinx::COL_TYP_STRING, [
                 Phinx::COL_OPT_LIMIT => 255,
                 Phinx::COL_OPT_NULL => true,

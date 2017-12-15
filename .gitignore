@@ -6,6 +6,7 @@
 
 ## Deployment TODO: check
 /.user.ini
+/www/api/docs/
 
 # Runtime
 /vendor/

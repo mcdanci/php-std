@@ -5,8 +5,6 @@
  */
 namespace app\api\controller;
 
-use McDanci\ThinkPHP\Config;
-
 /**
  * Overview
  * @package app\api\controller
@@ -97,23 +95,4 @@ class Index extends Controller
     }
 
     //endregion
-
-    /**
-     * Getting data as list of gender
-     * @return array
-     * ->**status** int
-     *
-     * ->**info** string
-     *
-     * ->**body** array
-     *
-     * ->->**value**:**HTML** array string
-     * @throws \Exception
-     * @todo Unit test
-     * @todo
-     */
-    public function listOptionGender()
-    {
-        return self::retTemp(self::$scOK, 'OK', Config::get('option-gender'));
-    }
 }

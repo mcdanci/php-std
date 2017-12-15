@@ -3,7 +3,7 @@
  * @copyright since 14:58 4/12/2017
  * @author <mcdanci@users.noreply.github.com>
  */
-namespace app\phase2\model;
+namespace app\common\model;
 
 class Common
 {

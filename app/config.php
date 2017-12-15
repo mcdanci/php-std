@@ -29,9 +29,7 @@ APP_STATUS = 'app_status',
 
 NAME_MODULE_DEFAULT = 'default_module',
 NAME_CONTROLLER_DEFAULT = 'default_controller',
-NAME_ACTION_DEFAULT = 'default_action',
-
-DB_PREFIX = 'prefix';
+NAME_ACTION_DEFAULT = 'default_action';
 
 return [
     'app_namespace' => APP_NAMESPACE,

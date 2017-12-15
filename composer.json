@@ -43,6 +43,6 @@
     }
   },
   "scripts": {
-    "apigen": "apigen generate -q -s ./application/api/controller -d ./public/docs --access-levels=public --no-source-code"
+    "apigen": "apigen generate -q -s ./app/reg/controller -d ./www/api/docs --access-levels=public --no-source-code"
   }
 }
