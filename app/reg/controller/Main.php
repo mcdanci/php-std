@@ -35,6 +35,24 @@ class Main extends Controller
         //return $reg->regExhibitor->save(['mpt' => 'dfsdfsdfasdf']);
     }
 
+    /**
+     * @return \think\Request
+     * @todo
+     */
+    public function regExhibitor()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return \think\Request
+     * @todo
+     */
+    public function regVisitor()
+    {
+        return $this->request->baseUrl();
+    }
+
     //endregion
 
     /**
