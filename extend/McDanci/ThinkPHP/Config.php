@@ -26,18 +26,15 @@ class Config extends \think\Config
             $keyList = explode('.', $name);
             $counter = count($keyList);
             if ($counter > 2) {
-                $v = parent::get($keyList[0] . '.' . $keyList[1], $range);
+                $configValue = parent::get($keyList[0] . '.' . $keyList[1], $range);
 
                 for ($c = 2; $c < $counter; $c++) {
-                    $v = $v[$keyList[$c]];
+                    $configValue = $configValue[$keyList[$c]];
                 }
 
-                return $v;
-            } else {
-                return parent::get($name, $range);
+                return $configValue;
             }
-        } else {
-            return parent::get($name, $range);
         }
+        return parent::get($name, $range);
     }
 }
