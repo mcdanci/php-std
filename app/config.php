@@ -20,10 +20,12 @@ TEMPLATE_ERROR = 'dispatch_success_tmpl',
 RETURN_TYPE_DEFAULT = 'default_return_type',
 APP_STATUS = 'app_status',
 
+NAME_MODULE_DEFAULT = 'default_module',
 NAME_CONTROLLER_DEFAULT = 'default_controller',
 NAME_ACTION_DEFAULT = 'default_action';
 
 return [
+    'name' => 'S-SHOW API',
     'app_namespace' => APP_NAMESPACE,
     APP_TRACE => true, // TODO: for debug
 
@@ -35,6 +37,7 @@ return [
     TEMPLATE_SUCCESS => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
     TEMPLATE_ERROR => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
 
+    NAME_MODULE_DEFAULT => 'main',
     NAME_CONTROLLER_DEFAULT => 'Main',
     NAME_ACTION_DEFAULT => 'main',
 ];
