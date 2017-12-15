@@ -3,36 +3,12 @@ use McDanci\ThinkPHP\Config;
 use think\Env;
 
 return [
-    // TODO: development environment
-    'debug' => true,
-    'sql_explain' => true,
-
-    //region development environment
-
-    // TODO: Internet
-    //'hostname' => '39.108.221.196',
-    //'username' => 'sshow',
-    //'password' => 'sshowadmin888',
-    //'database' => 'sshowapi',
-
-    //endregion
-
-    //region Project
-
-    //'prefix' => 'ss_reg_',
-    'prefix' => 'ss_',
-
-    //endregion
-
-    //region Common
+    DB_PREFIX => 'ss_',
 
     'charset' => 'utf8mb4',
-
-    //endregion
-
-    //'database' => 'test',
-
-    // TODO
-    'database' => Env::get('database.username', 'root'),
+    'debug' => (bool)Env::get('database.debug', Config::get('database.debug')),
+    'sql_explain' => (bool)Env::get('database.sql_explain', Config::get('database.sql_explain')),
+    'hostname' => Env::get('database.hostname', Config::get('database.hostname')),
+    'database' => Env::get('database.username', Config::get('database.username')),
     'password' => Env::get('database.password', Config::get('database.password')),
 ];
