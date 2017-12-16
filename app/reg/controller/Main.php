@@ -56,8 +56,17 @@ class Main extends Controller
     //endregion
 
     /**
+     * Get project information.
+     * @return array
+     * @throws \Exception
+     */
+    public function getProjectInfo()
+    {
+        return self::retTemp(self::$scOK, 'OK', Config::get('project_info'));
+    }
+
+    /**
      * List gender.
-     * @param string $aaa = 234234
      * @return array
      * ->**status** `int`
      *

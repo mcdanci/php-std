@@ -8,7 +8,8 @@
 /.user.ini
 /www/api/docs/
 
-# Runtime
+## Runtime
 /vendor/
 /thinkphp/
 *.log
+/s-show.fmnii.e13.cc/
