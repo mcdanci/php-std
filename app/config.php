@@ -47,4 +47,9 @@ return [
     NAME_ACTION_DEFAULT => 'main',
 
     'name' => 'S-SHOW API',
+    'project_info' => [
+        'code' => 'S-SHOW',
+        'slogan' => 'Source the future',
+        'name' => 'FIS',
+    ],
 ];

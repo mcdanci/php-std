@@ -14,6 +14,7 @@ use think\Controller;
  * Overview
  * @package app\reg\controller
  * @todo API version
+ * @todo Unit test
  */
 class Main extends Controller
 {
@@ -61,8 +62,7 @@ class Main extends Controller
     //endregion
 
     /**
-     * List gender.
-     * @param string $aaa = 234234
+     * Get project information.
      * @return array
      * ->**status** `int`
      *
@@ -70,9 +70,23 @@ class Main extends Controller
      *
      * ->**body** `array`
      *
+     * ->->**code** `string` Project code
+     * ->->**slogan** `string` Project slogan
+     * ->->**name** `string` Project name
+     * @throws \Exception
+     */
+    public function getProjectInfo()
+    {
+        return self::retTemp(self::$scOK, 'OK', Config::get('project_info'));
+    }
+
+    /**
+     * List gender.
+     * @return array
+     * ->**body** `array`
+     *
      * ->-> `null|string`
      * @throws \Exception
-     * @todo Unit test
      */
     public function listGender()
     {
