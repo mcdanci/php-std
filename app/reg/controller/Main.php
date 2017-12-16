@@ -30,9 +30,14 @@ class Main extends Controller
 
     public function debug()
     {
-        $reg = Reg::get(1, ['reg_exhibitor', 'reg_visitor']);
-        return $reg;
+        //$reg->appendRelationAttr('RegExhibitor', 'exhibitor_tse'); // TODO
         //return $reg->regExhibitor->save(['mpt' => 'dfsdfsdfasdf']);
+        //return (new Reg($_POST))->allowField(true)->save();
+
+        // TODO: move to model
+        $reg = (new Reg($_POST))->allowField(true);
+        $reg->reg_exhibitor = (new RegExhibitor($_POST))->allowField(true);
+        return $reg->together(['reg_exhibitor'])->save();
     }
 
     /**

@@ -92,6 +92,37 @@ class Reg extends Model
 
     //endregion
 
+    //region Getter
+
+    /**
+     * Getter for type of role.
+     * @param $value
+     * @return mixed
+     */
+    public function getTypeAttr($value)
+    {
+        static $MAP_TYPE = [
+            0 => null,
+            1 => 'exhibitor',
+            2 => 'visitor',
+            3 => 'admin',
+        ];
+        return $MAP_TYPE[$value];
+    }
+
+    public function getGenderAttr($value)
+    {
+        static $MAP_GENDER = [
+            0 => null,
+            1 => 'Mrs.',
+            2 => 'Mr.',
+            3 => 'Ms.',
+        ];
+        return $MAP_GENDER[$value];
+    }
+
+    //endregion
+
     /**
      * @todo
      */
