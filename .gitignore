@@ -12,4 +12,9 @@
 /vendor/
 /thinkphp/
 *.log
-/s-show.fmnii.e13.cc/
+/s-show.fmnii.e13.cc/cgi-bin/
+/s-show.fmnii.e13.cc/document_errors/
+/s-show.fmnii.e13.cc/logs/
+/s-show.fmnii.e13.cc/private/
+/s-show.fmnii.e13.cc/public_shtml/
+/s-show.fmnii.e13.cc/stats/
