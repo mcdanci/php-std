@@ -14,6 +14,7 @@ use think\Controller;
  * Overview
  * @package app\reg\controller
  * @todo API version
+ * @todo Unit test
  */
 class Main extends Controller
 {
@@ -58,6 +59,15 @@ class Main extends Controller
     /**
      * Get project information.
      * @return array
+     * ->**status** `int`
+     *
+     * ->**info** `string`
+     *
+     * ->**body** `array`
+     *
+     * ->->**code** `string` Project code
+     * ->->**slogan** `string` Project slogan
+     * ->->**name** `string` Project name
      * @throws \Exception
      */
     public function getProjectInfo()
@@ -68,15 +78,10 @@ class Main extends Controller
     /**
      * List gender.
      * @return array
-     * ->**status** `int`
-     *
-     * ->**info** `string`
-     *
      * ->**body** `array`
      *
      * ->-> `null|string`
      * @throws \Exception
-     * @todo Unit test
      */
     public function listGender()
     {
