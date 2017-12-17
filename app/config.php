@@ -53,5 +53,5 @@ return [
     NAME_ACTION_DEFAULT => 'main',
 
     'project_info' => &$PROJECT_INFO,
-    'name' => $PROJECT_INFO['name'] . ' API',
+    'name' => $PROJECT_INFO['name'] . ' app server',
 ];

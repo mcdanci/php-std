@@ -41,6 +41,11 @@ class Main extends Controller
         return $reg->together(['reg_exhibitor'])->save();
     }
 
+    public function debug2($id = 1)
+    {
+        //return (new Reg)->allowField(true)->save($_POST, ['id' => $id]);
+    }
+
     /**
      * @return \think\Request
      * @todo
