@@ -50,7 +50,7 @@
 				</tr>
 				<tr>
 					<td class="c3">
-						The FIS has reviewed your registration and we need to request more information from you. 
+						The FIS has reviewed your registration and we need to request more information from you.
 					</td>
 				</tr>
 				<tr>
@@ -69,7 +69,7 @@
 				</tr>
 				<tr>
 					<td class="c3">
-						We will review your submitted documents and response within 48 hours. 
+						We will review your submitted documents and response within 48 hours.
 					</td>
 				</tr>
 				<tr>
@@ -79,7 +79,7 @@
 				</tr>
 				<tr>
 					<td class="c3">
-						Thank you! 
+						Thank you!
 					</td>
 				</tr>
 				<tr>
@@ -90,11 +90,6 @@
 				<tr>
 					<td>FIS</td>
 				</tr>
- 
-
-
-
-
 			</tbody>
 		</table>
 	</body>
