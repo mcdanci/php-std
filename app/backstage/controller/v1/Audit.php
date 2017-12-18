@@ -4,7 +4,6 @@ namespace app\backstage\controller\v1;
 
 use app\common\model\Reg;
 use McDanci\ThinkPHP\Config;
-use think\Controller;
 use think\Request;
 
 /**
@@ -12,15 +11,8 @@ use think\Request;
  * @package app\backstage\controller\v1
  * @todo
  */
-class Audit extends Controller
+class Audit extends SignedController
 {
-    /**
-     * @todo
-     */
-    use
-        \Fmnii\Controller\Common,
-        \McDanci\ControllerCommon;
-
     //region Original
 
     /**
@@ -116,7 +108,6 @@ class Audit extends Controller
             ->where(['status' => Reg::STATUS_UNAUDITED])
             ->order(['id' => Reg::ORDER_DESC])
             ->paginate($pageRow)->each(function ($item, $key) {
-                $item->name_nick = 'thinkdfsdfsdf';
                 return $item;
             });
 

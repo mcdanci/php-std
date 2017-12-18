@@ -66,4 +66,17 @@ trait ControllerCommon
             }
         }
     }
+
+    /**
+     * @param string $method
+     * @todo
+     */
+    protected static function setSession($method = 'post.')
+    {
+        $sId = input($method . 'sid/s');
+        if ($sId) {
+            session_id($sId);
+        }
+        session_start();
+    }
 }

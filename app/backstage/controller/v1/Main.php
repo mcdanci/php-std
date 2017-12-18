@@ -5,19 +5,12 @@
  */
 namespace app\backstage\controller\v1;
 
-use think\Controller;
 use think\Request;
 use think\Db;
+use think\Session;
 
 class Main extends Controller
 {
-    /**
-     * @todo
-     */
-    use
-        \Fmnii\Controller\Common,
-        \McDanci\ControllerCommon;
-
     //region Original
 
     /**
@@ -110,8 +103,28 @@ class Main extends Controller
 
     //endregion
 
+    /**
+     * @return array
+     * @todo
+     */
     public function main()
     {
         return [];
+    }
+
+    /**
+     * @param string $username
+     * @param null $password
+     * @todo
+     */
+    public function signIn($username = 'admin', $password = null)
+    {
+        if ($username === 'admin' && $password === 'admin') {
+            self::setSession();
+            Session::set('is_admin', true);
+            return self::retTemp(self::$scOK);
+        } else {
+            return self::retTemp(self::$scNotFound);
+        }
     }
 }
