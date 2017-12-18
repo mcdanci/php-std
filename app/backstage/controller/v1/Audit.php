@@ -4,6 +4,7 @@ namespace app\backstage\controller\v1;
 
 use app\common\model\Reg;
 use McDanci\ThinkPHP\Config;
+use PHPMailer\PHPMailer\PHPMailer;
 use think\Request;
 
 /**
@@ -89,11 +90,78 @@ class Audit extends SignedController
     {
     }
 
+    /**
+     * @return bool
+     * @throws \PHPMailer\PHPMailer\Exception
+     * @todo
+     */
+    public function ahaha($subject = 'ahaha')
+    {
+        Config::set(RETURN_TYPE_DEFAULT, 'html');
+
+        $mail = new PHPMailer(true);
+
+        try {
+            //static $RECIPIENT_TYPE_MAP = [
+            //    'to' => 'addAddress',
+            //    'cc' => 'addCC',
+            //    'bcc' => 'addBCC',
+            //];
+
+            // Server settings
+
+            // TODO: 4 debug
+            $mail->SMTPDebug = 2;
+
+            $mail->isSMTP();
+
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = Config::get('phpmailer.host');
+            $mail->Username = Config::get('phpmailer.mailer.web.' . USERNAME);
+            $mail->Password = Config::get('phpmailer.mailer.web.' . PASSWORD);
+            $mail->Port = Config::get('phpmailer.port');
+
+            $mail->setFrom(Config::get('phpmailer.username')); // TODO
+
+
+            // Recipients
+            //$recipientTypeList = array_keys($RECIPIENT_TYPE_MAP);
+            //$confRecipient = Config::get('phpmailer.recipient');
+            //
+            //foreach (array_keys($confRecipient) as &$confRecipientType) {
+            //    if (in_array($confRecipientType, $recipientTypeList, true)) {
+            //        foreach ($confRecipient[$confRecipientType] as &$recipient) {
+            //            $mail->{$RECIPIENT_TYPE_MAP[$confRecipientType]}($recipient);
+            //        }
+            //    }
+            //}
+            $mail->addAddress('13965945999@163.com');
+            $mail->addAddress('15812890021@139.com');
+
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            echo $mail->Body = $this->fetch('email/admin_app');
+
+            dump($mail);
+            $mail->send();
+
+            //return true;
+            return '11111111111111111111111';
+            //return self::retTemp(self::$scOK, 'Message has been sent', $mail);
+        } catch (\Exception $e) {
+            //return false;
+            return '0000000000000000000000';
+            //return self::retTemp(self::$scNotFound, 'Message could note be sent', 'Mailer error: ' . $mail->ErrorInfo);
+        }
+    }
+
     //endregion
 
     /**
      * @return false|\PDOStatement|string|\think\Collection
-     * perpage @ header
+     * @todo perpage @ header
      *
      */
     public function main($page = 1, $pageRow = null)

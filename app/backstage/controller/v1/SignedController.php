@@ -17,11 +17,11 @@ abstract class SignedController extends Controller
     protected function _initialize()
     {
         parent::_initialize();
-        self::setSession();
+        //self::setSession();
 
-        if (Session::get('is_admin') === null) {
-            // TODO
-            exit(json_encode(self::retTemp(self::$scNotFound, null)));
-        }
+        //if (Session::get('is_admin') === null) {
+        //    // TODO
+        //    exit(json_encode(self::retTemp(self::$scNotFound, null)));
+        //}
     }
 }

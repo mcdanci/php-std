@@ -5,11 +5,13 @@
  */
 namespace app\common\model;
 
+use think\Model;
+
 /**
- * Class User
+ * Member user Who is Registrant been Audit Passed
  * @package app\phase2\model
  * @todo
  */
-class User
+class User extends Model
 {
 }
