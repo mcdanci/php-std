@@ -95,7 +95,7 @@ class Audit extends SignedController
      * @throws \PHPMailer\PHPMailer\Exception
      * @todo
      */
-    public function ahaha($subject = 'ahaha')
+    protected function ahaha($subject = 'ahaha')
     {
         Config::set(RETURN_TYPE_DEFAULT, 'html');
 
@@ -118,11 +118,11 @@ class Audit extends SignedController
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'ssl';
             $mail->Host = Config::get('phpmailer.host');
-            $mail->Username = Config::get('phpmailer.mailer.web.' . USERNAME);
-            $mail->Password = Config::get('phpmailer.mailer.web.' . PASSWORD);
+            $mail->Username = Config::get('phpmailer.mailer.admin.' . USERNAME);
+            $mail->Password = Config::get('phpmailer.mailer.admin.' . PASSWORD);
             $mail->Port = Config::get('phpmailer.port');
 
-            $mail->setFrom(Config::get('phpmailer.username')); // TODO
+            $mail->setFrom(Config::get('phpmailer.mailer.admin.' . USERNAME)); // TODO
 
 
             // Recipients
@@ -142,9 +142,8 @@ class Audit extends SignedController
             // Content
             $mail->isHTML(true);
             $mail->Subject = $subject;
-            echo $mail->Body = $this->fetch('email/admin_app');
+            echo $mail->Body = $this->fetch('email/audit_app');
 
-            dump($mail);
             $mail->send();
 
             //return true;
