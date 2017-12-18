@@ -49,7 +49,7 @@ return [
     TEMPLATE_ERROR => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
 
     NAME_MODULE_DEFAULT => 'main',
-    NAME_CONTROLLER_DEFAULT => 'Main',
+    NAME_CONTROLLER_DEFAULT => 'v1.Main',
     NAME_ACTION_DEFAULT => 'main',
 
     'project_info' => &$PROJECT_INFO,

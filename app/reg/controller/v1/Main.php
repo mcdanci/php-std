@@ -1,8 +1,4 @@
 <?php
-/**
- * @copyright since 15:23 31/10/2017
- * @author <mc@dancis.info>
- */
 namespace app\reg\controller\v1;
 
 use think\Controller;
