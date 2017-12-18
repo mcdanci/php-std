@@ -12,6 +12,8 @@ use think\Request;
  */
 class Audit extends Controller
 {
+    //region Original
+
     /**
      * 显示资源列表
      *
@@ -31,7 +33,6 @@ class Audit extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -53,7 +54,6 @@ class Audit extends Controller
      */
     public function read($id)
     {
-        //
     }
 
     /**
@@ -64,7 +64,6 @@ class Audit extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -87,6 +86,7 @@ class Audit extends Controller
      */
     public function delete($id)
     {
-        //
     }
+
+    //endregion
 }

@@ -68,11 +68,11 @@ class CreateRegTable extends Migrator
                 Phinx::COL_OPT_NULL => false,
             ])
             ->addColumn('state', Phinx::COL_TYP_STRING, [
-                Phinx::COL_OPT_NULL => false,
+                Phinx::COL_OPT_NULL => true,
                 Phinx::COMMENT => 'State (required for U.S. and Canada only)',
             ])
             ->addColumn('zip', Phinx::COL_TYP_STRING, [
-                Phinx::COL_OPT_NULL => false,
+                Phinx::COL_OPT_NULL => true,
                 Phinx::COMMENT => 'ZIP code',
             ])
             ->addColumn('iso3166', Phinx::COL_TYP_INT, [

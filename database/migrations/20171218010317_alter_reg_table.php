@@ -20,6 +20,7 @@ class AlterRegTable extends Migrator
             ])->addColumn('reason', Phinx::COL_TYP_STRING, [
                 Phinx::COL_OPT_NULL => true,
                 Phinx::COMMENT => 'Audit decline reason',
-            ]);
+            ])
+            ->update();
     }
 }
