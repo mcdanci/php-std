@@ -1,13 +1,13 @@
 <?php
-namespace app\backstage\controller;
 
-use McDanci\ThinkPHP\Config;
+namespace app\backstage\controller\v1;
+
 use think\Controller;
 use think\Request;
 
 /**
  * Class Audit
- * @package app\phase2\controller
+ * @package app\backstage\controller\v1
  * @todo
  */
 class Audit extends Controller
@@ -16,6 +16,7 @@ class Audit extends Controller
      * 显示资源列表
      *
      * @return \think\Response
+     * @todo
      */
     public function main()
     {
