@@ -2,6 +2,8 @@
 
 namespace app\backstage\controller\v1;
 
+use app\common\model\Reg;
+use McDanci\ThinkPHP\Config;
 use think\Controller;
 use think\Request;
 
@@ -12,6 +14,13 @@ use think\Request;
  */
 class Audit extends Controller
 {
+    /**
+     * @todo
+     */
+    use
+        \Fmnii\Controller\Common,
+        \McDanci\ControllerCommon;
+
     //region Original
 
     /**
@@ -20,7 +29,7 @@ class Audit extends Controller
      * @return \think\Response
      * @todo
      */
-    public function main()
+    public function _main()
     {
         new \think\Response();
         return null;
@@ -89,4 +98,30 @@ class Audit extends Controller
     }
 
     //endregion
+
+    /**
+     * @return false|\PDOStatement|string|\think\Collection
+     * perpage @ header
+     *
+     */
+    public function main($page = 1, $pageRow = null)
+    {
+        if ($pageRow === null) {
+            $pageRow = Config::get('paginate.list_rows');
+        }
+
+        // TODO: ORDER
+        $result = Reg::getByStatus(Reg::STATUS_UNAUDITED)
+            ->field('password', true)
+            ->where(['status' => Reg::STATUS_UNAUDITED])
+            ->order(['id' => Reg::ORDER_DESC])
+            ->paginate($pageRow)->each(function ($item, $key) {
+                $item->name_nick = 'thinkdfsdfsdf';
+                return $item;
+            });
+
+        return $result;
+
+        //return self::retTemp(self::$scOK, null, $data);
+    }
 }

@@ -6,14 +6,21 @@
 namespace app\common\model;
 
 use McDanci\ThinkPHP\Config;
-use think\Model;
+use McDanci\ThinkPHP\Model;
 use traits\model\SoftDelete;
 
+/**
+ * Class Reg
+ * @package app\common\model
+ * @method static \app\common\model\Reg getByStatus (int $status)
+ */
 class Reg extends Model
 {
     use SoftDelete;
 
     //region Configuration
+
+    const STATUS_UNAUDITED = 1;
 
     protected
         $autoWriteTimestamp = 'datetime',
