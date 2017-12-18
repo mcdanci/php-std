@@ -31,6 +31,12 @@ NAME_MODULE_DEFAULT = 'default_module',
 NAME_CONTROLLER_DEFAULT = 'default_controller',
 NAME_ACTION_DEFAULT = 'default_action';
 
+static $PROJECT_INFO = [
+    'code' => 'S-SHOW',
+    'slogan' => 'Source the future',
+    'name' => 'FIS',
+];
+
 return [
     'app_namespace' => APP_NAMESPACE,
 
@@ -46,10 +52,6 @@ return [
     NAME_CONTROLLER_DEFAULT => 'Main',
     NAME_ACTION_DEFAULT => 'main',
 
-    'name' => 'S-SHOW API',
-    'project_info' => [
-        'code' => 'S-SHOW',
-        'slogan' => 'Source the future',
-        'name' => 'FIS',
-    ],
+    'project_info' => &$PROJECT_INFO,
+    'name' => $PROJECT_INFO['name'] . ' app server',
 ];

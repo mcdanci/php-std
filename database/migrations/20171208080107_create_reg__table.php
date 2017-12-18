@@ -16,7 +16,7 @@ class CreateRegTable extends Migrator
     {
         $this->table('reg', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
-            Phinx::COMMENT => 'Registrant information in common',
+            Phinx::COMMENT => 'Registrant information (in common)',
             Phinx::SIGNED => false,
         ])
             ->addColumn(Phinx::CREATED, Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => false])

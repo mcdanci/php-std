@@ -34,7 +34,7 @@ p {line-height: 1.6em; font-size: 42px}
 <body>
 <div style="padding: 24px 48px;">
 <h1>Welcome</h1>
-<p>;-) to ' . Config::get('name') . '</p>
+<p>to :-) ' . Config::get('name') . '</p>
 </div>
 </body>
 </html>';
