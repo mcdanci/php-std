@@ -95,7 +95,7 @@ class Audit extends SignedController
      * @throws \PHPMailer\PHPMailer\Exception
      * @todo
      */
-    protected function ahaha($subject = 'ahaha')
+    public function ahaha($subject = 'ahaha')
     {
         Config::set(RETURN_TYPE_DEFAULT, 'html');
 
