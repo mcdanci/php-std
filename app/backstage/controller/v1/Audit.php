@@ -149,7 +149,7 @@ class Audit extends SignedController
                 'project_name' => Config::get('project_info.name'),
                 'website_name' => 'www.SourceTheFuture.cc',
                 'url' => [
-                    'img_banner' => 'img/banner.png',
+                    'img_banner' => 'https://s-show.fmnii.e13.cc/asset/img/banner.png',
                     'registrant_sign_in' => 'https://s-show.fmnii.e13.cc/api/',
                     'registrant_order' => 'https://s-show.fmnii.e13.cc/api/',
                     'website' => 'https://s-show.fmnii.e13.cc/api/',
