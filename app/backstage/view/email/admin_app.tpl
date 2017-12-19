@@ -67,23 +67,23 @@
     </tr>
     <tr>
         <td class="c3">
-            As a reminder, the FIS is an industrial trade show only open to professionals in the footwear and apparel
+            As a reminder, the <{$project_name}> is an industrial trade show only open to professionals in the footwear and apparel
             industry, from the designing to sourcing, from performance sports to high end footwear.
         </td>
     </tr>
     <tr>
         <td class="c3">
-            The FIS is a gateway for international suppliers like you to land on the U.S. market, to meet international
+            The <{$project_name}> is a gateway for international suppliers like you to land on the U.S. market, to meet international
             brands and footwear manufacturers.
             Event Location: Los Angeles Convention Center, LA, California <br/>
-            Website: <a href="">www.SourceTheFuture.cc</a><br/>
+            Website: <a href="<{$url.website}>"><{$website_name}></a><br/>
             Move in Dates: Oct. 1-2 2018<br/>
             Event Dates: Oct. 3-4 2018<br/>
             Move out Date: Oct. 5 2018 <br/>
         </td>
     </tr>
     <tr>
-        <td class="c3">Please email us your inquires and question to admin@sourcethefuture.cc
+        <td class="c3">Please email us your inquires and question to <{$url.email_reply}>
             We look forward to creating an exciting show and revolutionizing the industry with you!
         </td>
     </tr>
@@ -91,7 +91,7 @@
         <td class="c2">Sincerely,</td>
     </tr>
     <tr>
-        <td>FIS</td>
+        <td><{$project_name}></td>
     </tr>
     </tbody>
 </table>
