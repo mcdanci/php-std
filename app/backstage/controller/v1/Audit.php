@@ -2,6 +2,7 @@
 
 namespace app\backstage\controller\v1;
 
+use app\common\model\Common;
 use app\common\model\Reg;
 use McDanci\ThinkPHP\Config;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -232,6 +233,13 @@ class Audit extends SignedController
      */
     public function main($page = 1, $pageRow = null)
     {
+        if (input('?get.page')) {
+        }
+        if (input('?get.list_row_count')) {
+            //
+        }
+
+        // TODO
         if ($pageRow === null) {
             $pageRow = Config::get('paginate.list_rows');
         }
@@ -241,11 +249,9 @@ class Audit extends SignedController
             ->field('password', true)
             ->where(['status' => Reg::STATUS_UNAUDITED])
             ->order(['id' => Reg::ORDER_DESC])
-            ->paginate($pageRow)->each(function ($item, $key) {
-                return $item;
-            });
+            ->paginate($pageRow); // TODO
 
-        return $result;
+        return self::retTemp(self::$scOK, null, $result->toArray());
 
         //return self::retTemp(self::$scOK, null, $data);
     }

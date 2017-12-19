@@ -44,7 +44,7 @@ class Main extends Controller
     public function main()
     {
         $this->assign([
-            'welcome' => \app\common\model\Common::WELCOME_INFORMATION,
+            'welcome' => \app\common\model\Common::INFO_WELCOME,
         ]);
         return view();
     }

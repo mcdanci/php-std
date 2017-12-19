@@ -5,10 +5,12 @@
  */
 namespace app\common\model;
 
+use McDanci\ThinkPHP\Config;
+use McDanci\ThinkPHP\Request;
+
 class Common
 {
-    const WELCOME_INFORMATION = '
-<style type="text/css">
+    const INFO_WELCOME = '<style type="text/css">
 * {padding: 0; margin: 0;}
 div {padding: 4px 48px;}
 a {color: #2E5CD5; cursor: pointer; text-decoration: none;}
@@ -19,6 +21,41 @@ p {line-height: 1.6em; font-size: 42px}
 </style>
 <div style="padding: 24px 48px;"><h1>:)</h1> S Show API, phase 2</div>';
 
+    public static function getInfoWelcomeMain()
+    {
+        return '<html>
+<head>
+<style type="text/css"><!--
+* {padding: 0; margin: 0;}
+.think_default_text {padding: 4px 48px;}
+a {color: #2E5CD5; cursor: pointer; text-decoration: none;}
+a:hover {text-decoration: underline;}
+body {background: #fff; font-family: "Century Gothic", "Microsoft YaHei", sans-serif; color: #333; font-size: 18px}
+h1 {font-size: 100px; font-weight: normal; margin-bottom: 12px;}
+p {line-height: 1.6em; font-size: 42px}
+--></style>
+<title>' . Config::get('name') . '</title>
+</head>
+
+<body>
+<div style="padding: 24px 48px;">
+<h1>Welcome</h1>
+<p>to :-) ' . Config::get('name') . '</p>
+</div>
+
+<div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 小正方形 -->
+<ins class="adsbygoogle"
+     style="display: inline-block; width: 200px; height: 200px;"
+     data-ad-client="ca-pub-2277931214379968"
+     data-ad-slot="5522321905"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+</body>
+</html>';
+    }
+
     /**
      * Encrypt password.
      * @param $original
@@ -28,4 +65,19 @@ p {line-height: 1.6em; font-size: 42px}
     {
         return password_hash($original, PASSWORD_DEFAULT, ['cost' => 8]);
     }
+
+    //region Paging
+
+    const PAGE_DEFAULT = 1;
+
+    /**
+     * @return mixed
+     * @todo
+     */
+    public static function getPage()
+    {
+        return Request::instance()->param(Config::get('paginate.var_page' . '/d') ?: 'page', 1);
+    }
+
+    //endregion
 }
