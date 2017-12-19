@@ -228,6 +228,7 @@ class Audit extends SignedController
 
     /**
      * @return false|\PDOStatement|string|\think\Collection
+     * @param int $page
      * @todo perpage @ header
      *
      */
@@ -253,6 +254,8 @@ class Audit extends SignedController
 
         return self::retTemp(self::$scOK, null, $result->toArray());
 
+        // TODO
+        //return Request::instance()->param(Config::get('paginate.var_page' . '/d') ?: 'page', 1);
         //return self::retTemp(self::$scOK, null, $data);
     }
 }

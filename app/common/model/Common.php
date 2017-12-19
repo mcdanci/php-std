@@ -70,14 +70,5 @@ p {line-height: 1.6em; font-size: 42px}
 
     const PAGE_DEFAULT = 1;
 
-    /**
-     * @return mixed
-     * @todo
-     */
-    public static function getPage()
-    {
-        return Request::instance()->param(Config::get('paginate.var_page' . '/d') ?: 'page', 1);
-    }
-
     //endregion
 }
