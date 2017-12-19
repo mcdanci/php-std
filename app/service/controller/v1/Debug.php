@@ -28,7 +28,6 @@ class Debug extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -39,7 +38,6 @@ class Debug extends Controller
      */
     public function save(Request $request)
     {
-        //
     }
 
     /**
@@ -50,7 +48,6 @@ class Debug extends Controller
      */
     public function read($id)
     {
-        //
     }
 
     /**
@@ -61,7 +58,6 @@ class Debug extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -73,7 +69,6 @@ class Debug extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -84,6 +79,5 @@ class Debug extends Controller
      */
     public function delete($id)
     {
-        //
     }
 }

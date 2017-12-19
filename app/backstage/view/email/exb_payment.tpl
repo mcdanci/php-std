@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title></title>
     <style type="text/css">
         * {
             font-size: 14px;
@@ -39,27 +38,29 @@
             font-weight: bold;
         }
     </style>
+    <title><{$email.subject}></title>
 </head>
 <body>
 <table>
     <tbody>
     <tr class="c1">
-        <td><img src="img/banner.png" alt="FIS"/></td>
+        <td><img src="<{$url.img_banner}>" alt="<{$project_name}>"/></td>
     </tr>
     <tr>
-        <td>Dear {{username}},</td>
+        <td>Dear <{$recipient_name_disp}>,</td>
     </tr>
     <tr>
         <td class="c3">
-            Welcome to the FIS and thank you for your payment. An official confirmation letter of your payment has been
-            attached in this email.
+            Welcome to the <{$project_name}> and thank you for your payment.
+            An official confirmation letter of your payment has been attached in this email.
         </td>
     </tr>
     <tr>
         <td class="c3">
-            It is our mission to showcase the best materials. Machinery. Manufacturing process and all NEW products from
-            the best to international brands and footwear manufacturers in our show, so let us help you achieve your
-            goals and expand your business.
+            It is our mission to showcase the best materials.
+            Machinery.
+            Manufacturing process and all NEW products from the best to international brands and footwear manufacturers
+            in our show, so let us help you achieve your goals and expand your business.
         </td>
     </tr>
     <tr>
@@ -87,7 +88,8 @@
     </tr>
     <tr>
         <td class="c3">
-            If you need help or suggestion about purchasing from the kit, please contact us at <a href="">www.SourceTheFuture.cc</a>
+            If you need help or suggestion about purchasing from the kit,
+            please contact us at <a href="<{$url.website}>"><{$website_name}></a>
             our US team or partners in China will come back to you.
         </td>
     </tr>
@@ -98,8 +100,9 @@
     </tr>
     <tr>
         <td class="c3">
-            If you are showcasing any machinery at the S-Show, you must inform us at least 3 months prior to the event
-            date by June 30, 2018, so we can evaluate your machinery and provide you with international freight
+            If you are showcasing any machinery at the <{$project_name}>,
+            you must inform us at least 3 months prior to the event date by June 30, 2018,
+            so we can evaluate your machinery and provide you with international freight
             forwarder contact list.
         </td>
     </tr>
@@ -109,24 +112,27 @@
             Advertisement Opportunities
         </td>
     </tr>
-    <td class="c3">
-        There are various advertising channels at the S-Show. Please email us at admin@sourcethefuture.cc for more
-        information If you would like to advertise your company/your brand
-    </td>
+    <tr>
+        <td class="c3">
+            There are various advertising channels at the <{$project_name}>.
+            Please email us at <a href="mailto:<{$email_reply}>"><{$email_reply}></a> for more
+            information If you would like to advertise your company/your brand
+        </td>
     </tr>
     <tr>
         <td class="b1">
-            Keep up with the Deadlines
+            Keep up with the Deadlines.
         </td>
     </tr>
     <tr>
         <td class="c3">
-            We have provided you a list of deadline for various in this email
+            We have provided you a list of deadline for various in this email.
         </td>
     </tr>
     <tr>
         <td class="c3">
-            Thank you for exhibiting at the FIS, we are very exited to help you showcase your best materials to the
+            Thank you for exhibiting at the <{$project_name}>,
+            we are very exited to help you showcase your best materials to the
             world of footwear professionals!
         </td>
     </tr>
@@ -134,10 +140,8 @@
         <td class="c2">Sincerely,</td>
     </tr>
     <tr>
-        <td>FIS</td>
+        <td><{$project_name}></td>
     </tr>
-
-
     </tbody>
 </table>
 </body>

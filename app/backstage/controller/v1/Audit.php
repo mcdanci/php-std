@@ -143,20 +143,71 @@ class Audit extends SignedController
             $mail->isHTML(true);
             $mail->Subject = $subject;
 
-            // TODO
-            $this->assign([
-                'recipient_name_disp' => 'first name' ?:  'last name' ?: 'registrant',
-                'project_name' => Config::get('project_info.name'),
-                'website_name' => 'www.SourceTheFuture.cc',
-                'url' => [
-                    'img_banner' => 'https://s-show.fmnii.e13.cc/asset/img/banner.png',
-                    'registrant_sign_in' => 'https://s-show.fmnii.e13.cc/api/',
-                    'registrant_order' => 'https://s-show.fmnii.e13.cc/api/',
-                    'website' => 'https://s-show.fmnii.e13.cc/api/',
-                    'email_reply' => 'admin@sourcethefuture.cc',
-                ],
-            ]);
-            echo $mail->Body = $this->fetch('email/audit_app');
+            // TODO: audit approved
+            //$this->assign([
+            //    'email' => [
+            //        'subject' => $subject,
+            //    ],
+            //    'recipient_name_disp' => 'first name' ?:  'last name' ?: 'registrant',
+            //    'project_name' => Config::get('project_info.name'),
+            //    'website_name' => 'www.SourceTheFuture.cc',
+            //    'url' => [
+            //        'img_banner' => 'https://s-show.fmnii.e13.cc/asset/img/banner.png',
+            //        'registrant_sign_in' => 'https://s-show.fmnii.e13.cc/api/',
+            //        'registrant_order' => 'https://s-show.fmnii.e13.cc/api/',
+            //        'website' => 'https://s-show.fmnii.e13.cc/api/',
+            //    ],
+            //        'email_reply' => 'admin@sourcethefuture.cc',
+            //]);
+            //echo $mail->Body = $this->fetch('email/audit_approved');
+
+            // TODO: audit rejection
+            //$this->assign([
+            //    'email' => [
+            //        'subject' => $subject,
+            //    ],
+            //    'url' => [
+            //        'img_banner' => 'https://s-show.fmnii.e13.cc/asset/img/banner.png',
+            //    ],
+            //    'project_name' => Config::get('project_info.name'),
+            //    'email_reply' => 'admin@sourcethefuture.cc',
+            //
+            //    'recipient_name_disp' => 'first name' ?:  'last name' ?: 'registrant',
+            //]);
+            //echo $mail->Body = $this->fetch('email/audit_rejection');
+
+            // TODO: order paid exhibitor
+            //$this->assign([
+            //    'email' => [
+            //        'subject' => $subject,
+            //    ],
+            //    'url' => [
+            //        'img_banner' => 'https://s-show.fmnii.e13.cc/asset/img/banner.png',
+            //        'website' => 'https://s-show.fmnii.e13.cc/api/',
+            //    ],
+            //    'website_name' => 'www.SourceTheFuture.cc',
+            //
+            //    'project_name' => Config::get('project_info.name'),
+            //    'email_reply' => 'admin@sourcethefuture.cc',
+            //
+            //    'recipient_name_disp' => 'first name' ?:  'last name' ?: 'registrant',
+            //]);
+            //echo $mail->Body = $this->fetch('email/exb_payment'); // TODO
+
+            // TODO: reg 2 exhibitor
+            //$this->assign([
+            //    'email' => [
+            //        'subject' => $subject,
+            //    ],
+            //    'recipient_name_disp' => 'first name' ?:  'last name' ?: 'registrant',
+            //    'recipient_email_addr' => 'wong.zain@example.com',
+            //    'project_name' => Config::get('project_info.name'),
+            //
+            //    'url' => [
+            //        'img_banner' => 'https://s-show.fmnii.e13.cc/asset/img/banner.png',
+            //    ],
+            //]);
+            //echo $mail->Body = $this->fetch('email/reg2exhibitor');
 
             $mail->send();
 

@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title></title>
     <style type="text/css">
+        <!--
         * {
             font-size: 14px;
         }
@@ -45,35 +45,40 @@
         .c1 {
             text-align: center;
         }
+
+        -->
     </style>
+    <title><{$email.subject}></title>
 </head>
+
 <body>
 <table>
     <tbody>
     <tr class="c1">
-        <td><img src="img/banner.png" alt="FIS"/></td>
+        <td><img src="<{$url.img_banner}>" alt="<{$project_name}>"/></td>
     </tr>
     <tr>
-        <td>Dear {{username}},</td>
+        <td>Dear <{$recipient_name_disp}>,</td>
     </tr>
     <tr>
         <td class="c3">
-            The FIS has reviewed your registration and we need to request more information from you.
+            The <{$project_name}> has reviewed your registration and we need to request more information from you.
         </td>
     </tr>
     <tr>
         <td class="c3">
             Please provide the following requested materials: <br/>
-            <input type="text"/><br/>
-            <input type="text"/><br/>
+            <{*TODO*}>
+            <label for="a">AAA: </label><input id="a" type="text"/><br/>
+            <label for="b">BBB: </label><input id="b" type="text"/><br/>
         </td>
     </tr>
     <tr>
         <td class="c3">
-            Please email requested material to admin@sourcethefuture.com with your name and company name in the subject
+            Please email requested material to <a href="mailto:<{$email_reply}>"><{$email_reply}></a> with your name and company name in the subject
             line. <br/>
-            Name :<input type="text"/><br/>
-            Company : <input type="text"/><br/>
+            <label for="n">Name: </label><input id="n" type="text"/><br/>
+            <label for="c">Company : </label><input id="c" type="text"/><br/>
         </td>
     </tr>
     <tr>
@@ -83,7 +88,7 @@
     </tr>
     <tr>
         <td class="c4">
-            Please email us your questions and enquires to admin@sourcethefuture.cc
+            Please email us your questions and enquires to <a href="mailto:<{$email_reply}>"><{$email_reply}></a>.
         </td>
     </tr>
     <tr>
@@ -97,7 +102,7 @@
         </td>
     </tr>
     <tr>
-        <td>FIS</td>
+        <td><{$project_name}></td>
     </tr>
     </tbody>
 </table>

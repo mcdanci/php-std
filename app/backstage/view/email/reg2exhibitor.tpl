@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title></title>
     <style type="text/css">
+        <!--
         table {
             width: 595px;
             margin: 0 auto;
@@ -21,30 +21,34 @@
             line-height: 30px;
             text-align: justify;
         }
+
+        -->
     </style>
+    <title><{$email.subject}></title>
 </head>
+
 <body>
 <table>
     <tbody>
     <tr class="c1">
-        <td><img src="img/banner.png" alt=""/></td>
+        <td><img src="<{$url.img_banner}>" alt="<{$project_name}>"/></td>
     </tr>
     <tr>
-        <td>Dear {{username}},</td>
+        <td>Dear <{$recipient_name_disp}>,</td>
     </tr>
     <tr>
-        <td class="c3">Thank you for registering to exhibit at the FIS! Your account name is {{accName}}. We will review
-            your registration details and respond within 48 business hours.
+        <td class="c3">
+            Thank you for registering to exhibit at the <{$project_name}>!
+            Your account name is <{$recipient_email_addr}>.
+            We will review your registration details and respond within 48 business hours.
         </td>
     </tr>
     <tr>
         <td class="c2">Sincerely,</td>
     </tr>
     <tr>
-        <td>FIS</td>
+        <td><{$project_name}></td>
     </tr>
-
-
     </tbody>
 </table>
 </body>

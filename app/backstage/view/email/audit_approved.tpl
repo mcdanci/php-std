@@ -36,6 +36,7 @@
 
         -->
     </style>
+    <title><{$email.subject}></title>
 </head>
 
 <body>
@@ -83,7 +84,8 @@
         </td>
     </tr>
     <tr>
-        <td class="c3">Please email us your inquires and question to <{$url.email_reply}>
+        <td class="c3">Please email us your inquires and question
+            to <a href="mailto:<{$email_reply}>"><{$email_reply}></a>.
             We look forward to creating an exciting show and revolutionizing the industry with you!
         </td>
     </tr>
