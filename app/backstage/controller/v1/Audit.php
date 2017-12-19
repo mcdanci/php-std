@@ -142,14 +142,30 @@ class Audit extends SignedController
             // Content
             $mail->isHTML(true);
             $mail->Subject = $subject;
+
+            // TODO
+            $this->assign([
+                'recipient_name_disp' => 'first name' ?:  'last name' ?: 'registrant',
+                'project_name' => Config::get('project_info.name'),
+                'website_name' => 'www.SourceTheFuture.cc',
+                'url' => [
+                    'img_banner' => 'img/banner.png',
+                    'registrant_sign_in' => 'https://s-show.fmnii.e13.cc/api/',
+                    'registrant_order' => 'https://s-show.fmnii.e13.cc/api/',
+                    'website' => 'https://s-show.fmnii.e13.cc/api/',
+                    'email_reply' => 'admin@sourcethefuture.cc',
+                ],
+            ]);
             echo $mail->Body = $this->fetch('email/audit_app');
 
             $mail->send();
 
+            // TODO: debug
             //return true;
             return '11111111111111111111111';
             //return self::retTemp(self::$scOK, 'Message has been sent', $mail);
         } catch (\Exception $e) {
+            // TODO: debug
             //return false;
             return '0000000000000000000000';
             //return self::retTemp(self::$scNotFound, 'Message could note be sent', 'Mailer error: ' . $mail->ErrorInfo);
