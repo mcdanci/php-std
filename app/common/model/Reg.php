@@ -12,7 +12,7 @@ use traits\model\SoftDelete;
 /**
  * Class Reg
  * @package app\common\model
- * @method static \app\common\model\Reg getByStatus (int $status)
+ * @method static \app\common\model\Reg getByStatus(int $status)
  */
 class Reg extends Model
 {
@@ -108,7 +108,21 @@ class Reg extends Model
 
     //endregion
 
-    //region Getter
+    //region Map for attr.
+
+    //region Type
+
+    private static $mapAttrType = [
+        null,
+        'exhibitor',
+        'visitor',
+        'admin',
+    ];
+
+    public function setTypeAttr($value)
+    {
+        return array_search($value, self::$mapAttrType, true);
+    }
 
     /**
      * Getter for type of role.
@@ -117,35 +131,51 @@ class Reg extends Model
      */
     public function getTypeAttr($value)
     {
-        static $MAP = [
-            null,
-            'exhibitor',
-            'visitor',
-            'admin',
-        ];
-        return $MAP[$value];
+        return self::$mapAttrType[$value];
+    }
+
+    //endregion
+
+    //region Gender
+
+    private static $mapAttrGender = [
+        null,
+        'Mrs.',
+        'Mr.',
+        'Ms.',
+    ];
+
+    public function setGenderAttr($value)
+    {
+        return array_search($value, self::$mapAttrGender);
     }
 
     public function getGenderAttr($value)
     {
-        static $MAP = [
-            null,
-            'Mrs.',
-            'Mr.',
-            'Ms.',
-        ];
-        return $MAP[$value];
+        return self::$mapAttrGender[$value];
+    }
+
+    //endregion
+
+    //region Status
+
+    private static $mapAttrStatus = [
+        1 => 'unaudited',
+        2 => 'passed',
+        3 => 'declined',
+    ];
+
+    public function setStatusAttr($value)
+    {
+        return array_search($value, self::$mapAttrStatus);
     }
 
     public function getStatusAttr($value)
     {
-        static $MAP = [
-            1 => 'unaudited',
-            2 => 'passed',
-            3 => 'declined',
-        ];
-        return $MAP[$value];
+        return self::$mapAttrStatus[$value];
     }
+
+    //endregion
 
     //endregion
 

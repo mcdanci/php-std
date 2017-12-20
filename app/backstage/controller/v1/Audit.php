@@ -51,16 +51,6 @@ class Audit extends SignedController
     }
 
     /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-    }
-
-    /**
      * 显示编辑资源表单页.
      *
      * @param  int  $id
@@ -234,7 +224,7 @@ class Audit extends SignedController
      * @return array
      * @throws \Exception
      */
-    public function main()
+    public function index()
     {
         $cond = ['status' => Reg::STATUS_UNAUDITED];
 
@@ -246,9 +236,21 @@ class Audit extends SignedController
         $result = Reg::getByStatus(Reg::STATUS_UNAUDITED)
             ->field(['email', 'type', 'company', 'city', 'status'])
             ->where($cond)
+            ->data($condStatus, true)
             ->order(['id' => Reg::ORDER_DESC])
             ->paginate(Common::getBRowMax());
 
         return self::retTemp(self::$scOK, null, $result->toArray());
+    }
+
+    /**
+     * Get detail of registrant.
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function read($id)
+    {
+        $reg = Reg::get($id);
+        return self::retTemp(self::$scOK, null, $reg->toArray() ?: []);
     }
 }

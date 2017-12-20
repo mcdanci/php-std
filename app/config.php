@@ -54,4 +54,6 @@ return [
 
     'project_info' => &$PROJECT_INFO,
     'name' => $PROJECT_INFO['name'] . ' app server',
+
+    'default_filter' => 'trim',
 ];
