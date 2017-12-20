@@ -235,6 +235,7 @@ class Audit extends SignedController
 
         $result = Reg::getByStatus(Reg::STATUS_UNAUDITED)
             ->field([
+                'id',
                 'created',
                 'email',
                 'type',
