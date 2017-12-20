@@ -20,7 +20,10 @@ class Reg extends Model
 
     //region Configuration
 
-    const STATUS_UNAUDITED = 1;
+    const
+        STATUS_UNAUDITED = 1,
+        STATUS_PASSED = 2,
+        STATUS_DECLINED = 3;
 
     protected
         $autoWriteTimestamp = 'datetime',
@@ -47,6 +50,12 @@ class Reg extends Model
         'website',
         'cat',
         'password',
+    ];
+
+    public static $rangeStatus = [
+        self::STATUS_UNAUDITED,
+        self::STATUS_PASSED,
+        self::STATUS_DECLINED,
     ];
 
     //endregion
@@ -108,24 +117,34 @@ class Reg extends Model
      */
     public function getTypeAttr($value)
     {
-        static $MAP_TYPE = [
-            0 => null,
-            1 => 'exhibitor',
-            2 => 'visitor',
-            3 => 'admin',
+        static $MAP = [
+            null,
+            'exhibitor',
+            'visitor',
+            'admin',
         ];
-        return $MAP_TYPE[$value];
+        return $MAP[$value];
     }
 
     public function getGenderAttr($value)
     {
-        static $MAP_GENDER = [
-            0 => null,
-            1 => 'Mrs.',
-            2 => 'Mr.',
-            3 => 'Ms.',
+        static $MAP = [
+            null,
+            'Mrs.',
+            'Mr.',
+            'Ms.',
         ];
-        return $MAP_GENDER[$value];
+        return $MAP[$value];
+    }
+
+    public function getStatusAttr($value)
+    {
+        static $MAP = [
+            1 => 'unaudited',
+            2 => 'passed',
+            3 => 'declined',
+        ];
+        return $MAP[$value];
     }
 
     //endregion

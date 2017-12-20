@@ -18,6 +18,7 @@ abstract class SignedController extends Controller
     {
         parent::_initialize();
         //self::setSession();
+        self::setHeaders();
 
         //if (Session::get('is_admin') === null) {
         //    // TODO

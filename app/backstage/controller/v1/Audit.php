@@ -5,6 +5,7 @@ namespace app\backstage\controller\v1;
 use app\common\model\Common;
 use app\common\model\Reg;
 use McDanci\ThinkPHP\Config;
+use McDanci\Util\UCPaaS\UCPaaS;
 use PHPMailer\PHPMailer\PHPMailer;
 use think\Request;
 
@@ -227,35 +228,27 @@ class Audit extends SignedController
     //endregion
 
     /**
-     * @return false|\PDOStatement|string|\think\Collection
-     * @param int $page
-     * @todo perpage @ header
-     *
+     * List registrant.
+     * @param null|int $page *optional* 页码
+     * @param null|int $per_page *optional* 每页条目计数最大值
+     * @return array
+     * @throws \Exception
      */
-    public function main($page = 1, $pageRow = null)
+    public function main()
     {
-        if (input('?get.page')) {
-        }
-        if (input('?get.list_row_count')) {
-            //
+        $cond = ['status' => Reg::STATUS_UNAUDITED];
+
+        $condStatus = $this->request->param('status/d') ?: null;
+        if ($condStatus !== null && in_array($condStatus, Reg::$rangeStatus)) {
+            $cond['status'] = $condStatus;
         }
 
-        // TODO
-        if ($pageRow === null) {
-            $pageRow = Config::get('paginate.list_rows');
-        }
-
-        // TODO: ORDER
         $result = Reg::getByStatus(Reg::STATUS_UNAUDITED)
-            ->field('password', true)
-            ->where(['status' => Reg::STATUS_UNAUDITED])
+            ->field(['email', 'type', 'company', 'city', 'status'])
+            ->where($cond)
             ->order(['id' => Reg::ORDER_DESC])
-            ->paginate($pageRow); // TODO
+            ->paginate(Common::getBRowMax());
 
         return self::retTemp(self::$scOK, null, $result->toArray());
-
-        // TODO
-        //return Request::instance()->param(Config::get('paginate.var_page' . '/d') ?: 'page', 1);
-        //return self::retTemp(self::$scOK, null, $data);
     }
 }

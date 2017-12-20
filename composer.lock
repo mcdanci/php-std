@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "be4ebcea5781ad592b73611f27ae9049",
+    "content-hash": "b669a87fa30caf63bd6f1987888740bc",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -259,6 +259,45 @@
                 "library"
             ],
             "time": "2017-05-11T11:54:51+00:00"
+        },
+        {
+            "name": "mcdanci/ucpaas",
+            "version": "v0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mcdanci/ucpaas-php.git",
+                "reference": "42aec778e1ce8bc91b28e374c0e8556df0a683e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/mcdanci/ucpaas-php/42aec778e1ce8bc91b28e374c0e8556df0a683e5.zip",
+                "reference": "42aec778e1ce8bc91b28e374c0e8556df0a683e5",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "McDanci\\Util\\UCPaaS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Leo Ding",
+                    "email": "leoding86@msn.com"
+                },
+                {
+                    "name": "JackZhao"
+                },
+                {
+                    "name": "McDanci"
+                }
+            ],
+            "description": "雲之訊",
+            "keywords": [
+                "云之讯"
+            ],
+            "time": "2017-03-17T09:17:57+00:00"
         },
         {
             "name": "omnipay/common",

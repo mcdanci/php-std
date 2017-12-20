@@ -68,7 +68,16 @@ p {line-height: 1.6em; font-size: 42px}
 
     //region Paging
 
-    const PAGE_DEFAULT = 1;
+    const PARAM_BODY_ROW_MAX = 'per_page';
+
+    /**
+     * Get param. of body row maximum.
+     * @return null
+     */
+    public static function getBRowMax()
+    {
+        return Request::instance()->param(self::PARAM_BODY_ROW_MAX . '/d') ?: null;
+    }
 
     //endregion
 }
