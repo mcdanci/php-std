@@ -224,7 +224,7 @@ class Audit extends SignedController
      * @return array
      * @throws \Exception
      */
-    public function index()
+    public function main()
     {
         $cond = ['status' => Reg::STATUS_UNAUDITED];
 
