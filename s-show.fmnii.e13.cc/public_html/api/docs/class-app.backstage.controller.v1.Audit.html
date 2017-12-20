@@ -261,45 +261,6 @@ think\Controller
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="read" id="_read">
-
-		<td class="attributes"><code>
-			 public 
-
-			think\Response
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_read">#</a>
-		<code>read( <span>integer <var>$id</var></span> )</code>
-
-		<div class="description short">
-			<p>显示指定的资源</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>显示指定的资源</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$id</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					think\Response
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="edit" id="_edit">
 
 		<td class="attributes"><code>
@@ -457,7 +418,7 @@ think\Controller
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="main" id="_main">
+	<tr data-order="index" id="_index">
 
 		<td class="attributes"><code>
 			 public 
@@ -468,8 +429,8 @@ think\Controller
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_main">#</a>
-		<code>main( <span>null|integer <var>$page</var>,…</span>, <span>null|integer <var>$per_page</var>,…</span> )</code>
+		<a class="anchor" href="#_index">#</a>
+		<code>index( <span>null|integer <var>$page</var>,…</span>, <span>null|integer <var>$per_page</var>,…</span> )</code>
 
 		<div class="description short">
 			<p>List registrant.</p>
@@ -496,6 +457,45 @@ think\Controller
 				<div class="list">
 					Exception
 				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="read" id="_read">
+
+		<td class="attributes"><code>
+			 public 
+
+			think\Response
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_read">#</a>
+		<code>read( <span>integer <var>$id</var></span> )</code>
+
+		<div class="description short">
+			<p>Get detail of registrant.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get detail of registrant.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					think\Response
+				</div>
+
 
 
 
