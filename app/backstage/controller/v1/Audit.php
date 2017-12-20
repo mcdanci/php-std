@@ -234,7 +234,14 @@ class Audit extends SignedController
         }
 
         $result = Reg::getByStatus(Reg::STATUS_UNAUDITED)
-            ->field(['email', 'type', 'company', 'city', 'status'])
+            ->field([
+                'created',
+                'email',
+                'type',
+                'company',
+                'city',
+                'status',
+            ])
             ->where($cond)
             ->data($condStatus, true)
             ->order(['id' => Reg::ORDER_DESC])
