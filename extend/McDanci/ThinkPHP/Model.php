@@ -5,6 +5,13 @@
  */
 namespace McDanci\ThinkPHP;
 
+/**
+ * Class Model
+ * @package McDanci\ThinkPHP
+ *
+ * @todo
+ * @method static Model get($data, $with = [], $cache = false)
+ */
 class Model extends \think\Model
 {
     const ORDER_ASC = 'asc', ORDER_DESC = 'desc';
