@@ -44,6 +44,6 @@
     }
   },
   "scripts": {
-    "apigen": "apigen generate -q -s ./app/reg/controller -d ./s-show.fmnii.e13.cc/public_html/api/docs --access-levels=public --no-source-code"
+    "apigen": "apigen generate -q -s ./app/backstage/controller -d ./s-show.fmnii.e13.cc/public_html/api/docs --access-levels=public --no-source-code"
   }
 }
