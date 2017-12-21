@@ -5,6 +5,8 @@
  */
 namespace app\backstage\controller\v1;
 
+use app\common\model\Common;
+use McDanci\ThinkPHP\Config;
 use think\Request;
 use think\Db;
 use think\Session;
@@ -109,22 +111,31 @@ class Main extends Controller
      */
     public function main()
     {
-        return [];
+        self::setSession();
+        return self::retTemp(self::$scOK, null, session_id());
     }
 
     /**
-     * @param string $username
-     * @param null $password
-     * @todo
+     * @param null|string $username
+     * @param null|string $password
+     * @return array
+     * @throws \Exception
      */
-    public function signIn($username = 'admin', $password = null)
+    public function signIn($username = null, $password = null)
     {
-        if ($username === 'admin' && $password === 'admin') {
+        $userList = Config::get('backstage.user');
+
+        if (($userList && is_array($userList)) &&
+            ($username && $password) &&
+            array_key_exists($username, $userList) &&
+             password_verify(base64_decode($password), $userList[$username]['password'])
+        ) {
             self::setSession();
+            Session::set('username', $username);
             Session::set('is_admin', true);
-            return self::retTemp(self::$scOK);
+            return self::retTemp(self::$scOK, 'Signed in successful');
         } else {
-            return self::retTemp(self::$scNotFound);
+            return self::retTemp(self::$scNotFound, 'There must be something wrong');
         }
     }
 }

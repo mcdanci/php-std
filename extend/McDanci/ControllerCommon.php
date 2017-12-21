@@ -77,6 +77,7 @@ trait ControllerCommon
         if ($sId) {
             session_id($sId);
         }
+        session_name('AAA');
         session_start();
     }
 }
