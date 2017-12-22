@@ -225,9 +225,12 @@ class Audit extends SignedController
      * List registrant.
      * @param null|int $page *optional* 页码
      * @param null|int $per_page *optional* 每页条目计数最大值
+     *
      * @param null|int $type *optional* `{1: exhibitor, 2: visitor, 3: admin}`
      * @param null|int $status *optional* ` {1: unaudited, 2: audit passed, 3: audit declined}`
      * @param null|string $search *optional*
+     * @todo
+     *
      * @return array
      * @throws \Exception
      */

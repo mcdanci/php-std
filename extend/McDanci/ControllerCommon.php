@@ -33,8 +33,8 @@ trait ControllerCommon
 
         header('Access-Control-Allow-Headers: ' . 'Origin, X-Requested-With, Content-Type, Accept, Connection, User-Agent, Cookie'); // TODO
         header('Access-Control-Allow-Origin: ' . $domainName);
-        if ($domainName != '*') {
-            header('Access-Control-Allow-Credentials: true'); // TODO: access 許可?
+        if ($domainName !== '*') {
+            //header('Access-Control-Allow-Credentials: true'); // TODO: access 許可?
         }
 
         // TODO: check
