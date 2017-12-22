@@ -23,6 +23,25 @@ class Dashboard extends SignedController
     /**
      * List overview information.
      * @return array
+     * ->**body** `array`
+     *
+     * ->->**amount_paid** `float`
+     *
+     * ->->**registrant** `array`
+     *
+     * ->->->**exhibitor** `array`
+     *
+     * ->->->->**amount_paid** `float`
+     *
+     * ->->->->**order** `array`
+     *
+     * ->->->->->**count** `array`
+     *
+     * ->->->->->->**total** `float`
+     *
+     * ->->->->->->**unpaid** `float`
+     *
+     * ->->->**visitor** `array`
      * @throws \Exception
      * @todo
      */
