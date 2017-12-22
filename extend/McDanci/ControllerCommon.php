@@ -35,8 +35,6 @@ trait ControllerCommon
         header('Access-Control-Allow-Origin: ' . $domainName);
         if ($domainName !== '*') {
             header('Access-Control-Allow-Credentials: true'); // TODO: access 許可?
-        } else {
-            header('Access-Control-Allow-Credentials: true');
         }
 
         // TODO: check
