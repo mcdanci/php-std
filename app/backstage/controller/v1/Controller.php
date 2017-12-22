@@ -14,7 +14,7 @@ abstract class Controller extends \think\Controller
         \Fmnii\Controller\Common,
         \McDanci\ControllerCommon;
 
-    public function _initialize()
+    protected function _initialize()
     {
         parent::_initialize();
         self::setHeaders();
