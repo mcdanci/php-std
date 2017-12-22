@@ -36,7 +36,7 @@ trait ControllerCommon
         if ($domainName !== '*') {
             header('Access-Control-Allow-Credentials: true'); // TODO: access 許可?
         } else {
-            header('Access-Control-Allow-Credentials: false');
+            header('Access-Control-Allow-Credentials: true');
         }
 
         // TODO: check
