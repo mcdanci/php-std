@@ -5,6 +5,7 @@
  */
 namespace app\common\model;
 
+use League\ISO3166\ISO3166;
 use McDanci\ThinkPHP\Config;
 use McDanci\ThinkPHP\Model;
 use traits\model\SoftDelete;
@@ -98,6 +99,16 @@ class Reg extends Model
     //endregion
 
     //region Attr. configuration
+
+    /**
+     * @param $value
+     * @return array
+     * @todo
+     */
+    public function getIso3166Attr($value)
+    {
+        return (new ISO3166())->numeric((string)str_pad($value, 3, '0', STR_PAD_LEFT));
+    }
 
     //region Type
 

@@ -19,6 +19,6 @@ abstract class Controller extends \think\Controller
     protected function _initialize()
     {
         parent::_initialize();
-        self::setHeaders('http://localhost:8080');
+        self::setHeaders('http://localhost:8080'); // TODO: for debug
     }
 }

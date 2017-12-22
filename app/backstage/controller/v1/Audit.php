@@ -284,8 +284,30 @@ class Audit extends SignedController
      */
     public function read($id)
     {
-        $reg = Reg::get($id);
-        return self::retTemp(self::$scOK, null, $reg->toArray() ?: []);
+        $reg = new Reg();
+        $result = $reg->field('type')->find($id);
+
+        if ($result) {
+            $relationSet = [];
+
+            switch ($result->toArray()['type']) {
+                case 'exhibitor':
+                    $relationSet[] = 'regExhibitor';
+                    break;
+                case 'visitor':
+                    $relationSet[] = 'regVisitor';
+                    break;
+            }
+
+            return self::retTemp(self::$scOK, null, $reg->get($id, $relationSet)->toArray());
+        } else {
+            return self::retTemp(self::$scNotFound);
+        }
+
+        //$reg = Reg::get($id, ['regExhibitor', 'regVisitor']);
+        ////$reg->appendRelationAttr('')
+        //$reg = Reg::with()->find($id);
+        //return self::retTemp(self::$scOK, null, $reg->toArray() ?: [$id]);
     }
 
     /**
