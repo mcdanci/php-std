@@ -22,9 +22,10 @@ abstract class SignedController extends Controller
         self::setHeaders();
 
         if (!Config::get('app_debug') || Config::get('auth_forced')) {
-            if (Session::get('is_admin') === null) {
-                // TODO
-                exit(json_encode(self::retTemp(self::$scForbidden, 'Forbidden')));
+            $isAdmin = Session::get('is_admin');
+
+            if ($isAdmin === null || !is_numeric($isAdmin) || $isAdmin < time()) {
+                exit(json_encode(self::retTemp(self::$scForbidden, 'Forbidden'))); // TODO
             }
         }
     }

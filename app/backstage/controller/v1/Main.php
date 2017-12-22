@@ -129,6 +129,7 @@ class Main extends Controller
     }
 
     /**
+     * 登入。
      * @param null|string $username
      * @param null|string $password Password encrypted
      * @return \think\Response|array
@@ -145,8 +146,10 @@ class Main extends Controller
             password_verify(base64_decode($password), $userList[$username]['password'])
         ) {
             self::setSession();
+
+            Session::set('is_admin', time() + 3600 * 24 * 7); // 七日
             Session::set('username', $username);
-            Session::set('is_admin', true);
+
             return self::retTemp(self::$scOK, 'Signed in successful');
         } else {
             return self::retTemp(self::$scNotFound, 'There must be something wrong');

@@ -21,6 +21,39 @@ class Dashboard extends SignedController
     }
 
     /**
+     * List overview information.
+     * @return array
+     * @throws \Exception
+     * @todo
+     */
+    public function getOverviewInfo()
+    {
+        return self::retTemp(self::$scOK, null, [
+            'amount_paid' => 0,
+            'registrant' => [
+                'exhibitor' => [
+                    'amount_paid' => 0,
+                    'order' => [
+                        'count' => [
+                            'total' => 0,
+                            'unpaid' => 0,
+                        ],
+                    ],
+                ],
+                'visitor' => [
+                    'amount_paid' => 0,
+                    'order' => [
+                        'count' => [
+                            'total' => 0,
+                            'unpaid' => 0,
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    /**
      * 登出。
      * @return array
      * @throws \Exception
