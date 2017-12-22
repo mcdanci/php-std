@@ -17,13 +17,11 @@ abstract class SignedController extends Controller
      */
     protected function _initialize()
     {
-        static $TMP_DEBUG = true;
-
         parent::_initialize();
         self::setSession();
         self::setHeaders();
 
-        if (!Config::get('app_debug') || $TMP_DEBUG) {
+        if (!Config::get('app_debug') || Config::get('auth_forced')) {
             if (Session::get('is_admin') === null) {
                 // TODO
                 exit(json_encode(self::retTemp(self::$scForbidden, 'Forbidden')));
