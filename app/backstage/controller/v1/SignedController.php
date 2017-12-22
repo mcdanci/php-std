@@ -5,6 +5,7 @@
  */
 namespace app\backstage\controller\v1;
 
+use McDanci\ThinkPHP\Config;
 use think\Session;
 
 abstract class SignedController extends Controller
@@ -12,17 +13,21 @@ abstract class SignedController extends Controller
     /**
      * @return array
      * @throws \Exception
-     * @todo 判斷環境
+     * @todo 判斷環境 behaviour
      */
     protected function _initialize()
     {
+        static $TMP_DEBUG = true;
+
         parent::_initialize();
-        //self::setSession();
+        self::setSession();
         self::setHeaders();
 
-        //if (Session::get('is_admin') === null) {
-        //    // TODO
-        //    exit(json_encode(self::retTemp(self::$scNotFound, null)));
-        //}
+        if (!Config::get('app_debug') || $TMP_DEBUG) {
+            if (Session::get('is_admin') === null) {
+                // TODO
+                exit(json_encode(self::retTemp(self::$scForbidden, 'Forbidden')));
+            }
+        }
     }
 }

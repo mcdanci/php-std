@@ -23,9 +23,28 @@ trait Common
     protected static $scOK = 200;
 
     /**
+     * @var int Forbidden
+     */
+    protected static $scForbidden = 403;
+
+    /**
      * @var int Not Found
      */
     protected static $scNotFound = 404;
+
+    /**
+     * Get status code list.
+     * Status codes should be registered within this method.
+     * @return array
+     */
+    protected static function listStatusCode()
+    {
+        return [
+            self::$scOK,
+            self::$scForbidden,
+            self::$scNotFound,
+        ];
+    }
 
     /**
      * Template for message returned
@@ -46,7 +65,7 @@ trait Common
         $ret = [];
 
         // Status code
-        if (in_array($statusCode, [self::$scOK, self::$scNotFound])) {
+        if (in_array($statusCode, self::listStatusCode())) {
             $ret['status'] = $statusCode;
         } else {
             throw new \Exception('Status code is not in range');

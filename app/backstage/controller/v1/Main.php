@@ -105,20 +105,41 @@ class Main extends Controller
 
     //endregion
 
+    //region Main
+
     /**
+     * Get app status.
      * @return array
-     * @todo
+     * ->**body** `array`
+     *
+     * ->->**status** `bool` App runtime status
+     * @throws \Exception
      */
     public function main()
     {
+        return self::retTemp(self::$scOK, null, ['status' => true]);
+    }
+
+    /**
+     * Get session id in cookie.
+     * @return array
+     * ->**body** `array`
+     *
+     * ->->**session_id** `string` Session id
+     * @throws \Exception
+     * @deprecated
+     */
+    public function getSessionId()
+    {
         self::setSession();
-        return self::retTemp(self::$scOK, null, session_id());
+        return self::retTemp(self::$scOK, null, ['session_id' => session_id()]);
     }
 
     /**
      * @param null|string $username
-     * @param null|string $password
+     * @param null|string $password Password encrypted
      * @return array
+     * ->**status** `int` 200 for successful, or 404 far failure.
      * @throws \Exception
      */
     public function signIn($username = null, $password = null)
@@ -138,4 +159,6 @@ class Main extends Controller
             return self::retTemp(self::$scNotFound, 'There must be something wrong');
         }
     }
+
+    //endregion
 }

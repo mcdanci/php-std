@@ -77,7 +77,7 @@ trait ControllerCommon
         if ($sId) {
             session_id($sId);
         }
-        session_name('AAA');
+        session_name('API_SESSION_ID'); // TODO
         session_start();
     }
 }
