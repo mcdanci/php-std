@@ -13,79 +13,6 @@ use think\Session;
 
 class Main extends Controller
 {
-    //region Original
-
-    /**
-     * 显示资源列表
-     *
-     * @return \think\Response
-     */
-    public function index()
-    {
-    }
-
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
-    {
-    }
-
-    /**
-     * 保存新建的资源
-     *
-     * @param  \think\Request  $request
-     * @return \think\Response
-     */
-    public function save(Request $request)
-    {
-    }
-
-    /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-    }
-
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-    }
-
-    /**
-     * 保存更新的资源
-     *
-     * @param  \think\Request  $request
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function update(Request $request, $id)
-    {
-    }
-
-    /**
-     * 删除指定资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function delete($id)
-    {
-    }
-
-    //endregion
-
     //region Debug
 
     /**
@@ -94,6 +21,7 @@ class Main extends Controller
      * @return array
      * @throws \Exception
      * @todo for debug, Zain
+     * @deprecated
      */
     public function listMember($page = 1, $rowMax = null)
     {
@@ -102,6 +30,71 @@ class Main extends Controller
 
         return self::retTemp(self::$scOK, 'OK', $data);
     }
+
+    //region Original
+
+    /**
+     * 显示创建资源表单页.
+     * @return \think\Response
+     * @deprecated
+     */
+    public function create()
+    {
+    }
+
+    /**
+     * 保存新建的资源
+     * @param  \think\Request $request
+     * @return \think\Response
+     * @deprecated
+     */
+    public function save(Request $request)
+    {
+    }
+
+    /**
+     * 显示指定的资源
+     *
+     * @param  int $id
+     * @return \think\Response
+     * @deprecated
+     */
+    public function read($id)
+    {
+    }
+
+    /**
+     * 显示编辑资源表单页.
+     * @param  int $id
+     * @return \think\Response
+     * @deprecated
+     */
+    public function edit($id)
+    {
+    }
+
+    /**
+     * 保存更新的资源
+     * @param  \think\Request $request
+     * @param  int $id
+     * @return \think\Response
+     * @deprecated
+     */
+    public function update(Request $request, $id)
+    {
+    }
+
+    /**
+     * 删除指定资源
+     * @param  int $id
+     * @return \think\Response
+     * @deprecated
+     */
+    public function delete($id)
+    {
+    }
+
+    //endregion
 
     //endregion
 
@@ -138,7 +131,7 @@ class Main extends Controller
     /**
      * @param null|string $username
      * @param null|string $password Password encrypted
-     * @return array
+     * @return \think\Response|array
      * ->**status** `int` 200 for successful, or 404 far failure.
      * @throws \Exception
      */
@@ -149,7 +142,7 @@ class Main extends Controller
         if (($userList && is_array($userList)) &&
             ($username && $password) &&
             array_key_exists($username, $userList) &&
-             password_verify(base64_decode($password), $userList[$username]['password'])
+            password_verify(base64_decode($password), $userList[$username]['password'])
         ) {
             self::setSession();
             Session::set('username', $username);

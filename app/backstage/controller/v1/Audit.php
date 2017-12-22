@@ -16,12 +16,12 @@ use think\Request;
  */
 class Audit extends SignedController
 {
-    //region Original
+    //region Debug Original
 
     /**
      * 显示资源列表
-     *
      * @return \think\Response
+     * @deprecated
      * @todo
      */
     public function _main()
@@ -32,7 +32,7 @@ class Audit extends SignedController
 
     /**
      * 显示创建资源表单页.
-     *
+     * @deprecated
      * @return \think\Response
      */
     public function create()
@@ -41,8 +41,8 @@ class Audit extends SignedController
 
     /**
      * 保存新建的资源
-     *
-     * @param  \think\Request  $request
+     * @deprecated
+     * @param  \think\Request $request
      * @return \think\Response
      */
     public function save(Request $request)
@@ -52,8 +52,8 @@ class Audit extends SignedController
 
     /**
      * 显示编辑资源表单页.
-     *
-     * @param  int  $id
+     * @deprecated
+     * @param  int $id
      * @return \think\Response
      */
     public function edit($id)
@@ -62,9 +62,9 @@ class Audit extends SignedController
 
     /**
      * 保存更新的资源
-     *
-     * @param  \think\Request  $request
-     * @param  int  $id
+     * @deprecated
+     * @param  \think\Request $request
+     * @param  int $id
      * @return \think\Response
      */
     public function update(Request $request, $id)
@@ -74,8 +74,8 @@ class Audit extends SignedController
 
     /**
      * 删除指定资源
-     *
-     * @param  int  $id
+     * @deprecated
+     * @param  int $id
      * @return \think\Response
      */
     public function delete($id)
@@ -84,6 +84,7 @@ class Audit extends SignedController
 
     /**
      * @return bool
+     * @deprecated
      * @throws \PHPMailer\PHPMailer\Exception
      * @todo
      */
@@ -217,12 +218,15 @@ class Audit extends SignedController
 
     //endregion
 
+    //region Main
+
     /**
      * List registrant.
      * @param null|int $page *optional* 页码
      * @param null|int $per_page *optional* 每页条目计数最大值
      * @return array
      * @throws \Exception
+     * @todo status
      */
     public function main()
     {
@@ -253,12 +257,16 @@ class Audit extends SignedController
 
     /**
      * Get detail of registrant.
-     * @param  int  $id
+     * @param int $id
      * @return \think\Response
+     * @deprecated
+     * @todo
      */
     public function read($id)
     {
         $reg = Reg::get($id);
         return self::retTemp(self::$scOK, null, $reg->toArray() ?: []);
     }
+
+    //endregion
 }

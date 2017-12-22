@@ -20,6 +20,46 @@ class Main extends Controller
     use \Fmnii\Controller\Common;
     use \McDanci\ControllerCommon;
 
+    /**
+     * @todo
+     */
+    //region Debug
+
+    /**
+     * @return false|int
+     * @deprecated
+     */
+    public function debug()
+    {
+        //$reg->appendRelationAttr('RegExhibitor', 'exhibitor_tse'); // TODO
+        //return $reg->regExhibitor->save(['mpt' => 'dfsdfsdfasdf']);
+        //return (new Reg($_POST))->allowField(true)->save();
+
+        // TODO: move to model
+        $reg = (new Reg($_POST))->allowField(true);
+        $reg->reg_exhibitor = (new RegExhibitor($_POST))->allowField(true);
+        return $reg->together(['reg_exhibitor'])->save();
+    }
+
+    /**
+     * @param int $id
+     * @return false|int
+     * @deprecated
+     */
+    public function debug2($id = 1)
+    {
+        return (new Reg)->allowField(true)->save($_POST, ['id' => $id]);
+    }
+
+    /**
+     * @return \stdClass
+     * @deprecated
+     */
+    public function debug3()
+    {
+        return $this->request->header('API-Version') ?: new \stdClass();
+    }
+
     //region Original
 
     /**
@@ -100,6 +140,8 @@ class Main extends Controller
 
     //endregion
 
+    //endregion
+
     //region Main
 
     /**
@@ -118,6 +160,24 @@ class Main extends Controller
         parent::_initialize();
         self::setHeaders();
         self::setHeaderAPIVersion(1);
+    }
+
+    /**
+     * @return \think\Request
+     * @todo
+     */
+    public function regExhibitor()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return \think\Request
+     * @todo
+     */
+    public function regVisitor()
+    {
+        return $this->request->baseUrl();
     }
 
     /**
@@ -150,53 +210,6 @@ class Main extends Controller
     public function listGender()
     {
         return self::retTemp(self::$scOK, 'OK', Config::get('option-gender'));
-    }
-
-    //endregion
-
-    /**
-     * @todo
-     */
-    //region Debug
-
-    public function debug()
-    {
-        //$reg->appendRelationAttr('RegExhibitor', 'exhibitor_tse'); // TODO
-        //return $reg->regExhibitor->save(['mpt' => 'dfsdfsdfasdf']);
-        //return (new Reg($_POST))->allowField(true)->save();
-
-        // TODO: move to model
-        $reg = (new Reg($_POST))->allowField(true);
-        $reg->reg_exhibitor = (new RegExhibitor($_POST))->allowField(true);
-        return $reg->together(['reg_exhibitor'])->save();
-    }
-
-    public function debug2($id = 1)
-    {
-        return (new Reg)->allowField(true)->save($_POST, ['id' => $id]);
-    }
-
-    public function debug3()
-    {
-        return $this->request->header('API-Version') ?: new \stdClass();
-    }
-
-    /**
-     * @return \think\Request
-     * @todo
-     */
-    public function regExhibitor()
-    {
-        return $this->request;
-    }
-
-    /**
-     * @return \think\Request
-     * @todo
-     */
-    public function regVisitor()
-    {
-        return $this->request->baseUrl();
     }
 
     //endregion

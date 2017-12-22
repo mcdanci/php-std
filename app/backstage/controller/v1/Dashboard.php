@@ -12,6 +12,7 @@ class Dashboard extends SignedController
     /**
      * @return array
      * @throws \Exception
+     * @deprecated
      * @todo
      */
     public function main()
