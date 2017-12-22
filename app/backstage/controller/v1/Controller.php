@@ -5,6 +5,8 @@
  */
 namespace app\backstage\controller\v1;
 
+use think\controller\Rest;
+
 abstract class Controller extends \think\Controller
 {
     /**

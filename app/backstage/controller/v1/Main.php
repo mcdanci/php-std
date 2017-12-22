@@ -9,6 +9,7 @@ use app\common\model\Common;
 use McDanci\ThinkPHP\Config;
 use think\Request;
 use think\Db;
+use think\Response;
 use think\Session;
 
 class Main extends Controller
