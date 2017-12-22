@@ -20,11 +20,6 @@ class Reg extends Model
 
     //region Configuration
 
-    const
-        STATUS_UNAUDITED = 1,
-        STATUS_PASSED = 2,
-        STATUS_DECLINED = 3;
-
     protected
         $autoWriteTimestamp = 'datetime',
         $createTime = 'created',
@@ -50,12 +45,6 @@ class Reg extends Model
         'website',
         'cat',
         'password',
-    ];
-
-    public static $rangeStatus = [
-        self::STATUS_UNAUDITED,
-        self::STATUS_PASSED,
-        self::STATUS_DECLINED,
     ];
 
     //endregion
@@ -108,7 +97,7 @@ class Reg extends Model
 
     //endregion
 
-    //region Map for attr.
+    //region Attr. configuration
 
     //region Type
 
@@ -118,6 +107,11 @@ class Reg extends Model
         'visitor',
         'admin',
     ];
+
+    public static function getRangeType()
+    {
+        return array_keys(self::$mapAttrType);
+    }
 
     public function setTypeAttr($value)
     {
@@ -159,11 +153,21 @@ class Reg extends Model
 
     //region Status
 
-    private static $mapAttrStatus = [
-        1 => 'unaudited',
-        2 => 'passed',
-        3 => 'declined',
+    const
+        STATUS_UNAUDITED = 1,
+        STATUS_PASSED = 2,
+        STATUS_DECLINED = 3;
+
+    public static $mapAttrStatus = [
+        self::STATUS_UNAUDITED => 'unaudited',
+        self::STATUS_PASSED => 'passed',
+        self::STATUS_DECLINED => 'declined',
     ];
+
+    public static function getRangeStatus()
+    {
+        return array_keys(self::$mapAttrStatus);
+    }
 
     public function setStatusAttr($value)
     {

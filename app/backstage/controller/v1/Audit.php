@@ -7,6 +7,7 @@ use app\common\model\Reg;
 use McDanci\ThinkPHP\Config;
 use McDanci\Util\UCPaaS\UCPaaS;
 use PHPMailer\PHPMailer\PHPMailer;
+use think\db\Query;
 use think\Request;
 
 /**
@@ -224,31 +225,47 @@ class Audit extends SignedController
      * List registrant.
      * @param null|int $page *optional* 页码
      * @param null|int $per_page *optional* 每页条目计数最大值
+     * @param null|int $type *optional* `{1: exhibitor, 2: visitor, 3: admin}`
+     * @param null|int $status *optional* ` {1: unaudited, 2: audit passed, 3: audit declined}`
+     * @param null|string $search *optional*
      * @return array
      * @throws \Exception
-     * @todo status
      */
-    public function main()
+    public function main($type = null, $status = null, $search = null)
     {
-        $cond = ['status' => Reg::STATUS_UNAUDITED];
+        $cond = [];
+        $reg = new Reg();
 
-        $condStatus = $this->request->param('status/d') ?: null;
-        if ($condStatus !== null && in_array($condStatus, Reg::$rangeStatus)) {
-            $cond['status'] = $condStatus;
+        $input = [
+            'type' => $this->request->param('type/d') ?: null,
+            'status' => $this->request->param('status/d') ?: null,
+            'search' => $this->request->param('search/s') ?: null,
+        ];
+
+        foreach (['status', 'type'] as &$searchItem) {
+            $methodRangeGetterName = 'getRange' . $searchItem;
+
+            if ($input[$searchItem] !== null && in_array($input[$searchItem], Reg::$methodRangeGetterName())) {
+                $cond[$searchItem] = $input[$searchItem];
+            }
+        }
+        if ($input['search'] !== null) {
+            $cond[implode('|', ['email', 'name_first', 'name_last'])] = ['like', '%' . $input['search'] . '%'];
+        }
+        if (!count($cond)) {
+            $cond = true;
         }
 
-        $result = Reg::getByStatus(Reg::STATUS_UNAUDITED)
-            ->field([
-                'id',
-                'created',
-                'email',
-                'type',
-                'company',
-                'city',
-                'status',
-            ])
+        $result = $reg->field([
+            'id',
+            'created',
+            'email',
+            'type',
+            'company',
+            'city',
+            'status',
+        ])
             ->where($cond)
-            ->data($condStatus, true)
             ->order(['id' => Reg::ORDER_DESC])
             ->paginate(Common::getBRowMax());
 
@@ -266,6 +283,13 @@ class Audit extends SignedController
     {
         $reg = Reg::get($id);
         return self::retTemp(self::$scOK, null, $reg->toArray() ?: []);
+    }
+
+    /**
+     * @todo
+     */
+    public function exportExcel()
+    {
     }
 
     //endregion
