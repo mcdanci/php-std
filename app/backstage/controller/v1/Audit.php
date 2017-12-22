@@ -273,7 +273,7 @@ class Audit extends SignedController
     }
 
     /**
-     * Get detail of registrant.
+     * Get profile of registrant.
      * @param int $id
      * @return \think\Response
      * @deprecated
