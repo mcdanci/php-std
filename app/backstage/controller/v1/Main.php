@@ -132,7 +132,7 @@ class Main extends Controller
     /**
      * 登入。
      * @param null|string $username
-     * @param null|string $password Password encrypted
+     * @param null|string $password
      * @return \think\Response|array
      * ->**status** `int` 200 for successful, or 404 far failure.
      * @throws \Exception
@@ -144,7 +144,7 @@ class Main extends Controller
         if (($userList && is_array($userList)) &&
             ($username && $password) &&
             array_key_exists($username, $userList) &&
-            password_verify(base64_decode($password), $userList[$username]['password'])
+            password_verify($password, $userList[$username]['password'])
         ) {
             self::setSession();
 
