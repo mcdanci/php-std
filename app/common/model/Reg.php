@@ -100,15 +100,19 @@ class Reg extends Model
 
     //region Attr. configuration
 
-    /**
+    //region ISO 3166
+
+    /** Getter for country code in ISO 3166
      * @param $value
      * @return array
-     * @todo
+     * @todo 臺灣
      */
     public function getIso3166Attr($value)
     {
-        return (new ISO3166())->numeric((string)str_pad($value, 3, '0', STR_PAD_LEFT));
+        return (new ISO3166())->numeric(str_pad($value, 3, 0, STR_PAD_LEFT))['name'] ?: 'Unknown';
     }
+
+    //endregion
 
     //region Type
 
