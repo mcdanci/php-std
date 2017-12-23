@@ -1,7 +1,9 @@
 <?php
-namespace app\dashboard\controller;
+namespace app\dashboard\controller\v1;
 
-use think\Controller;
+use app\common\model\Reg;
+use McDanci\ThinkPHP\Config;
+use think\Session;
 
 class Main extends Controller
 {
@@ -47,6 +49,38 @@ class Main extends Controller
             'welcome' => \app\common\model\Common::INFO_WELCOME,
         ]);
         return view();
+    }
+
+    //endregion
+
+    //region Main
+
+    /**
+     * 登入。
+     * @param null|string $username
+     * @param null|string $password
+     * @return \think\Response|array
+     * ->**status** `int` 200 for successful, or 404 far failure.
+     * @throws \Exception
+     */
+    public function signIn($username = null, $password = null)
+    {
+        if ($username && $password) {
+            $reg = new Reg();
+            $passwordInStorage = $reg->where(['email' => $username])->value('password');
+
+            if ($passwordInStorage &&
+                password_verify($password, $passwordInStorage)
+            ) {
+                self::setSession();
+                Session::set('is_registrant', time() + 3600 * 24 * 7); // 七日
+                Session::set('username', $username);
+
+                return self::retTemp(self::$scOK, 'Signed in successful');
+            }
+        }
+
+        return self::retTemp(self::$scForbidden, 'There must be something wrong');
     }
 
     //endregion
