@@ -20,8 +20,8 @@ abstract class SignedController extends Controller
         parent::_initialize();
         self::setSession();
 
-        // TODO
-        if (!Config::get('app_debug') || Config::get('backstage.auth_forced')) {
+        // TODO, conf 的 app_debug 不合併 env 的值，待處理
+        if (Config::get('backstage.auth_forced')) {
             $isAdmin = Session::get('is_admin');
 
             if ($isAdmin === null || !is_numeric($isAdmin) || $isAdmin < time()) {
