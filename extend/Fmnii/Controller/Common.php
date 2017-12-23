@@ -72,7 +72,7 @@ trait Common
      * @param int $statusCode
      * @param null|string $statusMessage
      * @param null|array $body
-     * @return array
+     * @return array|Response
      * ->status Status code
      *
      * ->info Status message *optional*
