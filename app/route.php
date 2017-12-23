@@ -6,7 +6,6 @@ use McDanci\ThinkPHP\Config;
 
 $routeResourceList = [
     'backstage' => [
-        //'Main',
         'Audit',
     ],
 ];
@@ -30,7 +29,6 @@ foreach ($routeResourceList as $moduleName => &$module) {
  */
 return [
     //region TODO: Default
-
     ':v/:m/:c/:a' => ':m/:v.:c/:a',
     ':v/:m/:c$' => ':m/:v.:c/' . Config::get(NAME_ACTION_DEFAULT),
 

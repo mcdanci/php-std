@@ -6,6 +6,7 @@
 namespace app\backstage\controller\v1;
 
 use app\common\model\Common;
+use app\common\model\Reg;
 use McDanci\ThinkPHP\Config;
 use think\Request;
 use think\Db;
@@ -26,10 +27,15 @@ class Main extends Controller
      */
     public function listMember($page = 1, $rowMax = null)
     {
-        self::setHeaders();
-        $data = Db::name('member')->page($page, $rowMax)->select();
+        //self::setHeaders();
+        //$data = Db::name('member')->page($page, $rowMax)->select();
+        //
+        //return self::retTemp(self::$scOK, 'OK', $data);
 
-        return self::retTemp(self::$scOK, 'OK', $data);
+        //return (new Reg())
+        //    ->where(['iso3166' => 595])
+        //    //->update(['iso3166' => mt_rand(4, 876)]); // TODO: place in seeder
+        //    ->update(['iso3166' => 20]);
     }
 
     //region Original

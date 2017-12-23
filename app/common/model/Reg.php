@@ -116,6 +116,11 @@ class Reg extends Model
 
     //region Type
 
+    const
+        TYPE_EXHIBITOR = 1,
+        TYPE_VISITOR = 2;
+    const TYPE_ADMIN = 3;
+
     private static $mapAttrType = [
         null,
         'exhibitor',
@@ -192,6 +197,30 @@ class Reg extends Model
     public function getStatusAttr($value)
     {
         return self::$mapAttrStatus[$value];
+    }
+
+    //endregion
+
+    //region Category
+
+    public function getCatAttr($value, $data)
+    {
+        if (array_key_exists('type', $data)) {
+            $exCat = Config::get('ex_cat');
+
+            switch ($data['type']) {
+                case self::TYPE_EXHIBITOR:
+                    $value = $exCat[$value - 1];
+                    break;
+                case self::TYPE_VISITOR:
+                    $value = explode(',', $value);
+                    foreach ($value as &$cat) {
+                        $cat = $exCat[$cat - 1];
+                    }
+                    break;
+            }
+        }
+        return $value;
     }
 
     //endregion

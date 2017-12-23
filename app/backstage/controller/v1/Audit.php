@@ -279,7 +279,7 @@ class Audit extends SignedController
      * Get profile of registrant.
      * @param int $id
      * @return \think\Response
-     * @todo
+     * @todo 去掉 password
      */
     public function read($id)
     {
@@ -298,7 +298,9 @@ class Audit extends SignedController
                     break;
             }
 
-            return self::retTemp(self::$scOK, null, $reg->get($id, $relationSet)->toArray());
+            return self::retTemp(self::$scOK, null, $reg->get(function (Query $query) {
+                $query->field(['password'], true);
+            }, $relationSet)->toArray());
         } else {
             return self::retTemp(self::$scNotFound);
         }
