@@ -279,7 +279,6 @@ class Audit extends SignedController
      * Get profile of registrant.
      * @param int $id
      * @return \think\Response
-     * @deprecated
      * @todo
      */
     public function read($id)

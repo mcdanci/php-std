@@ -4,7 +4,7 @@
  * @author <mc@dancis.info>
  */
 return [
-    'auth_forced' => true,
+    'auth_forced' => false,
     'user' => [
         'admin' => [
             'password' => '$2y$08$agid6tB7gaM63awwuBX7zOrUDqWDzsz5ORMTHQl0FOTDLfRpX7Uce',

@@ -20,7 +20,8 @@ abstract class SignedController extends Controller
         parent::_initialize();
         self::setSession();
 
-        if (!Config::get('app_debug') || Config::get('auth_forced')) {
+        // TODO
+        if (!Config::get('app_debug') || Config::get('backstage.auth_forced')) {
             $isAdmin = Session::get('is_admin');
 
             if ($isAdmin === null || !is_numeric($isAdmin) || $isAdmin < time()) {
