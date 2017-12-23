@@ -131,7 +131,9 @@ trait Common
         //http_response_code(404);
         //header('HTTP/1.1 301 Moved Permanently');
 
-        return Response::create($retData, Config::get(RETURN_TYPE_DEFAULT))->code($statusCode);
+        return Response::create($retData, Config::get(RETURN_TYPE_DEFAULT))
+            //->code($statusCode) // TODO
+            ;
     }
 
     //endregion
