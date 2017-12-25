@@ -1,6 +1,7 @@
 <?php
 namespace app\dashboard\controller\v1;
 
+use app\common\model\Booth;
 use app\common\model\Reg;
 use McDanci\ThinkPHP\Config;
 use think\Session;
@@ -81,6 +82,16 @@ class Main extends Controller
         }
 
         return self::retTemp(self::$scForbidden, 'There must be something wrong');
+    }
+
+    /**
+     * @return array|\think\Response
+     * @throws \Exception
+     */
+    public function listBooth()
+    {
+        $booth = new Booth();
+        return self::retTemp(self::$scOK, null, $booth->select());
     }
 
     //endregion

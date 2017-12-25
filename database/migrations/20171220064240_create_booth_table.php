@@ -1,6 +1,7 @@
 <?php
 use think\migration\Migrator;
 use McDanci\ThinkPHP\Phinx;
+use Phinx\Db\Adapter\MysqlAdapter;
 
 class CreateBoothTable extends Migrator
 {
@@ -28,7 +29,18 @@ class CreateBoothTable extends Migrator
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COMMENT => '纵坐标',
             ])
-            ->addColumn('zone', Phinx::COL_TYP_INT)
+            ->addColumn('zone', Phinx::COL_TYP_INT, [
+                Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
+                Phinx::COL_OPT_NULL => false,
+            ])
+            ->addColumn('type', Phinx::COL_TYP_INT, [
+                Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
+                Phinx::COL_OPT_NULL => true,
+            ])
+            ->addColumn('is_courtyard', Phinx::COL_TYP_INT, [
+                Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
+                Phinx::COL_OPT_NULL => true,
+            ])
             ->create();
     }
 }

@@ -7,7 +7,6 @@ namespace app\common\model;
 
 use League\ISO3166\ISO3166;
 use McDanci\ThinkPHP\Config;
-use McDanci\ThinkPHP\Model;
 use traits\model\SoftDelete;
 
 /**
@@ -98,7 +97,7 @@ class Reg extends Model
 
     //endregion
 
-    //region Attr. configuration
+    //region Attribute
 
     //region ISO 3166
 

@@ -5,8 +5,6 @@
  */
 namespace app\common\model;
 
-use think\Model;
-
 /**
  * Member user Who is Registrant been Audit Passed
  * @package app\phase2\model

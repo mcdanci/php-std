@@ -8,7 +8,7 @@ namespace app\common\model;
 use McDanci\ThinkPHP\Config;
 use McDanci\ThinkPHP\Request;
 
-class Common
+class Common extends Model
 {
     const INFO_WELCOME = '<style type="text/css">
 * {padding: 0; margin: 0;}

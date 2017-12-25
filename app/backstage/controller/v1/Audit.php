@@ -226,11 +226,12 @@ class Audit extends SignedController
 
         return self::retTemp(self::$scOK, null, [
             'count' => [
-                'all' => $reg->count(),
+                'all' => $reg->where(true)->count(),
                 'by_role_type' => [
                     'exhibitor' => $reg->where(['type' => $reg::TYPE_EXHIBITOR])->count(),
                     'visitor' => $reg->where(['type' => $reg::TYPE_VISITOR])->count(),
                     'admin' => count(Config::get('backstage.user')),
+                    //'admin_pre' => $reg->where(['type' => $reg::TYPE_ADMIN])->count(), // TODO
                 ],
             ],
         ]);
@@ -238,12 +239,13 @@ class Audit extends SignedController
 
     /**
      * List registrant.
-     * @param null|int $page *optional* 页码
-     * @param null|int $per_page *optional* 每页条目计数最大值
-     *
      * @param null|int $type *optional* `{1: exhibitor, 2: visitor, 3: admin}`
      * @param null|int $status *optional* ` {1: unaudited, 2: audit passed, 3: audit declined}`
      * @param null|string $search *optional*
+     *
+     * ---
+     * @param null|int $page *optional* 页码
+     * @param null|int $per_page *optional* 每页条目计数最大值
      * @todo
      *
      * @return array

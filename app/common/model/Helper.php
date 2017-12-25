@@ -1,8 +1,6 @@
 <?php
 namespace app\common\model;
 
-use think\Model;
-
 class Helper extends Model
 {
     const A_ID_OFFSET = 64;
