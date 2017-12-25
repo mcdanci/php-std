@@ -28,7 +28,9 @@ class BoothSeeder extends Seeder
                             null,
                     ];
 
-                    if ($booth['is_courtyard']) {
+                    if ($zone === 'A') {
+                        $booth['type'] = 2;
+                    } elseif ($booth['is_courtyard']) {
                         $booth['type'] = 1;
                     }
 
