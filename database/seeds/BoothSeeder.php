@@ -3,6 +3,9 @@ use think\migration\Seeder;
 
 class BoothSeeder extends Seeder
 {
+    /**
+     * @todo 覈對 zone 同 id
+     */
     public function run()
     {
         $data = [];
@@ -25,12 +28,17 @@ class BoothSeeder extends Seeder
                             null,
                     ];
 
-                    $data[] = $booth;
+                    if ($booth['is_courtyard']) {
+                        $booth['type'] = 1;
+                    }
+
+                    $data[$booth['id']] = $booth;
                 }
             }
         }
 
         unset($data[458], $data[434]);
+        $data = array_values($data);
 
         $this->insert('booth', $data);
     }

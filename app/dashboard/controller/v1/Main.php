@@ -90,7 +90,7 @@ class Main extends Controller
      * ->**body** `array`
      *
      * ->-> `object` Tuple
-     * 
+     *
      * ->->->**id** `int` Booth ID
      *
      * ->->->**x** `float` 横坐标
