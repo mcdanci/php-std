@@ -380,31 +380,31 @@
       "booth_id": "147",
       "x": 0.3729,
       "y": 0.5879,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "148",
       "x": 0.3856,
       "y": 0.5754,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "149",
       "x": 0.3924,
       "y": 0.5613,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "150",
       "x": 0.3996,
       "y": 0.5463,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "151",
       "x": 0.4009,
       "y": 0.5308,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "152",
@@ -432,13 +432,13 @@
       "booth_id": "156",
       "x": 0.3844,
       "y": 0.5271,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "157",
       "x": 0.3564,
       "y": 0.5846,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "158",
@@ -551,7 +551,7 @@
       "booth_id": "179",
       "x": 0.3737,
       "y": 0.5236,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "180",
@@ -682,13 +682,13 @@
       "booth_id": "204",
       "x": 0.3223,
       "y": 0.5766,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "205",
       "x": 0.3515,
       "y": 0.5178,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "206",
@@ -727,31 +727,31 @@
       "booth_id": "212",
       "x": 0.3338,
       "y": 0.5128,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "213",
       "x": 0.3225,
       "y": 0.5262,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "214",
       "x": 0.3149,
       "y": 0.5404,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "215",
       "x": 0.3079,
       "y": 0.5550,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "216",
       "x": 0.3059,
       "y": 0.5712,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "217",
@@ -1401,31 +1401,31 @@
       "booth_id": "346",
       "x": 0.5511,
       "y": 0.6333,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "347",
       "x": 0.5526,
       "y": 0.6166,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "348",
       "x": 0.5593,
       "y": 0.6028,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "349",
       "x": 0.5668,
       "y": 0.5878,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "350",
       "x": 0.5781,
       "y": 0.5749,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "351",
@@ -1464,13 +1464,13 @@
       "booth_id": "357",
       "x": 0.5956,
       "y": 0.5802,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "358",
       "x": 0.5671,
       "y": 0.6385,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "359",
@@ -1573,7 +1573,7 @@
       "booth_id": "378",
       "x": 0.6063,
       "y": 0.5835,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "379",
@@ -1601,7 +1601,7 @@
       "booth_id": "383",
       "x": 0.6173,
       "y": 0.5865,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "384",
@@ -1693,13 +1693,13 @@
       "booth_id": "401",
       "x": 0.6011,
       "y": 0.6456,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "402",
       "x": 0.6288,
       "y": 0.5885,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "403",
@@ -1738,13 +1738,13 @@
       "booth_id": "409",
       "x": 0.6446,
       "y": 0.5919,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "410",
       "x": 0.6443,
       "y": 0.6085,
-      "iscourtyard": true
+      "is_courtyard": true
     },
     {
       "booth_id": "411",

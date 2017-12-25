@@ -220,6 +220,22 @@ class Audit extends SignedController
 
     //region Main
 
+    public function getOverview()
+    {
+        $reg = new Reg();
+
+        return self::retTemp(self::$scOK, null, [
+            'count' => [
+                'all' => $reg->count(),
+                'by_role_type' => [
+                    'exhibitor' => $reg->where(['type' => $reg::TYPE_EXHIBITOR])->count(),
+                    'visitor' => $reg->where(['type' => $reg::TYPE_VISITOR])->count(),
+                    'admin' => count(Config::get('backstage.user')),
+                ],
+            ],
+        ]);
+    }
+
     /**
      * List registrant.
      * @param null|int $page *optional* 页码

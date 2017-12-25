@@ -20,7 +20,15 @@ class CreateBoothTable extends Migrator
             Phinx::SIGNED => false,
             Phinx::COL_OPT_NULL => true,
         ])
-            ->addColumn('')
+            ->addColumn('x', Phinx::COL_TYP_FLOAT, [
+                Phinx::COL_OPT_NULL => false,
+                Phinx::COMMENT => '横坐标',
+            ])
+            ->addColumn('y', Phinx::COL_TYP_FLOAT, [
+                Phinx::COL_OPT_NULL => false,
+                Phinx::COMMENT => '纵坐标',
+            ])
+            ->addColumn('zone', Phinx::COL_TYP_INT)
             ->create();
     }
 }
