@@ -85,7 +85,25 @@ class Main extends Controller
     }
 
     /**
+     * 列出所有的展位
      * @return array|\think\Response
+     * ->**body** `array`
+     *
+     * ->-> `object` Tuple
+     * 
+     * ->->->**id** `int` Booth ID
+     *
+     * ->->->**x** `float` 横坐标
+     *
+     * ->->->**y** `float` 纵坐标
+     *
+     * ->->->**zone** `string` Booth zone
+     *
+     * ->->->**type** `int` Booth type, {1: blue, 2: yellow}
+     *
+     * ->->->**is_courtyard** `int` Booth ID TODO @deprecated
+     *
+     * ->->->**number** `string` Booth number
      * @throws \Exception
      */
     public function listBooth()
