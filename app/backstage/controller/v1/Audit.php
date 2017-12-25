@@ -316,6 +316,7 @@ class Audit extends SignedController
      */
     public function exportExcel()
     {
+        return [];
     }
 
     //endregion

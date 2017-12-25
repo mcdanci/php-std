@@ -2,6 +2,10 @@
 use McDanci\ThinkPHP\Route;
 use McDanci\ThinkPHP\Config;
 
+Route::rule([
+    'v1/backstage/Audit/exportExcel' => 'backstage/v1.Audit/exportExcel',
+]);
+
 //region Resource
 
 $routeResourceList = [
