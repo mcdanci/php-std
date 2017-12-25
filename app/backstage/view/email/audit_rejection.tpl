@@ -69,16 +69,21 @@
         <td class="c3">
             Please provide the following requested materials: <br/>
             <{*TODO*}>
-            <label for="a">AAA: </label><input id="a" type="text"/><br/>
-            <label for="b">BBB: </label><input id="b" type="text"/><br/>
+            <ul>
+                <{*<label for="a">AAA: </label><input id="a" type="text"/><br/>*}>
+                <{*<label for="b">BBB: </label><input id="b" type="text"/><br/>*}>
+                <{foreach from=$reason item="reason_entry" key="k"}>
+                    <li id="a<{$k + 1}>"><{$k + 1}>: <{$reason_entry}></li>
+                <{/foreach}>
+            </ul>
         </td>
     </tr>
     <tr>
-        <td class="c3">
+    <td class="c3">
             Please email requested material to <a href="mailto:<{$email_reply}>"><{$email_reply}></a> with your name and company name in the subject
             line. <br/>
-            <label for="n">Name: </label><input id="n" type="text"/><br/>
-            <label for="c">Company : </label><input id="c" type="text"/><br/>
+            <label for="n">Name: </label><input id="n" type="text" value="<{$recipient_name_disp}>"/><br/>
+            <label for="c">Company : </label><input id="c" type="text" value="<{$company}>"/><br/>
         </td>
     </tr>
     <tr>

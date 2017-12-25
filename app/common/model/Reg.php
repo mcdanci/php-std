@@ -201,6 +201,30 @@ class Reg extends Model
 
     //endregion
 
+    //region Reason
+
+    /**
+     * @var array
+     * @todo 可見性，繼續封裝
+     */
+    public static $mapAttrReason = [
+        'exhibitor' => [
+            'Your business is not clear to fit the exhibitor profile. Please send relevant document(s) to support your application.'
+        ],
+        'visitor' => [
+            'Unidentified information (Please upload picture of your business card to support our verification).',
+            'The email address domain name does not match company website domain name.',
+            'Please provide additional relevant document(s) if your identity falls under the visitor profile http://www.sourcethefuture.cc/visitorprofile/.',
+        ],
+    ];
+
+    public function getReasonAttr($value)
+    {
+        return $value; // TODO
+    }
+
+    //endregion
+
     //region Category
 
     public function getCatAttr($value, $data)
