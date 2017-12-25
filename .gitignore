@@ -9,6 +9,7 @@
 /www/api/docs/
 
 ## Runtime
+/composer.phar
 /vendor/
 /thinkphp/
 *.log
