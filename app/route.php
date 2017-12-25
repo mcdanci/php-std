@@ -3,6 +3,7 @@ use McDanci\ThinkPHP\Route;
 use McDanci\ThinkPHP\Config;
 
 Route::rule([
+    'v1/backstage/Audit/main' => 'backstage/v1.Audit/main', // TODO: What?
     'v1/backstage/Audit/getOverview' => 'backstage/v1.Audit/getOverview',
     'v1/backstage/Audit/listReason' => 'backstage/v1.Audit/listReason',
     'v1/backstage/Audit/setStatus' => 'backstage/v1.Audit/setStatus',
