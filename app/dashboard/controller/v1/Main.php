@@ -117,6 +117,15 @@ class Main extends Controller
     /**
      * 列出展位选项：类型同区域。
      * @return array|\think\Response
+     * ->**body** `object`
+     *
+     * ->->**type** `array` 展位类型清单
+     *
+     * ->->-> `int:string` 展位类型
+     *
+     * ->->**zone** `array` 展位区域清单
+     *
+     * ->->-> `element` 展位区域
      * @throws \Exception
      */
     public function listBoothOpt()
