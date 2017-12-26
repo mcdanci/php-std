@@ -355,7 +355,7 @@ class Audit extends SignedController
             ) {
             $reg = Reg::get($id);
             if ($reg && in_array($reg['type'], Reg::getRangeType())) { // TODO
-                if ($reg['status'] != Reg::STATUS_UNAUDITED) {
+                if ($reg['status'] != 'unaudited') {
                     $projectName = Config::get('project_info.name') . ' Information';
                     $emailSubject = $projectName . ' Information'; // TODO
                     $recipientNameDisp = $reg->name_first ?:  $reg->name_last ?: 'registrant';

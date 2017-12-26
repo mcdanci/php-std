@@ -98,16 +98,20 @@ class Main extends Controller
     {
         if ($username && $password) {
             $reg = new Reg();
-            $passwordInStorage = $reg->where(['email' => $username])->value('password');
+            $regInfo = $reg->where(['email' => $username])->find('password');
 
-            if ($passwordInStorage &&
-                password_verify($password, $passwordInStorage)
-            ) {
-                self::setSession();
-                Session::set('is_registrant', time() + 3600 * 24 * 7); // 七日
-                Session::set('username', $username);
+            if ($regInfo) {
+                $passwordInStorage = $regInfo['password'];
 
-                return self::retTemp(self::$scOK, 'Signed in successful');
+                if ($passwordInStorage &&
+                    password_verify($password, $passwordInStorage)
+                ) {
+                    self::setSession();
+                    Session::set('is_registrant', time() + 3600 * 24 * 7); // 七日
+                    Session::set('username', $username);
+
+                    return self::retTemp(self::$scOK, 'Signed in successful', ['role_type' => $regInfo['type']]);
+                }
             }
         }
 
