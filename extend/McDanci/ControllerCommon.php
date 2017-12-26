@@ -5,6 +5,8 @@
  */
 namespace McDanci;
 
+use McDanci\ThinkPHP\Request;
+
 /**
  * McDanci's Controller Common
  * @package McDanci
@@ -20,6 +22,7 @@ trait ControllerCommon
      * Cross-domain header
      * @param string $domainName Trusted domain, spec. when limited domain for deployment
      * @link https://icewing.cc/post/about-cross-origin.html#access-control-allow-headers%E7%9A%84%E9%97%AE%E9%A2%98
+     * @todo
      */
     protected static function setHeaders($domainName = '*')
     {
@@ -32,9 +35,29 @@ trait ControllerCommon
         static $PERIOD = 3628800;
 
         header('Access-Control-Allow-Headers: ' . implode(', ', ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Connection', 'User-Agent', 'Cookie', 'Cache-Control'])); // TODO
-        header('Access-Control-Allow-Origin: ' . $domainName);
-        if ($domainName !== '*') {
+
+        if ($domainName === '*') {
+            header('Access-Control-Allow-Origin: ' . $domainName);
+        } else {
             header('Access-Control-Allow-Credentials: true'); // TODO: access 許可?
+
+            // TODO
+            if (is_array($domainName)) {
+                foreach ($domainName as $key=> &$domain) {
+                    if (Request::instance()->server('server_name') == 'localhost') {
+                        header('Access-Control-Allow-Origin: http://' . Request::instance()->server('server_name') . ':8080/');
+                    } else {
+                        header('Access-Control-Allow-Origin: http://' . Request::instance()->server('server_name') . '/');
+                    }
+
+                    //if (mb_strpos(Request::instance()->server('server_name'), $domain)) {
+                    //    //header('Access-Control-Allow-Origin: ' . $domain);
+                    //} else {
+                    //}
+                }
+            } elseif (is_string($domainName)) {
+                header('Access-Control-Allow-Origin: ' . $domainName);
+            }
         }
 
         // TODO: check
