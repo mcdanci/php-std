@@ -121,23 +121,34 @@ class Main extends Controller
      *
      * ->->**type** `array` 展位类型清单
      *
-     * ->->-> `string` 展位类型
+     * ->->-> `object` 展位类型
      *
      * ->->**zone** `array` 展位区域清单
      *
-     * ->->-> `element` 展位区域
+     * ->->-> `string` 展位区域
      * @throws \Exception
      */
     public function listBoothOpt()
     {
         $confBoothType = Config::get('booth_type');
-        foreach ($confBoothType as $key => &$boothType) {
-            $boothType = $boothType['name'];
+        foreach ($confBoothType as $key => &$item) {
+            $item = [
+                'value' => $key,
+                'name' => $item['name'],
+            ];
+        }
+
+        $confBoothZone = Config::get('booth_zone');
+        foreach ($confBoothZone as $key => &$item) {
+            $item = [
+                'value' => $key,
+                'name' => $item,
+            ];
         }
 
         return self::retTemp(self::$scOK, null, [
             'type' => $confBoothType,
-            'zone' => Config::get('booth_zone'),
+            'zone' => $confBoothZone,
         ]);
     }
 
