@@ -121,7 +121,7 @@ class Main extends Controller
      *
      * ->->**type** `array` 展位类型清单
      *
-     * ->->-> `int:string` 展位类型
+     * ->->-> `string` 展位类型
      *
      * ->->**zone** `array` 展位区域清单
      *
