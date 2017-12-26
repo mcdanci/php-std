@@ -123,9 +123,18 @@ class Main extends Controller
      *
      * ->->-> `object` 展位类型
      *
+     * ->->->->**value** `int` 码
+     *
+     * ->->->->**name** `string` 描述
+     *
      * ->->**zone** `array` 展位区域清单
      *
-     * ->->-> `string` 展位区域
+     * ->->-> `object` 展位区域
+     *
+     * ->->->->**value** `int` 码
+     *
+     * ->->->->**name** `string` 描述
+     *
      * @throws \Exception
      */
     public function listBoothOpt()
