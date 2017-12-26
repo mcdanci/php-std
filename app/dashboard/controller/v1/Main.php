@@ -146,7 +146,7 @@ class Main extends Controller
         $confBoothType = Config::get('booth_type');
         foreach ($confBoothType as $key => &$item) {
             $item = [
-                'value' => $key,
+                'value' => $key + 1,
                 'name' => $item['name'],
             ];
         }
@@ -154,7 +154,7 @@ class Main extends Controller
         $confBoothZone = Config::get('booth_zone');
         foreach ($confBoothZone as $key => &$item) {
             $item = [
-                'value' => $key,
+                'value' => $key + 1,
                 'name' => $item,
             ];
         }
