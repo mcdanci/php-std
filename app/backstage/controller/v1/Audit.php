@@ -442,6 +442,10 @@ class Audit extends SignedController
                                     $reason = explode(',', $reason);
                                     if ($reason) {
                                         foreach ($reason as &$reasonEntry) {
+                                            if ($reasonEntry === 'undefined') {
+                                                continue;
+                                            }
+
                                             if (!in_array($reasonEntry, array_keys(Reg::$mapAttrReason['visitor']))) {
                                                 return self::retTemp(self::$scNotFound, 'Param. is not correct');
                                             }

@@ -30,4 +30,5 @@ return [
         'size_opt' => '20*10',
         'price' => 6000,
     ],
+    null => null,
 ];

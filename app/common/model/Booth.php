@@ -1,6 +1,8 @@
 <?php
 namespace app\common\model;
 
+use McDanci\ThinkPHP\Config;
+
 /**
  * Class Booth
  * @package app\common\model
@@ -35,6 +37,41 @@ class Booth extends Model
     }
 
     //endregion
+
+    //region Type
+
+    public function getTypeAttr($value)
+    {
+        $map = Config::get('booth_type');
+
+        if ($this->appendType) {
+            foreach ($map as $key => &$item) {
+                if (!is_null($item)) {
+                    $item['value'] = $key + 1;
+                }
+            }
+        }
+
+        return array_key_exists($value, $map) ? $map[$value] : null;
+    }
+
+    //endregion
+
+    //region Is Courtyard
+
+    private static $mapAttrIsCourtyard = [
+        null => false,
+        1 => true,
+    ];
+
+    public function getIsCourtyardAttr($value)
+    {
+        return self::$mapAttrIsCourtyard[$value];
+    }
+
+    //endregion
+
+    public $appendType = true;
 
     //endregion
 
