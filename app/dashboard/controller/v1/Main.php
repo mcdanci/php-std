@@ -131,9 +131,9 @@ class Main extends Controller
      *
      * ->->->->**name** `string` 描述
      *
-     * ->->**zone** `array` 展位区域清单
+     * ->->**zone** `array` 展区清单
      *
-     * ->->-> `object` 展位区域
+     * ->->-> `object` 展区
      *
      * ->->->->**value** `int` 码
      *
@@ -186,6 +186,8 @@ class Main extends Controller
      *
      * ->->->**number** `string` Booth number
      * @throws \Exception
+     * @deprecated
+     * @todo
      */
     public function listBooth()
     {

@@ -9,6 +9,13 @@ use McDanci\ThinkPHP\Config;
  */
 class Booth extends Model
 {
+    /**
+     * @todo
+     */
+    public function getRangeType()
+    {
+    }
+
     //region Configuration
 
     protected $readonly = [
@@ -77,6 +84,8 @@ class Booth extends Model
 
     //endregion
 
+    //region Common
+
     /**
      * @param null $data
      * @return false|\PDOStatement|string|\think\Collection
@@ -92,4 +101,6 @@ class Booth extends Model
 
         return $resultSet;
     }
+
+    //endregion
 }
