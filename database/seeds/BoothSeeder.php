@@ -3,6 +3,9 @@ use think\migration\Seeder;
 
 class BoothSeeder extends Seeder
 {
+    const TYPE_HE = 4;
+    const TYPE_IA = 5;
+
     /**
      * @todo 覈對 zone 同 id
      */
@@ -21,17 +24,17 @@ class BoothSeeder extends Seeder
                         'y' => (float)$boothJson['y'],
                         'zone' => \app\common\model\Helper::getIdByA($zone),
                         'type' => array_key_exists('type', $boothJson) ?
-                            ($boothJson['type'] == 'blue' ? 1 : null) :
+                            ($boothJson['type'] == 'blue' ? self::TYPE_HE : null) :
                             null,
                         'is_courtyard' => array_key_exists('is_courtyard', $boothJson) ?
-                            ($boothJson['is_courtyard'] ? 1 : null) :
+                            ($boothJson['is_courtyard'] ? self::TYPE_HE : null) :
                             null,
                     ];
 
                     if ($zone === 'A') {
-                        $booth['type'] = 2;
+                        $booth['type'] = self::TYPE_IA;
                     } elseif ($booth['is_courtyard']) {
-                        $booth['type'] = 1;
+                        $booth['type'] = self::TYPE_HE;
                     }
 
                     $data[$booth['id']] = $booth;

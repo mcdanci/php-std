@@ -4,7 +4,6 @@ namespace app\common\model;
 /**
  * Class Booth
  * @package app\common\model
- * @todo 加一个 booth number
  */
 class Booth extends Model
 {
@@ -13,6 +12,8 @@ class Booth extends Model
     protected $readonly = [
         // TODO
     ];
+
+    public $appendNumber = true;
 
     //region Attribute
 
@@ -42,12 +43,11 @@ class Booth extends Model
     /**
      * @param null $data
      * @return false|\PDOStatement|string|\think\Collection
-     * @todo
      */
     public function select($data = null)
     {
         $resultSet = parent::select($data);
-        if ($resultSet) {
+        if ($this->appendNumber && $resultSet) {
             foreach ($resultSet as &$resultTuple) {
                 $resultTuple['number'] = $resultTuple['zone'] . str_pad($resultTuple['id'], 3, 0, STR_PAD_LEFT);
             }

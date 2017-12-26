@@ -1,5 +1,6 @@
 <?php
 /**
+ * Booth type list.
  * @copyright since 10:34 14/12/2017
  * @author <mc@dancis.info>
  */
@@ -25,7 +26,7 @@ return [
         'price' => 2700,
     ],
     [
-        'name' => 'High Exposure Booth', // 'Innovation Avenue Booth'
+        'name' => 'Innovation Avenue Booth',
         'size_opt' => '20*10',
         'price' => 6000,
     ],

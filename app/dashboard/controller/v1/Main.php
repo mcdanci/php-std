@@ -52,6 +52,36 @@ class Main extends Controller
         return view();
     }
 
+    /**
+     * 驗證。
+     * @return array|\think\Response
+     * @throws \Exception
+     * @deprecated
+     * @todo
+     */
+    public function checkBooth()
+    {
+        $dataByZone = [];
+        $range = [
+            'A' => range(1, 28),
+            'B' => range(101, 297),
+            'C' => range(301, 483),
+            'D' => range(501, 539),
+            'E' => range(601, 692),
+            'F' => range(701, 758),
+            'G' => range(801, 849),
+            'H' => range(901, 936),
+        ];
+
+        $booth = new Booth();
+
+        $dataByZone = [
+            $booth->where(['zone' => 1])->column('id'),
+        ];
+
+        return self::retTemp(self::$scOK, null, []);
+    }
+
     //endregion
 
     //region Main
@@ -82,6 +112,24 @@ class Main extends Controller
         }
 
         return self::retTemp(self::$scForbidden, 'There must be something wrong');
+    }
+
+    /**
+     * 列出展位选项：类型同区域。
+     * @return array|\think\Response
+     * @throws \Exception
+     */
+    public function listBoothOpt()
+    {
+        $confBoothType = Config::get('booth_type');
+        foreach ($confBoothType as $key => &$boothType) {
+            $boothType = $boothType['name'];
+        }
+
+        return self::retTemp(self::$scOK, null, [
+            'type' => $confBoothType,
+            'zone' => Config::get('booth_zone'),
+        ]);
     }
 
     /**
