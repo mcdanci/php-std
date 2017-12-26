@@ -16,6 +16,13 @@ class Booth extends Model
     {
     }
 
+    /**
+     * @todo
+     */
+    public function getRangeZone()
+    {
+    }
+
     //region Configuration
 
     protected $readonly = [

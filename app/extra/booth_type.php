@@ -10,11 +10,21 @@ return [
         'name' => 'Standard Booth',
         'size_opt' => '10*10',
         'price' => 2300,
+        'colour' => [
+            'main' => '1456a0',
+            'front' => '0b3f70',
+            'side' => '0b3f70',
+        ],
     ],
     [
         'name' => 'Booth with 1 Corner',
         'size_opt' => '10*10',
         'price' => 2450,
+        'colour' => [
+            'main' => '1456a0',
+            'front' => '0b3f70',
+            'side' => '0b3f70',
+        ],
     ],
     [
         'name' => 'Booth with 2 Corners',

@@ -6,6 +6,7 @@
 namespace app\dashboard\controller\v1;
 
 use app\common\model\Booth;
+use app\common\model\Common;
 use McDanci\ThinkPHP\Request;
 
 class Selection extends SignedController
@@ -53,20 +54,22 @@ class Selection extends SignedController
             'id' => $this->request->param('id/s') ?: null,
         ];
 
-        foreach (array_keys($input) as &$searchItem) {
+        foreach (['type', 'zone'] as &$searchItem) {
             $methodRangeGetterName = 'getRange' . $searchItem;
 
             if ($input[$searchItem] !== null && in_array($input[$searchItem], $booth::$methodRangeGetterName())) {
                 $cond[$searchItem] = $input[$searchItem];
             }
         }
-        if ($input['search'] !== null) {
-            $cond[implode('|', ['email', 'name_first', 'name_last'])] = ['like', '%' . $input['search'] . '%'];
+        if ($input['id'] !== null) {
+            $cond['id'] = $input['id'];
         }
         if (!count($cond)) {
             $cond = true;
         }
 
-        return self::retTemp(self::$scOK, null, $booth->select());
+        $result = $booth->field(true)->where($cond)->paginate(Common::getBRowMax());
+
+        return self::retTemp(self::$scOK, null, $result->toArray());
     }
 }
