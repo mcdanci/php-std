@@ -75,9 +75,10 @@ class Selection extends SignedController
     }
 
     /**
+     * 展位选定。
      * @param null|int $reg_id 登记人 id
-     * @param null|int $type {1: single, 2: multi}
-     * @param null $opt 传入的资料，依 `$type` 而不同
+     * @param null|int $type {1: 最小展位单元, 2: 组合}
+     * @param null $opt 传入的资料，依 `$type` 而不同 TODO
      */
     public function select($reg_id = null, $type = null, $opt = null)
     {
