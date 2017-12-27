@@ -71,7 +71,12 @@ class Selection extends SignedController
 
         $result = $booth->field(true)->where($cond)->paginate(Common::getBRowMax());
 
-        return self::retTemp(self::$scOK, null, $result->toArray());
+        $resultArr = $result->toArray();
+        foreach ($resultArr['data'] as &$booth) {
+            $booth['number'] = $booth['zone'] . str_pad($booth['id'], 3, 0, STR_PAD_LEFT);
+        }
+
+        return self::retTemp(self::$scOK, null, $resultArr);
     }
 
     /**

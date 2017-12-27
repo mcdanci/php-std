@@ -111,5 +111,17 @@ class Booth extends Model
         return $resultSet;
     }
 
+    /**
+     * @param null $listRows
+     * @param bool $simple
+     * @param array $config
+     * @return \think\Paginator
+     * @todo
+     */
+    public function paginate($listRows = null, $simple = false, $config = [])
+    {
+        return parent::paginate($listRows, $simple, $config);
+    }
+
     //endregion
 }
