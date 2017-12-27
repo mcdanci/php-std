@@ -16,6 +16,30 @@ class Order extends SignedController
      */
     public function uploadBillFlow()
     {
+        $file = request()->file('img_file');
+
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        if($file){
+            $info = $file->move(ROOT_PATH . 'runtime' . DS . 'temp');
+            if($info){
+                echo $info->getExtension();
+                echo $info->getSaveName();
+                echo $info->getFilename();
+                return self::retTemp(self::$scOK, null, [
+                    $info->getExtension(),
+                    $info->getSaveName(),
+                    $info->getFilename()
+                ]);
+            }else{
+                return self::retTemp(self::$scOK, null, [
+                    $file->getError(),
+                    //'info' => $info,
+                    //$_FILES['bill_water'],
+                    //$_FILES,
+                    //'info' => is_uploaded_file($_FILES['bill_water']),
+                ]);
+            }
+        }
         ///* PUT data comes in on the stdin stream */
         //$putdata = fopen("php://stdin", "r");
         //
@@ -38,12 +62,6 @@ class Order extends SignedController
         //    $info = "Possible file upload attack: ";
         //    $info .= "filename '". $_FILES['userfile']['tmp_name'] . "'.";
         //}
-
-        return self::retTemp(self::$scOK, null, [
-            //'info' => $info,
-            //$_FILES['bill_water'],
-            //$_FILES,
-            //'info' => is_uploaded_file($_FILES['bill_water']),
-        ]);
+        return self::retTemp(self::$scNotFound, null, []);
     }
 }
