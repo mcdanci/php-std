@@ -11,7 +11,7 @@ use app\common\model\Reg;
 class Account extends SignedController
 {
     /**
-     * 改密码
+     * 修改密码。
      * @param null $id
      * @param null $password_original
      * @param null $password_new
@@ -29,11 +29,11 @@ class Account extends SignedController
             if (password_verify($password_original, $regInfo['password'])) {
                 $result = $reg->update(['password' => Common::encryptPassword($password_new)], ['id' => $id]);
                 if ($result) {
-                    return self::retTemp(self::$scOK);
+                    return self::retTemp();
                 }
             }
         }
 
-        return self::retTemp(self::$scOK, 'Something wrong');
+        return self::retTemp(self::$scNotFound, 'Something wrong');
     }
 }
