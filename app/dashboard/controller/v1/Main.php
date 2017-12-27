@@ -99,8 +99,8 @@ class Main extends Controller
     {
         if ($username && $password) {
             $reg = new Reg();
-            $regInfo = $reg->where(['email' => $username])->find('password');
-
+            $regInfo = $reg->where(['email' => $username])->find();
+            
             if ($regInfo) {
                 $passwordInStorage = $regInfo['password'];
 
