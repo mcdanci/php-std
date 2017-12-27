@@ -7,6 +7,7 @@ namespace app\dashboard\controller\v1;
 
 use app\common\model\Common;
 use app\common\model\Reg;
+use think\db\Query;
 use think\Session;
 
 class Account extends SignedController
@@ -38,7 +39,7 @@ class Account extends SignedController
                     }
 
                     return self::retTemp(self::$scOK, null, $reg->get(function (Query $query) {
-                        $query->field(['password'], true)->where(['id' => $this->request->param('id')]); // TODO
+                        $query->field(['password'], true)->where(['id' => Session::get('reg_id')]); // TODO
                     }, $relationSet)->toArray());
                 }
             }
