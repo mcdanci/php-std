@@ -111,7 +111,13 @@ class Main extends Controller
                     Session::set('is_registrant', time() + 3600 * 24 * 7); // 七日
                     Session::set('username', $username);
 
-                    return self::retTemp(self::$scOK, 'Signed in successful', ['role_type' => $regInfo['type']]);
+                    return self::retTemp(self::$scOK, 'Signed in successful', [
+                        'role_type' => $regInfo['type'],
+                        'reg' => [
+                            'id' => $regInfo['id'],
+                            'role_type' => $regInfo['type'],
+                        ],
+                    ]);
                 }
             }
         }

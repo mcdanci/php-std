@@ -8,6 +8,7 @@ namespace app\dashboard\controller\v1;
 use app\common\model\Booth;
 use app\common\model\Common;
 use McDanci\ThinkPHP\Request;
+use think\Db;
 
 class Selection extends SignedController
 {
@@ -71,5 +72,24 @@ class Selection extends SignedController
         $result = $booth->field(true)->where($cond)->paginate(Common::getBRowMax());
 
         return self::retTemp(self::$scOK, null, $result->toArray());
+    }
+
+    /**
+     * @param null|int $regId 登记人 id
+     * @param null|int $type {1: single, 2: multi}
+     * @param null $opt
+     */
+    public function select($regId = null, $type = null, $opt = null)
+    {
+        $data = ['reg_id' => $regId, 'type' => $type, 'opt' => $opt];
+        return self::retTemp(self::$scOK, null, [
+            'result' => Db::name('debug')->insert([
+                'k' => 'booth_selection',
+                'body' => json_encode($data),
+            ]),
+            'original' => [
+                'data' => $data,
+            ]
+        ]);
     }
 }
