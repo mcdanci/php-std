@@ -93,6 +93,7 @@ class Main extends Controller
      * @return \think\Response|array
      * ->**status** `int` 200 for successful, or 404 far failure.
      * @throws \Exception
+     * @todo status = 2 @ where
      */
     public function signIn($username = null, $password = null)
     {
@@ -115,7 +116,7 @@ class Main extends Controller
             }
         }
 
-        return self::retTemp(self::$scForbidden, 'There must be something wrong');
+        return self::retTemp(self::$scNotFound, 'There must be something wrong');
     }
 
     /**
@@ -145,7 +146,9 @@ class Main extends Controller
     {
         $confBoothType = Config::get('booth_type');
         foreach ($confBoothType as $key => &$item) {
-            if ($item !== null) {
+            if ($item === null) {
+                unset($confBoothType[$key]);
+            } else {
                 $item = [
                     'value' => $key + 1,
                     'name' => $item['name'],
