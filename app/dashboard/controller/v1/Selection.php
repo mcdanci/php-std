@@ -56,10 +56,10 @@ class Selection extends SignedController
         ];
 
         foreach (['type', 'zone'] as &$searchItem) {
-            $methodRangeGetterName = 'getRange' . $searchItem;
+            $methodRangeGetterName = 'getRange' . ucfirst($searchItem);
 
             if ($input[$searchItem] !== null && in_array($input[$searchItem], $booth::$methodRangeGetterName())) {
-                $cond[$searchItem] = $input[$searchItem];
+                $cond[$searchItem] = ($searchItem == 'type') ? $input[$searchItem] - 1 : $input[$searchItem];
             }
         }
         if ($input['id'] !== null) {

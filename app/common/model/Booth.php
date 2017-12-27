@@ -12,15 +12,17 @@ class Booth extends Model
     /**
      * @todo
      */
-    public function getRangeType()
+    public static function getRangeType()
     {
+        return range(1, 5);
     }
 
     /**
      * @todo
      */
-    public function getRangeZone()
+    public static function getRangeZone()
     {
+        return range(1, 8);
     }
 
     //region Configuration
