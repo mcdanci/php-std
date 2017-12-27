@@ -5,34 +5,27 @@
  */
 namespace app\dashboard\controller\v1;
 
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use think\Session;
-
 class Order extends SignedController
 {
     /**
+     * 上传水单。
      * @return array|\think\Response
      * @throws \Exception
      */
     public function uploadBillFlow()
     {
-        $file = request()->file('img_file');
+        $imgFile = request()->file('img_file');
 
-        // 移动到框架应用根目录/public/uploads/ 目录下
-        if($file){
-            $info = $file->move(ROOT_PATH . 'runtime' . DS . 'temp');
-            if($info){
-                echo $info->getExtension();
-                echo $info->getSaveName();
-                echo $info->getFilename();
+        if ($imgFile) {
+            $imgFile = $imgFile->move(RUNTIME_PATH . 'file_upload');
+
+            if ($imgFile) {
                 return self::retTemp(self::$scOK, null, [
-                    $info->getExtension(),
-                    $info->getSaveName(),
-                    $info->getFilename()
+                    $imgFile->getSaveName(),
                 ]);
-            }else{
+            } else {
                 return self::retTemp(self::$scOK, null, [
-                    $file->getError(),
+                    $imgFile->getError(),
                     //'info' => $info,
                     //$_FILES['bill_water'],
                     //$_FILES,
