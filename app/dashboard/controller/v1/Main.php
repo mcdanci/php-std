@@ -118,13 +118,14 @@ class Main extends Controller
                             'role_type' => $regInfo['type'],
                         ],
                     ]);
-                } else { // TODO
-                    (new \app\backstage\controller\v1\Main)->signIn($username, $password);
                 }
+            } else {
+                // TODO: for admin
+                return (new \app\backstage\controller\v1\Main)->signIn($username, $password);
             }
         }
 
-        return self::retTemp(self::$scNotFound, 'There must be something wrong', [$regInfo]);
+        return self::retTemp(self::$scNotFound, 'There must be something wrong');
     }
 
     /**

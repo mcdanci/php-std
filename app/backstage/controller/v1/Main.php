@@ -157,7 +157,7 @@ class Main extends Controller
             Session::set('is_admin', time() + 3600 * 24 * 7); // 七日
             Session::set('username', $username);
 
-            return self::retTemp(self::$scOK, 'Signed in successful');
+            return self::retTemp(self::$scOK, 'Signed in successful', ['role_type' => 'admin']);
         } else {
             return self::retTemp(self::$scNotFound, 'There must be something wrong');
         }
