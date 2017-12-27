@@ -108,6 +108,7 @@ class Main extends Controller
                     password_verify($password, $passwordInStorage)
                 ) {
                     self::setSession();
+                    Session::set('reg_id', $regInfo['id']);
                     Session::set('is_registrant', time() + 3600 * 24 * 7); // 七日
                     Session::set('username', $username);
 
