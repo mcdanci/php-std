@@ -87,9 +87,8 @@ class Selection extends SignedController
                 'k' => 'booth_selection',
                 'body' => json_encode($data),
             ]),
-            'original' => [
-                'data' => $data,
-            ]
+            'original_data' => $data,
+            'original_opt' => json_decode($data['opt']),
         ]);
     }
 }
