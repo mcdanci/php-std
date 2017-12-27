@@ -100,7 +100,7 @@ class Main extends Controller
         if ($username && $password) {
             $reg = new Reg();
             $regInfo = $reg->where(['email' => $username])->find();
-            
+
             if ($regInfo) {
                 $passwordInStorage = $regInfo['password'];
 
@@ -118,11 +118,13 @@ class Main extends Controller
                             'role_type' => $regInfo['type'],
                         ],
                     ]);
+                } else { // TODO
+                    (new \app\backstage\controller\v1\Main)->signIn($username, $password);
                 }
             }
         }
 
-        return self::retTemp(self::$scNotFound, 'There must be something wrong');
+        return self::retTemp(self::$scNotFound, 'There must be something wrong', [$regInfo]);
     }
 
     /**
