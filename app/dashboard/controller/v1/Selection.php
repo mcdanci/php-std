@@ -77,7 +77,7 @@ class Selection extends SignedController
     /**
      * @param null|int $reg_id 登记人 id
      * @param null|int $type {1: single, 2: multi}
-     * @param null $opt
+     * @param null $opt 传入的资料，依 `$type` 而不同
      */
     public function select($reg_id = null, $type = null, $opt = null)
     {
