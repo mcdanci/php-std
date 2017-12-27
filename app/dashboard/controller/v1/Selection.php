@@ -75,13 +75,13 @@ class Selection extends SignedController
     }
 
     /**
-     * @param null|int $regId 登记人 id
+     * @param null|int $reg_id 登记人 id
      * @param null|int $type {1: single, 2: multi}
      * @param null $opt
      */
-    public function select($regId = null, $type = null, $opt = null)
+    public function select($reg_id = null, $type = null, $opt = null)
     {
-        $data = ['reg_id' => $regId, 'type' => $type, 'opt' => $opt];
+        $data = ['reg_id' => $reg_id, 'type' => $type, 'opt' => $opt];
         return self::retTemp(self::$scOK, null, [
             'result' => Db::name('debug')->insert([
                 'k' => 'booth_selection',
