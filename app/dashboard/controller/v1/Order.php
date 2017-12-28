@@ -77,7 +77,7 @@ class Order extends SignedController
     {
         return self::retTemp(self::$scOK, null, [
             //Request::instance()->server('HTTP_ORIGIN'),
-            $_SERVER['HTTP_ORIGIN'],
+            $_SERVER['REMOTE_HOST'],
         ]);
     }
 }
