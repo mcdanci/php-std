@@ -38,7 +38,11 @@ abstract class Controller extends \think\Controller
         if (false) { // TODO
             $headerOrigin = in_array($headerOriginData, $headerOriginAllowedList) ? $headerOriginData : $headerOrigin;
         } else {
-            $headerOrigin = $headerOriginData ?: $headerOrigin;
+            if (true) {
+                $headerOrigin = $headerOriginData;
+            } else {
+                $headerOrigin = $headerOriginData ?: $headerOrigin;
+            }
         }
 
         self::setHeaders($headerOrigin);
