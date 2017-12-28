@@ -70,4 +70,11 @@ class Order extends SignedController
             ]);
         return self::retTemp(self::$scOK, null, [$order->save()]);
     }
+
+    public function debug()
+    {
+        return self::retTemp(self::$scOK, null, [
+            $this->request->host()
+        ]);
+    }
 }
