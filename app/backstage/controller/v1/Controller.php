@@ -46,7 +46,8 @@ abstract class Controller extends \think\Controller
         }
 
         self::setHeaders($headerOrigin);
+        //self::setHeaders('dfdsafdsafdsaf');
         //self::setHeaders(['http://localhost:8080', 'http://test.ershaoyes.com/', 'http://127.0.0.1']); // TODO: for debug
-        self::setHeaders(); // TODO: for debug
+        //self::setHeaders(); // TODO: for debug
     }
 }
