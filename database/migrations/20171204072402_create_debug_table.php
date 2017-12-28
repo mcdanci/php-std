@@ -22,6 +22,7 @@ class CreateDebugTable extends Migrator
     {
         $this->table('debug', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
+
             Phinx::SIGNED => false,
         ])
             ->addColumn('k', Phinx::COL_TYP_STRING, [

@@ -15,6 +15,7 @@ class CreateBoothTable extends Migrator
     {
         $this->table('booth', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
+
             Phinx::ID => false,
             Phinx::KEY_PRIMARY => self::KEY_PRIMARY,
         ])->addColumn(self::KEY_PRIMARY, Phinx::COL_TYP_INT, [

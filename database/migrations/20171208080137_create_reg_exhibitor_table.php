@@ -15,6 +15,7 @@ class CreateRegExhibitorTable extends Migrator
         $this->table('reg_exhibitor', [
             Phinx::TABLE_COLLATION => Phinx::TABLE_COLLATION_U8MG,
             Phinx::COMMENT => 'Registrant information of exhibitor',
+
             Phinx::ID => false,
             Phinx::KEY_PRIMARY => self::KEY_PRIMARY,
         ])->addColumn(self::KEY_PRIMARY, Phinx::COL_TYP_INT, [

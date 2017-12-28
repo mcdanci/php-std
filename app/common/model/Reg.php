@@ -22,7 +22,6 @@ class Reg extends Model
 
     protected
         $autoWriteTimestamp = 'datetime',
-        $createTime = 'created',
         $updateTime = false,
         $deleteTime = 'deleted';
 

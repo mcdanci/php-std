@@ -15,4 +15,15 @@ namespace McDanci\ThinkPHP;
 class Model extends \think\Model
 {
     const ORDER_ASC = 'asc', ORDER_DESC = 'desc';
+
+    const TIME_CREATED = '';
+    const TIME_UPDATED = '';
+    const TIME_UPDATE = '';
+
+    /**
+     * @var string Field for time
+     */
+    protected
+        $createTime = 'created',
+        $updateTime = 'updated';
 }
