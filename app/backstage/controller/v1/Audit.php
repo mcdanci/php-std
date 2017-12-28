@@ -346,6 +346,7 @@ class Audit extends SignedController
      * @param null|int|string $reason 当且仅当拒绝时：exhibitor 传入单个值，visitor 传入逗号分隔的不少于一个值；值域系 \app\backstage\controller\v1\Audit::listReason 中对应角色所有的 keys
      * @return array|\think\Response
      * @throws \Exception
+     * @todo 順帶生成 order
      */
     public function setStatus($id = null, $status = null, $reason = null)
     {
