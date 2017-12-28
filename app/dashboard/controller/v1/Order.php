@@ -5,8 +5,6 @@
  */
 namespace app\dashboard\controller\v1;
 
-use think\Request;
-
 class Order extends SignedController
 {
     /**
@@ -71,13 +69,5 @@ class Order extends SignedController
             'reg_id' => 11,
             ]);
         return self::retTemp(self::$scOK, null, [$order->save()]);
-    }
-
-    public function debug()
-    {
-        return self::retTemp(self::$scOK, null, [
-            //Request::instance()->server('HTTP_ORIGIN'),
-            Request::instance()->header('origin')
-        ]);
     }
 }
