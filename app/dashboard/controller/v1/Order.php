@@ -5,6 +5,8 @@
  */
 namespace app\dashboard\controller\v1;
 
+use think\Request;
+
 class Order extends SignedController
 {
     /**
@@ -74,7 +76,8 @@ class Order extends SignedController
     public function debug()
     {
         return self::retTemp(self::$scOK, null, [
-            $this->request->host()
+            //Request::instance()->server('HTTP_ORIGIN'),
+            $_SERVER['HTTP_ORIGIN'],
         ]);
     }
 }
