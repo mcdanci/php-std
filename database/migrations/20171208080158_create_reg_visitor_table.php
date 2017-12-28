@@ -21,7 +21,6 @@ class CreateRegVisitorTable extends Migrator
             Phinx::KEY_PRIMARY => self::KEY_PRIMARY,
         ])->addColumn(self::KEY_PRIMARY, Phinx::COL_TYP_INT, [
             Phinx::SIGNED => false,
-            Phinx::COL_OPT_NULL => true,
         ])
             ->addColumn('job_function', Phinx::COL_TYP_STRING, [
                 Phinx::COL_OPT_LIMIT => 255,

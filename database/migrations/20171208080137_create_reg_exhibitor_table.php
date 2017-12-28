@@ -20,7 +20,6 @@ class CreateRegExhibitorTable extends Migrator
             Phinx::KEY_PRIMARY => self::KEY_PRIMARY,
         ])->addColumn(self::KEY_PRIMARY, Phinx::COL_TYP_INT, [
             Phinx::SIGNED => false,
-            Phinx::COL_OPT_NULL => true,
         ])
             ->addColumn('c_opf', Phinx::COL_TYP_TEXT, [
                 Phinx::COL_OPT_NULL => false,
