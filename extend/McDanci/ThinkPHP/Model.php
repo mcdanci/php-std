@@ -20,6 +20,13 @@ class Model extends \think\Model
     const TIME_UPDATED = '';
     const TIME_UPDATE = '';
 
+    const DATETIME = 'datetime';
+
+    /**
+     * @todo
+     */
+    const FORMAT_MYSQL_DATETIME = 'Y-m-d H:i:s';
+
     /**
      * @var string Field for time
      */

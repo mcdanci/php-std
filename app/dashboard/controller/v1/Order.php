@@ -57,4 +57,17 @@ class Order extends SignedController
         //}
         return self::retTemp(self::$scNotFound, null, []);
     }
+
+    /**
+     * @todo image file
+     */
+    public function setOrder()
+    {
+        $order = new \app\common\model\Order([
+            'amount' => 0.01,
+            'bank_account_name' => 'BOC 1234 4321',
+            'reg_id' => 11,
+            ]);
+        return self::retTemp(self::$scOK, null, [$order->save()]);
+    }
 }

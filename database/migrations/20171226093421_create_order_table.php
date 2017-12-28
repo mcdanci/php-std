@@ -7,7 +7,6 @@ class CreateOrderTable extends Migrator
     /**
      * Create table of order.
      * @todo Set `id(10)` into `unsigned`
-     * @todo 自动跑 15 分钟过期
      */
     public function change()
     {
@@ -39,10 +38,11 @@ class CreateOrderTable extends Migrator
                 Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Status {0: invalid, 1: unpaid, 2: receipt uploaded}',
             ])
-            ->addColumn('amount', Phinx::COL_TYP_FLOAT, [
+            ->addColumn('amount', Phinx::COL_TYP_DECIMAL, [
+                Phinx::COL_OPT_PRECISION => 10,
+                Phinx::COL_OPT_SCALE => 2,
                 Phinx::COMMENT => '交易额',
             ]) // TODO: 可忽略？
-
             ->addIndex('reg_id')
             ->create();
     }

@@ -17,7 +17,7 @@ class BoothSeeder extends Seeder
         ];
 
         $data = [];
-        $json = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'BoothOriginal.json');
+        $json = file_get_contents(__DIR__ . DS . 'BoothOriginal.json');
         $json = json_decode($json, true);
 
         foreach ($json as $zone => &$zoneData) {
