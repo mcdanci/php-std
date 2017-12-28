@@ -33,15 +33,15 @@ abstract class Controller extends \think\Controller
             'https://web.s-show.fmnii.e13.cc',
         ]; // Diff by environment
 
-        $headerOriginData = Request::instance()->header('Origin');
+        $requestHeaderOrigin = Request::instance()->header('Origin');
 
-        if (false) { // TODO
-            $headerOrigin = in_array($headerOriginData, $headerOriginAllowedList) ? $headerOriginData : $headerOrigin;
+        if (true) { // TODO
+            $headerOrigin = in_array($requestHeaderOrigin, $headerOriginAllowedList) ? $requestHeaderOrigin : $headerOrigin;
         } else {
             if (true) {
-                $headerOrigin = $headerOriginData;
+                $headerOrigin = $requestHeaderOrigin;
             } else {
-                $headerOrigin = $headerOriginData ?: $headerOrigin;
+                $headerOrigin = $requestHeaderOrigin ?: $headerOrigin;
             }
         }
 
