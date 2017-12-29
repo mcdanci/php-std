@@ -5,6 +5,7 @@
  */
 namespace app\backstage\controller\v1;
 
+use McDanci\ThinkPHP\Config;
 use McDanci\ThinkPHP\Request;
 //use think\controller\Rest; // TODO
 
@@ -17,6 +18,9 @@ abstract class Controller extends \think\Controller
         \Fmnii\Controller\Common,
         \McDanci\ControllerCommon;
 
+    /**
+     * @todo
+     */
     protected function _initialize()
     {
         parent::_initialize();
@@ -24,14 +28,11 @@ abstract class Controller extends \think\Controller
         // TODO: for debug
 
         $headerOrigin = '*';
-        $headerOriginAllowedList = [
-            // Development
-            'http://localhost:8080',
-            'http://test.ershaoyes.com',
 
-            // Production
-            'https://web.s-show.fmnii.e13.cc',
-        ]; // Diff by environment
+        /**
+         * @var array Diff by environment
+         */
+        $headerOriginAllowedList = Config::get('origin_allowed');
 
         $requestHeaderOrigin = Request::instance()->header('Origin');
 
