@@ -18,6 +18,8 @@ class Reg extends Model
 {
     use SoftDelete;
 
+    const AGREEMENT_UNREAD = 1, AGREEMENT_READ = 2;
+
     //region Configuration
 
     protected

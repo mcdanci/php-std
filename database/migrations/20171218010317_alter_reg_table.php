@@ -1,6 +1,7 @@
 <?php
 use think\migration\Migrator;
 use McDanci\ThinkPHP\Phinx;
+use Phinx\Db\Adapter\MysqlAdapter;
 
 class AlterRegTable extends Migrator
 {
@@ -12,8 +13,8 @@ class AlterRegTable extends Migrator
     public function change()
     {
         $this->table('reg')
-            ->addColumn('status', \McDanci\ThinkPHP\Phinx::COL_TYP_INT, [
-                Phinx::COL_OPT_LIMIT => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY,
+            ->addColumn('status', Phinx::COL_TYP_INT, [
+                Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 1,
                 Phinx::COMMENT => 'Status {1: unaudited, 2: audit passed, 3: audit declined}',

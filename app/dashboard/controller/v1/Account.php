@@ -10,6 +10,11 @@ use app\common\model\Reg;
 use think\db\Query;
 use think\Session;
 
+/**
+ * Class Account
+ * @package app\dashboard\controller\v1
+ * @todo 将 id 相关的换成 $this->regId
+ */
 class Account extends SignedController
 {
     /**
@@ -20,7 +25,7 @@ class Account extends SignedController
      */
     public function main()
     {
-        $id = Session::get('reg_id');
+        $id = $this->regId;
 
         if ($id) {
             if (is_numeric($id)) {
@@ -57,7 +62,7 @@ class Account extends SignedController
      */
     public function modPassword($password_original = null, $password_new = null)
     {
-        $id = Session::get('reg_id');
+        $id = $this->regId;
 
         if ($id) {
             $reg = new Reg();

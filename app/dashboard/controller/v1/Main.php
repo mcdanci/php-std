@@ -117,6 +117,7 @@ class Main extends Controller
                         'reg' => [
                             'id' => $regInfo['id'],
                             'role_type' => $regInfo['type'],
+                            'agreement' => $regInfo['agreement'],
                         ],
                     ]);
                 }
