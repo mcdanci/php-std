@@ -5,12 +5,17 @@
  */
 namespace app\dashboard\controller\v1;
 
+use app\common\model\Reg;
+use app\common\model\Storage;
+
 class Order extends SignedController
 {
     /**
      * 上传水单。
+     * $param resource $img_file 水单图
      * @return array|\think\Response
      * @throws \Exception
+     * @todo 文件輸出方法
      */
     public function uploadBillFlow()
     {
@@ -18,14 +23,30 @@ class Order extends SignedController
             $imgFile = request()->file('img_file');
 
             if ($imgFile) {
-                $imgFile = $imgFile->move(RUNTIME_PATH . 'file_upload');
+                $imgFile = $imgFile
+                    /**
+                     * - 30 MiB
+                     */
+                    ->validate([
+                        'size' => 30 * pow(2, 10 * 2),
+                        'ext' => ['jpg', 'png', 'gif', 'bmp', 'svg', 'tiff'], /** @todo */
+                    ])->rule('md5')
+                    ->move(RUNTIME_PATH . 'file_upload');
 
                 if ($imgFile) {
-                    return self::retTemp(self::$scOK, null, [
-                        $imgFile->getSaveName(),
+                    $key = $imgFile->getSaveName();
+                    $storage = new Storage([
+                        'key' => $key,
+                        'file_ref' => $key,
+                        'o_filename' => '',
                     ]);
+                    if ($storage->save()) {
+                        return self::retTemp(self::$scOK, null, [
+                            $imgFile->getSaveName(),
+                        ]);
+                    }
                 } else {
-                    return self::retTemp(self::$scOK, null, [
+                    return self::retTemp(self::$scNotFound, null, [
                         $imgFile->getError(),
                         //'info' => $info,
                         //$_FILES['bill_water'],
@@ -59,6 +80,28 @@ class Order extends SignedController
         //    $info .= "filename '". $_FILES['userfile']['tmp_name'] . "'.";
         //}
         return self::retTemp(self::$scNotFound, null, []);
+    }
+
+    /**
+     * @param $key
+     * @return array|\think\Response
+     * @throws \Exception
+     */
+    public function deleteBillFlow($key = null)
+    {
+        if ($key) {
+            $storage = Storage::get(['key' => $key]);
+
+            if ($storage) {
+                $result = $storage->delete();
+
+                if ($result) {
+                    return self::retTemp(self::$scOK, null, [$result]);
+                }
+            }
+        }
+
+        return self::retTemp(self::$scNotFound);
     }
 
     /**

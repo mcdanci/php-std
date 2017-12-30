@@ -20,7 +20,8 @@ class Order extends Model
         $deleteTime = 'deleted';
 
     /**
-     * @var array @todo
+     * @var array
+     * @todo
      */
     protected $auto = [];
     protected $update = [];
