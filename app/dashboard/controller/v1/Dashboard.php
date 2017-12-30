@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @copyright since 13:56 29/12/2017
  * @author <mc@dancis.info>
@@ -12,6 +11,7 @@ class Dashboard extends SignedController
 {
     /**
      * @return array|\think\Response
+     * @todo data limitation should be made in data model
      */
     public function readAgreement()
     {

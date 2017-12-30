@@ -15,6 +15,8 @@ class CreateStorageTable extends Migrator
             ->addColumn(Phinx::CREATED, Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => false])
             ->addColumn(Phinx::UPDATED, Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
             ->addColumn(Phinx::DELETED, Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
+
+            ->addColumn('') // TODO 调研 STORAGE object
             ->create();
     }
 }

@@ -14,25 +14,28 @@ class Order extends SignedController
      */
     public function uploadBillFlow()
     {
-        $imgFile = request()->file('img_file');
-
-        if ($imgFile) {
-            $imgFile = $imgFile->move(RUNTIME_PATH . 'file_upload');
+        if ($this->regId) {
+            $imgFile = request()->file('img_file');
 
             if ($imgFile) {
-                return self::retTemp(self::$scOK, null, [
-                    $imgFile->getSaveName(),
-                ]);
-            } else {
-                return self::retTemp(self::$scOK, null, [
-                    $imgFile->getError(),
-                    //'info' => $info,
-                    //$_FILES['bill_water'],
-                    //$_FILES,
-                    //'info' => is_uploaded_file($_FILES['bill_water']),
-                ]);
+                $imgFile = $imgFile->move(RUNTIME_PATH . 'file_upload');
+
+                if ($imgFile) {
+                    return self::retTemp(self::$scOK, null, [
+                        $imgFile->getSaveName(),
+                    ]);
+                } else {
+                    return self::retTemp(self::$scOK, null, [
+                        $imgFile->getError(),
+                        //'info' => $info,
+                        //$_FILES['bill_water'],
+                        //$_FILES,
+                        //'info' => is_uploaded_file($_FILES['bill_water']),
+                    ]);
+                }
             }
         }
+
         ///* PUT data comes in on the stdin stream */
         //$putdata = fopen("php://stdin", "r");
         //

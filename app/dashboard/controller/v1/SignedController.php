@@ -21,6 +21,6 @@ abstract class SignedController extends \app\backstage\controller\v1\SignedContr
         $regId = Session::get('reg_id');
         if ($regId) {
             $this->regId = Session::get('reg_id');
-        }
+        } // TODO: else denied
     }
 }

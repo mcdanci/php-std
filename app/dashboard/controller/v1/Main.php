@@ -82,6 +82,26 @@ class Main extends Controller
         return self::retTemp(self::$scOK, null, []);
     }
 
+    /**
+     * @todo
+     */
+    private function debug2()
+    {
+        /**
+         * @var array 初始化一个可选清单
+         */
+        $listOptional = [];
+
+        /**
+         * @var array 初始化一个已经选定的清单
+         */
+        $boothSelected = [];
+
+        $booth = [3, 4];
+
+        $boothSelected[] = $boothSelected;
+    }
+
     //endregion
 
     //region Main
