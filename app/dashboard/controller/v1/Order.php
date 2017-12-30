@@ -5,8 +5,7 @@
  */
 namespace app\dashboard\controller\v1;
 
-use app\common\model\Reg;
-use app\common\model\Storage;
+use app\common\model;
 
 class Order extends SignedController
 {
@@ -14,8 +13,10 @@ class Order extends SignedController
      * 上传水单。
      * $param resource $img_file 水单图
      * @return array|\think\Response
+     *
      * @throws \Exception
      * @todo 文件輸出方法
+     * @todo return doc
      */
     public function uploadBillFlow()
     {
@@ -35,14 +36,14 @@ class Order extends SignedController
 
                 if ($imgFile) {
                     $key = $imgFile->getSaveName();
-                    $storage = new Storage([
+                    $storage = new model\Storage([
                         'key' => $key,
                         'file_ref' => $key,
-                        'o_filename' => '',
+                        //'o_filename' => '', // TODO
                     ]);
                     if ($storage->save()) {
                         return self::retTemp(self::$scOK, null, [
-                            $imgFile->getSaveName(),
+                            'key' => $key,
                         ]);
                     }
                 } else {
@@ -90,7 +91,7 @@ class Order extends SignedController
     public function deleteBillFlow($key = null)
     {
         if ($key) {
-            $storage = Storage::get(['key' => $key]);
+            $storage = model\Storage::get(['key' => $key]);
 
             if ($storage) {
                 $result = $storage->delete();
@@ -105,15 +106,29 @@ class Order extends SignedController
     }
 
     /**
-     * @todo image file
+     * @return array|\think\Response
+     * @throws \Exception
+     * @todo read image file
      */
-    public function setOrder()
+    public function setOrder($key)
     {
-        $order = new \app\common\model\Order([
-            'amount' => 0.01,
-            'bank_account_name' => 'BOC 1234 4321',
-            'reg_id' => 11,
-            ]);
-        return self::retTemp(self::$scOK, null, [$order->save()]);
+        $order = model\Order::get([
+            'reg_id' => $this->regId,
+        ]);
+
+        if ($order) {
+            //$order = new model\Order([
+            //    'amount' => 0.01,
+            //    'bank_account_name' => 'BOC 1234 4321',
+            //    'reg_id' => 11,
+            //]);
+
+            $order->receipt_img_file = $key;
+            if ($order->save()) {
+                return self::retTemp(self::$scOK, null, ['key' => $order->save()]);
+            }
+        }
+
+        return self::retTemp(self::$scNotFound);
     }
 }
