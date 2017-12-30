@@ -6,9 +6,13 @@
 namespace app\dashboard\controller\v1;
 
 use app\common\model;
+use think\File;
+use think\Response;
 
 class Order extends SignedController
 {
+    const DIR_UPLOAD = RUNTIME_PATH . 'file_upload';
+
     /**
      * 上传水单。
      * $param resource $img_file 水单图
@@ -84,6 +88,7 @@ class Order extends SignedController
     }
 
     /**
+     * 删除水单资源。
      * @param $key
      * @return array|\think\Response
      * @throws \Exception
@@ -106,26 +111,62 @@ class Order extends SignedController
     }
 
     /**
+     * @return Response|\think\response\Json|\think\response\Jsonp|\think\response\Redirect|\think\response\View|\think\response\Xml
+     * @throws \Exception
+     * @todo
+     */
+    public function readFileBillFlow()
+    {
+        if ($this->regId) {
+            $order = model\Order::get(['reg_id' => $this->regId]);
+
+            if ($order) {
+                $storage = model\Storage::get(['storage']);
+                if ($storage) {
+                    $key = $storage->key;
+                    if ($key) {
+                        $file = new File(self::DIR_UPLOAD . DS . $key);
+
+                        if (file_exists($file)) {
+                            header('Content-Length: ' . $file->getSize());
+                            readfile($file);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        /**
+         * @todo
+         */
+        return Response::create(self::retTemp(self::$scNotFound), 'json', self::$scNotFound);
+    }
+
+    /**
+     * 水单登记。
      * @return array|\think\Response
      * @throws \Exception
-     * @todo read image file
      */
-    public function setOrder($key)
+    public function setOrder($receipt_img_file = null)
     {
-        $order = model\Order::get([
-            'reg_id' => $this->regId,
-        ]);
+        if ($receipt_img_file) {
+            $order = model\Order::get([
+                'reg_id' => $this->regId,
+            ]);
 
-        if ($order) {
-            //$order = new model\Order([
-            //    'amount' => 0.01,
-            //    'bank_account_name' => 'BOC 1234 4321',
-            //    'reg_id' => 11,
-            //]);
+            if ($order) {
+                // TODO
+                //$order = new model\Order([
+                //    'amount' => 0.01,
+                //    'bank_account_name' => 'BOC 1234 4321',
+                //    'reg_id' => 11,
+                //]);
 
-            $order->receipt_img_file = $key;
-            if ($order->save()) {
-                return self::retTemp(self::$scOK, null, ['key' => $order->save()]);
+                $order->receipt_img_file = $receipt_img_file;
+                if ($order->save()) {
+                    return self::retTemp(self::$scOK, null, ['key' => $order->save()]);
+                }
             }
         }
 
