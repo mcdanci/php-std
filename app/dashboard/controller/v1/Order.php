@@ -6,6 +6,7 @@
 namespace app\dashboard\controller\v1;
 
 use app\common\model;
+use McDanci\ThinkPHP\Config;
 use think\File;
 use think\Response;
 
@@ -31,46 +32,49 @@ class Order extends SignedController
      */
     public function uploadBillFlow($reg_id = null)
     {
-        if (!$this->regId && $reg_id) {
-            $this->regId = $reg_id;
+        if (!$this->regId) {
+            if ($reg_id) {
+                $this->regId = $reg_id;
+            } else {
+                return self::retTemp(self::$scNotFound, Config::get('msg_dashboard.reg_id_empty'));
+            }
         }
 
-        if ($this->regId) {
-            $imgFile = request()->file('img_file');
+
+        $imgFile = request()->file('img_file');
+
+        if ($imgFile) {
+            $imgFile = $imgFile
+                /**
+                 * - 30 MiB
+                 */
+                ->validate([
+                    'size' => 30 * pow(2, 10 * 2),
+                    'ext' => ['jpg', 'png', 'gif', 'bmp', 'svg', 'tiff'], /** @todo */
+                ])
+                ->rule('md5')
+                ->move(RUNTIME_PATH . 'file_upload');
 
             if ($imgFile) {
-                $imgFile = $imgFile
-                    /**
-                     * - 30 MiB
-                     */
-                    ->validate([
-                        'size' => 30 * pow(2, 10 * 2),
-                        'ext' => ['jpg', 'png', 'gif', 'bmp', 'svg', 'tiff'], /** @todo */
-                    ])
-                    ->rule('md5')
-                    ->move(RUNTIME_PATH . 'file_upload');
-
-                if ($imgFile) {
-                    $key = $imgFile->getSaveName();
-                    $storage = new model\Storage([
+                $key = $imgFile->getSaveName();
+                $storage = new model\Storage([
+                    'key' => $key,
+                    'file_ref' => $key,
+                    //'o_filename' => '', // TODO
+                ]);
+                if ($storage->save()) {
+                    return self::retTemp(self::$scOK, null, [
                         'key' => $key,
-                        'file_ref' => $key,
-                        //'o_filename' => '', // TODO
-                    ]);
-                    if ($storage->save()) {
-                        return self::retTemp(self::$scOK, null, [
-                            'key' => $key,
-                        ]);
-                    }
-                } else {
-                    return self::retTemp(self::$scNotFound, null, [
-                        $imgFile->getError(),
-                        //'info' => $info,
-                        //$_FILES['bill_water'],
-                        //$_FILES,
-                        //'info' => is_uploaded_file($_FILES['bill_water']),
                     ]);
                 }
+            } else {
+                return self::retTemp(self::$scNotFound, null, [
+                    $imgFile->getError(),
+                    //'info' => $info,
+                    //$_FILES['bill_water'],
+                    //$_FILES,
+                    //'info' => is_uploaded_file($_FILES['bill_water']),
+                ]);
             }
         }
 
@@ -135,59 +139,105 @@ class Order extends SignedController
         if ($this->regId) {
             $order = model\Order::get(['reg_id' => $this->regId]);
 
-            if ($order) {
-                $storage = model\Storage::get(['storage']);
+            if ($order && array_key_exists('receipt_img_file', $order->getData())) {
+                $storage = model\Storage::get(['key' => $order['receipt_img_file']]);
                 if ($storage) {
-                    $key = $storage->key;
-                    if ($key) {
-                        $file = new File(self::DIR_UPLOAD . DS . $key);
+                    $file_ref = $storage->file_ref;
+                    if ($file_ref) {
+                        $fileName = self::DIR_UPLOAD . DS . $file_ref;
 
-                        if (file_exists($file)) {
+                        $file = new File($fileName);
+
+                        if ($file->isFile()) {
                             header('Content-Length: ' . $file->getSize());
-                            readfile($file);
+                            readfile($fileName);
+                            return null;
+                        } else {
+                            return self::retTemp(self::$scNotFound, 4);
                         }
+                    } else {
+                        return self::retTemp(self::$scNotFound, 3);
                     }
+                } else {
+                    return self::retTemp(self::$scNotFound, 2);
                 }
 
+            } else {
+                return self::retTemp(self::$scNotFound, 1);
             }
         }
 
         /**
          * @todo
          */
-        return Response::create(self::retTemp(self::$scNotFound), 'json', self::$scNotFound);
+        return Response::create(self::retTemp(self::$scNotFound, 0), 'json', self::$scNotFound);
     }
 
     //endregion
 
+    //region Order confirmation
+
+    /**
+     * Variable checker for string.
+     * @param $string
+     * @param string $varName
+     * @return bool|string
+     */
+    protected static function checkInputString(&$string, $varName = null)
+    {
+        if (is_string($string) && strlen($string)) {
+            return true;
+        } else {
+            throw new \Exception(ucfirst(is_string($varName) ? $varName : 'Variable') . ' is missing');
+        }
+    }
+
     /**
      * Set bank receipt.
-     * @param null $receipt_img_file
+     * @param null|string $receipt_img_file Receipt image file
+     * @param null|string $bank_account_name Bank account name
      * @return array|\think\Response
      * @throws \Exception
      */
-    public function setOrder($receipt_img_file = null)
+    public function setOrder($receipt_img_file = null, $bank_account_name = null)
     {
-        if ($receipt_img_file) {
-            $order = model\Order::get([
-                'reg_id' => $this->regId,
-            ]);
+        try {
+            self::checkInputString($receipt_img_file, 'receipt image file');
+            self::checkInputString($bank_account_name, 'bank account name');
+        } catch (\Exception $exception) {
+            return self::retTemp(self::$scOK, $exception->getMessage());
+        }
+
+        if (is_string($receipt_img_file) && strlen($receipt_img_file)) {
+            $order = model\Order::get(['reg_id' => $this->regId]);
 
             if ($order) {
-                // TODO
-                //$order = new model\Order([
-                //    'amount' => 0.01,
-                //    'bank_account_name' => 'BOC 1234 4321',
-                //    'reg_id' => 11,
-                //]);
+                if ($order['status'] == $order::STATUS_UNPAID) {
+                    $input['status'] = $order::STATUS_RECEIPT_UPLOADED;
+                    // TODO: could be opt by checking storage
 
-                $order->receipt_img_file = $receipt_img_file;
-                if ($order->save()) {
-                    return self::retTemp(self::$scOK, null, ['key' => $order->save()]);
+                    $result = $order->save([
+                        'status' => $order::STATUS_RECEIPT_UPLOADED,
+                        'receipt_img_file' => $receipt_img_file,
+                        'bank_account_name' => $bank_account_name,
+                    ]);
+
+                    if ($result) {
+                        return self::retTemp(self::$scOK, null, ['key' => $order->save()]);
+                    }
+                } else {
+                    return self::retTemp(
+                        self::$scNotFound,
+                        'Order is not in correct status for this action'
+                    );
                 }
+            } else {
+                return self::retTemp(self::$scNotFound, 'No order existence');
             }
         }
 
         return self::retTemp(self::$scNotFound);
     }
+
+    //endregion
 }

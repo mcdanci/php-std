@@ -106,7 +106,7 @@ class Selection extends SignedController
                 //    self::$formatMySQLDatetime,
                 //    time() + 60 * Config::get('exhibitor_pay_deadline_in_min')
                 //),
-                'amount' => 0.01,
+                'amount' => 0.01, // TODO
             ];
 
             $order = new model\Order($data);
