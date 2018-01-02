@@ -16,14 +16,19 @@ class Order extends SignedController
     /**
      * 上传水单。
      * $param resource $img_file 水单图
+     * @param null| $reg_id registrant ID *optional*
      * @return array|\think\Response
-     *
      * @throws \Exception
      * @todo 文件輸出方法
      * @todo return doc
+     * @todo $reg_id not safe
      */
-    public function uploadBillFlow()
+    public function uploadBillFlow($reg_id = null)
     {
+        if (!$this->regId && $reg_id) {
+            $this->regId = $reg_id;
+        }
+
         if ($this->regId) {
             $imgFile = request()->file('img_file');
 
@@ -32,11 +37,11 @@ class Order extends SignedController
                     /**
                      * - 30 MiB
                      */
-                    //->validate([
-                    //    'size' => 30 * pow(2, 10 * 2),
-                    //    'ext' => ['jpg', 'png', 'gif', 'bmp', 'svg', 'tiff'], /** @todo */
-                    //])
-                    //->rule('md5')
+                    ->validate([
+                        'size' => 30 * pow(2, 10 * 2),
+                        'ext' => ['jpg', 'png', 'gif', 'bmp', 'svg', 'tiff'], /** @todo */
+                    ])
+                    ->rule('md5')
                     ->move(RUNTIME_PATH . 'file_upload');
 
                 if ($imgFile) {
