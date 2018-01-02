@@ -16,7 +16,67 @@ class Order extends SignedController
 
     const DIR_UPLOAD = RUNTIME_PATH . 'file_upload';
 
+    /**
+     * @var null|model\Order
+     */
+    private $order;
+
     //endregion
+
+    /**
+     * Set bank account name.
+     * @param null $bank_account_name
+     * @return array|Response
+     */
+    public function setBankAccountName($bank_account_name = null)
+    {
+        try {
+            self::checkInputString($bank_account_name, 'bank account name');
+        } catch (\Exception $exception) {
+            return self::retTemp(self::$scNotFound, $exception->getMessage());
+        }
+
+        $this->order = model\Order::get(['reg_id' => $this->regId]);
+
+        if ($this->order) {
+            $data = $this->order->toArray();
+            if (
+                array_key_exists('bank_account_name', $data) &&
+                !$data['bank_account_name']
+            ) {
+                $result = $this->order->save(['bank_account_name' => $bank_account_name]);
+
+                if ($result) {
+                    return self::retTemp(self::$scOK, $this->order->bank_account_name);
+                }
+            }
+        }
+
+        return self::retTemp(self::$scNotFound);
+    }
+
+    /**
+     * On checkout.
+     * @return array|Response
+     * @todo amount total
+     * @todo booth type
+     * @todo booth size (ordered booth count)
+     * @todo booth zone
+     * @todo bank account name
+     * @todo booth number (list)
+     */
+    public function getOrderInfo()
+    {
+        if ($this->regId) {
+            $this->order = model\Order::get(['reg_id' => $this->regId]);
+
+            if ($this->order) {
+                return self::retTemp(self::$scOK, null, $this->order->toArray());
+            }
+        }
+
+        return self::retTemp(self::$scNotFound);
+    }
 
     //region Bank receipt
 

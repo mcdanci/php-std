@@ -6,6 +6,7 @@ use traits\model\SoftDelete;
 /**
  * Model Order
  * @package app\common\model
+ * @property null|string $bank_account_name Bank account name TODO
  * @todo create with pay_deadline for exhibitor
  * @todo if exhibitor then 自动跑，15 分钟过期？
  */
