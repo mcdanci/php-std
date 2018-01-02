@@ -85,7 +85,9 @@ class Order extends SignedController
         //    $info = "Possible file upload attack: ";
         //    $info .= "filename '". $_FILES['userfile']['tmp_name'] . "'.";
         //}
-        return self::retTemp(self::$scNotFound, null, []);
+        return self::retTemp(self::$scNotFound, null, [
+            $this->regId,
+        ]);
     }
 
     /**
