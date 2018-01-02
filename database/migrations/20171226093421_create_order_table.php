@@ -20,6 +20,7 @@ class CreateOrderTable extends Migrator
             ->addColumn(Phinx::DELETED, Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => true])
 
             ->addColumn('reg_id', Phinx::COL_TYP_INT, [
+                Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => false,
             ])
             ->addColumn('receipt_img_file', Phinx::COL_TYP_STRING, [

@@ -16,7 +16,7 @@ trait ControllerCommon
     /**
      * @var string Format for MySQL DATATIME
      */
-    private static $formatMySQLDatetime = 'Y-m-d H:i:s';
+    protected static $formatMySQLDatetime = 'Y-m-d H:i:s';
 
     /**
      * Cross-domain header

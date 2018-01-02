@@ -7,8 +7,11 @@ namespace app\dashboard\controller\v1;
 
 use app\common\model\Booth;
 use app\common\model\Common;
+use McDanci\ThinkPHP\Config;
 use McDanci\ThinkPHP\Request;
 use think\Db;
+use app\common\model;
+use function time;
 
 class Selection extends SignedController
 {
@@ -81,20 +84,53 @@ class Selection extends SignedController
 
     /**
      * 展位选定。
-     * @param null|int $reg_id 登记人 id
-     * @param null|int $type {1: 最小展位单元, 2: 组合}
-     * @param null $opt 传入的资料，依 `$type` 而不同 TODO
+     * @param null|int $reg_id 登记人 ID *optional*
+     * @param null|int $type 类型 {1: 单个最小展位单元选定, 2: 多个最小展位单元组合选定}
+     * @param null|string $opt 传入的资料，依 `$type` 而不同 TODO
+     * @return array|\think\Response
+     * @todo $reg_id
      */
     public function select($reg_id = null, $type = null, $opt = null)
     {
-        $data = ['reg_id' => $reg_id, 'type' => $type, 'opt' => $opt];
-        return self::retTemp(self::$scOK, null, [
-            'result' => Db::name('debug')->insert([
-                'k' => 'booth_selection',
-                'body' => json_encode($data),
-            ]),
-            'original_data' => $data,
-            'original_opt' => json_decode($data['opt']),
-        ]);
+        $this->regId = $this->regId ?: $reg_id;
+        if (!$this->regId) {
+            return self::retTemp(self::$scNotFound, 'Registrant ID could not be empty');
+        }
+
+        if ($order = model\Order::get(['reg_id' => $this->regId])) {
+            // TODO: update?
+        } else {
+            $data = [
+                'reg_id' => $this->regId,
+                //'exhibitor_pay_deadline' => date(
+                //    self::$formatMySQLDatetime,
+                //    time() + 60 * Config::get('exhibitor_pay_deadline_in_min')
+                //),
+                'amount' => 0.01,
+            ];
+
+            $order = new model\Order($data);
+            $order->isExhibitor = true;
+            $result = $order->save();
+
+            if ($result) {
+                Db::name('debug')->insert([
+                    'k' => 'booth_selection',
+                    'body' => json_encode($data),
+                ]); // TODO
+                return self::retTemp(self::$scOK, null, [
+                    'result' => $result,
+                    'data_original' => $data,
+                    ]);
+            } else {
+                return self::retTemp(self::$scNotFound, null, [
+                    'data' => $data,
+                    'opt' => json_decode(htmlspecialchars_decode($opt), true) ?: [], // TODO, together
+                    'type' => $type, // TODO
+                ]);
+            }
+        }
+
+        return self::retTemp(self::$scNotFound);
     }
 }

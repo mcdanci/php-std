@@ -11,7 +11,13 @@ use think\Response;
 
 class Order extends SignedController
 {
+    //region Common
+
     const DIR_UPLOAD = RUNTIME_PATH . 'file_upload';
+
+    //endregion
+
+    //region Bank receipt
 
     /**
      * 上传水单。
@@ -152,8 +158,11 @@ class Order extends SignedController
         return Response::create(self::retTemp(self::$scNotFound), 'json', self::$scNotFound);
     }
 
+    //endregion
+
     /**
-     * 水单登记。
+     * Set bank receipt.
+     * @param null $receipt_img_file
      * @return array|\think\Response
      * @throws \Exception
      */
