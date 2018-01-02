@@ -34,7 +34,7 @@ class Order extends SignedController
                      */
                     ->validate([
                         'size' => 30 * pow(2, 10 * 2),
-                        'ext' => ['jpg', 'png', 'gif', 'bmp', 'svg', 'tiff'], /** @todo */
+                        //'ext' => ['jpg', 'png', 'gif', 'bmp', 'svg', 'tiff'], /** @todo */
                     ])->rule('md5')
                     ->move(RUNTIME_PATH . 'file_upload');
 
