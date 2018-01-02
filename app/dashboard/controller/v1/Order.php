@@ -23,9 +23,11 @@ class Order extends SignedController
 
     //endregion
 
+    //region Checkout
+
     /**
      * Set bank account name.
-     * @param null $bank_account_name
+     * @param null|string $bank_account_name Bank account name
      * @return array|Response
      */
     public function setBankAccountName($bank_account_name = null)
@@ -78,7 +80,9 @@ class Order extends SignedController
         return self::retTemp(self::$scNotFound);
     }
 
-    //region Bank receipt
+    //endregion
+
+    //region Direct bank transfer
 
     /**
      * 上传水单。
@@ -255,15 +259,13 @@ class Order extends SignedController
     /**
      * Set bank receipt.
      * @param null|string $receipt_img_file Receipt image file
-     * @param null|string $bank_account_name Bank account name
      * @return array|\think\Response
      * @throws \Exception
      */
-    public function setOrder($receipt_img_file = null, $bank_account_name = null)
+    public function setOrder($receipt_img_file = null)
     {
         try {
             self::checkInputString($receipt_img_file, 'receipt image file');
-            self::checkInputString($bank_account_name, 'bank account name');
         } catch (\Exception $exception) {
             return self::retTemp(self::$scOK, $exception->getMessage());
         }
@@ -279,7 +281,6 @@ class Order extends SignedController
                     $result = $order->save([
                         'status' => $order::STATUS_RECEIPT_UPLOADED,
                         'receipt_img_file' => $receipt_img_file,
-                        'bank_account_name' => $bank_account_name,
                     ]);
 
                     if ($result) {
