@@ -42,14 +42,15 @@ class Order extends SignedController
 
         if ($this->order) {
             $data = $this->order->toArray();
-            if (
-                array_key_exists('bank_account_name', $data) &&
-                !$data['bank_account_name']
-            ) {
-                $result = $this->order->save(['bank_account_name' => $bank_account_name]);
+            if (array_key_exists('bank_account_name', $data)) {
+                if ($data['bank_account_name']) {
+                    return self::retTemp(self::$scNotFound, 'Bank account name already been set');
+                } else {
+                    $result = $this->order->save(['bank_account_name' => $bank_account_name]);
 
-                if ($result) {
-                    return self::retTemp(self::$scOK, $this->order->bank_account_name);
+                    if ($result) {
+                        return self::retTemp(self::$scOK, $this->order->bank_account_name);
+                    }
                 }
             }
         }

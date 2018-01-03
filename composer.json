@@ -31,6 +31,9 @@
     "topthink/think-helper": "^1.0",
     "mcdanci/ucpaas": "^0.4.1"
   },
+  "require-dev": {
+    "phpdocumentor/phpdocumentor": "2.*"
+  },
   "extra": {
     "think-path": "thinkphp"
   },
