@@ -86,6 +86,15 @@ class Order extends SignedController
     //region Direct bank transfer
 
     /**
+     * Get information of direct bank transfer instruction.
+     * @return array|Response
+     */
+    public function getDBTInfo()
+    {
+        return self::retTemp(self::$scOK, null, Config::get('dbt_info'));
+    }
+
+    /**
      * 上传水单。
      * $param resource $img_file 水单图
      * @param null| $reg_id registrant ID *optional*
