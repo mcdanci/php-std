@@ -51,4 +51,20 @@ abstract class Controller extends \think\Controller
         //self::setHeaders(['http://localhost:8080', 'http://test.ershaoyes.com/', 'http://127.0.0.1']); // TODO: for debug
         //self::setHeaders(); // TODO: for debug
     }
+
+    /**
+     * Variable checker for string.
+     * @param $string
+     * @param string $varName
+     * @return bool|string
+     * @todo 是否不必要于 TP5 中
+     */
+    protected static function checkInputString(&$string, $varName = null)
+    {
+        if (is_string($string) && strlen($string)) {
+            return true;
+        } else {
+            throw new \RuntimeException(ucfirst(is_string($varName) ? $varName : 'Variable') . ' is missing');
+        }
+    }
 }

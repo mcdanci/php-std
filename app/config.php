@@ -56,4 +56,6 @@ return [
     'name' => $PROJECT_INFO['name'] . ' app server',
 
     'default_filter' => 'trim',
+
+    'exhibitor_pay_deadline_in_min' => 30,
 ];

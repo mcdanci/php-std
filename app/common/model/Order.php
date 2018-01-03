@@ -1,6 +1,7 @@
 <?php
 namespace app\common\model;
 
+use McDanci\ThinkPHP\Config;
 use traits\model\SoftDelete;
 
 /**
@@ -8,7 +9,6 @@ use traits\model\SoftDelete;
  * @package app\common\model
  * @property null|string $bank_account_name Bank account name TODO
  * @todo create with pay_deadline for exhibitor
- * @todo if exhibitor then 自动跑，15 分钟过期？
  */
 class Order extends Model
 {
@@ -56,6 +56,11 @@ class Order extends Model
         return $this->hasMany('OrderExhibitorBooth');
     }
 
+    public function orderVisitor()
+    {
+        return $this->hasOne('OrderVisitor');
+    }
+
     //endregion
 
     /**
@@ -65,7 +70,7 @@ class Order extends Model
     public function setExhibitorPayDeadlineAttr($value)
     {
         if ($this->isExhibitor) {
-            $value = date(self::FORMAT_MYSQL_DATETIME, time() + 60 * 15);
+            $value = date(self::FORMAT_MYSQL_DATETIME, time() + 60 * Config::get('exhibitor_pay_deadline_in_min'));
         }
 
         return $value;

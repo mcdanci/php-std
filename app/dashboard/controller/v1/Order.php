@@ -19,7 +19,7 @@ class Order extends SignedController
     /**
      * @var null|model\Order
      */
-    private $order;
+    protected $order;
 
     //endregion
 
@@ -34,7 +34,7 @@ class Order extends SignedController
     {
         try {
             self::checkInputString($bank_account_name, 'bank account name');
-        } catch (\Exception $exception) {
+        } catch (\RuntimeException $exception) {
             return self::retTemp(self::$scNotFound, $exception->getMessage());
         }
 
@@ -252,21 +252,6 @@ class Order extends SignedController
     //region Order confirmation
 
     /**
-     * Variable checker for string.
-     * @param $string
-     * @param string $varName
-     * @return bool|string
-     */
-    protected static function checkInputString(&$string, $varName = null)
-    {
-        if (is_string($string) && strlen($string)) {
-            return true;
-        } else {
-            throw new \Exception(ucfirst(is_string($varName) ? $varName : 'Variable') . ' is missing');
-        }
-    }
-
-    /**
      * Set bank receipt.
      * @param null|string $receipt_img_file Receipt image file
      * @return array|\think\Response
@@ -276,7 +261,7 @@ class Order extends SignedController
     {
         try {
             self::checkInputString($receipt_img_file, 'receipt image file');
-        } catch (\Exception $exception) {
+        } catch (\RuntimeException $exception) {
             return self::retTemp(self::$scOK, $exception->getMessage());
         }
 

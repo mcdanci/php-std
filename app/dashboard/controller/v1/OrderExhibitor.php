@@ -5,6 +5,11 @@
  */
 namespace app\dashboard\controller\v1;
 
+/**
+ * Class OrderExhibitor
+ * @package app\dashboard\controller\v1
+ * @todo
+ */
 class OrderExhibitor extends Order
 {
 }
