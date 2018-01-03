@@ -116,7 +116,7 @@ class Selection extends SignedController
             if ($result) {
                 Db::name('debug')->insert([
                     'k' => 'booth_selection',
-                    'body' => json_encode($data),
+                    'body' => json_encode(array_merge($data, ['created' => self::datetimeNow()])),
                 ]); // TODO
                 return self::retTemp(self::$scOK, null, [
                     'result' => $result,
