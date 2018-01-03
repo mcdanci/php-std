@@ -39,4 +39,13 @@ class OrderVisitor extends Model
     }
 
     //endregion
+
+    //region Relation
+
+    public function tableOrder()
+    {
+        return $this->belongsTo('Order');
+    }
+
+    //endregion
 }

@@ -26,7 +26,7 @@ class OrderVisitor extends Order
     /**
      * Place order with bank account name & ticket type (for limitation of entry fee).
      * @param null|string $bank_account_name
-     * @param null $ticket_type
+     * @param null|int $ticket_type {1: single, 2: both}
      * @return array|\think\Response
      */
     public function checkout($bank_account_name = null, $ticket_type = null)
@@ -52,8 +52,8 @@ class OrderVisitor extends Order
                 ];
 
                 $order = new model\Order($data);
-                //$order-> // TODO
-                $result = $order->save();
+                $order->orderVisitor = ['ticket_type' => $ticket_type];
+                $result = $order->together('orderVisitor')->save();
 
                 if ($result) {
                     Db::name('debug')->insert([
