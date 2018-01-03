@@ -14,6 +14,8 @@ class Order extends SignedController
 {
     //region Common
 
+    const TIP_ACCESS_VISITOR = 'Visitor access only';
+
     const DIR_UPLOAD = RUNTIME_PATH . 'file_upload';
 
     /**
