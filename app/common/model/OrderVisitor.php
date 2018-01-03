@@ -14,9 +14,12 @@ class OrderVisitor extends Model
         TICKET_TYPE_SINGLE = 1,
         TICKET_TYPE_BOTH = 2;
 
-    private static $mapAttrTicketType = [
-        self::TICKET_TYPE_SINGLE => 'single',
-        self::TICKET_TYPE_BOTH => 'both',
+    public static $mapAttrTicketType = [
+        // TODO
+        //self::TICKET_TYPE_SINGLE => 'single',
+        //self::TICKET_TYPE_BOTH => 'both',
+        self::TICKET_TYPE_SINGLE => 'per day',
+        self::TICKET_TYPE_BOTH => 'two days',
     ];
 
     public static function getRangeTicketType()

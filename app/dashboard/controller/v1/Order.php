@@ -93,7 +93,7 @@ class Order extends SignedController
      */
     public function getDBTInfo()
     {
-        return self::retTemp(self::$scOK, null, Config::get('dbt_info'));
+        return self::retTemp(self::$scOK, null, ['info' => Config::get('dbt_info')]);
     }
 
     /**

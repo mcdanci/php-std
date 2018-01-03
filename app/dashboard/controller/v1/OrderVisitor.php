@@ -97,4 +97,22 @@ class OrderVisitor extends Order
     }
 
     //endregion
+
+    public function getOrderDesc()
+    {
+        if ($this->order = model\Order::get(['reg_id' => $this->regId], 'orderVisitor')) {
+            $result = $this->order->toArray();
+
+            // TODO: to be opt
+            if ($result &&
+                array_key_exists('order_visitor', $result)
+            ) {
+                $result['order_visitor']['ticket_type_desc'] = model\OrderVisitor::$mapAttrTicketType[$result['order_visitor']['ticket_type']];
+            }
+
+            return self::retTemp(self::$scOK, null, $result);
+        } else {
+            return self::retTemp(self::$scNotFound);
+        }
+    }
 }
