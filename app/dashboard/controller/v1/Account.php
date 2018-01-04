@@ -7,6 +7,7 @@ namespace app\dashboard\controller\v1;
 
 use app\common\model\Common;
 use app\common\model\Reg;
+use think\Db;
 use think\db\Query;
 use think\Session;
 
@@ -17,6 +18,8 @@ use think\Session;
  */
 class Account extends SignedController
 {
+    protected $reg;
+
     /**
      * Get profile of registrant.
      * @return array|\think\Response
@@ -62,18 +65,34 @@ class Account extends SignedController
      */
     public function modPassword($password_original = null, $password_new = null)
     {
-        $id = $this->regId;
-
-        if ($id) {
-            $reg = new Reg();
+        if ($password_original &&
+            $password_new &&
+            $this->reg = Reg::get($this->regId)
+        ) {
+            /**
+             * @var int Registrant ID
+             * @deprecated
+             */
+            $id = $this->regId;
 
             if ($password_original &&
-                $password_new &&
-                $regInfo = $reg->find($id)
+                $password_new
             ) {
+                $regInfo = $this->reg->toArray();
+
                 if (password_verify($password_original, $regInfo['password'])) {
-                    $result = $reg->update(['password' => Common::encryptPassword($password_new)], ['id' => $id]);
+                    //$result = $this->reg->update(['password' => Common::encryptPassword($password_new)], $id); // TODO: ?
+                    $result = $this->reg->update(['password' => Common::encryptPassword($password_new)], ['id' => $id]);
                     if ($result) {
+                        Db::name('debug')->insert([
+                            'k' => 'passwd_mod',
+                            'body' => json_encode([
+                                'reg_id' => $this->regId,
+                                'password_original' => $password_original,
+                                'password_new' => $password_new,
+                                'created' => self::datetimeNow(),
+                            ]),
+                        ]);
                         return self::retTemp();
                     }
                 }
