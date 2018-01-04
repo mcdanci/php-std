@@ -89,6 +89,8 @@ class Account extends SignedController
                             'body' => json_encode([
                                 'reg_id' => $this->regId,
                                 'password_original' => $password_original,
+                                'r_o' => $regInfo['password'],
+                                'r_current' => $this->reg->password,
                                 'password_new' => $password_new,
                                 'created' => self::datetimeNow(),
                             ]),
