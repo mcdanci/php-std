@@ -82,7 +82,7 @@ class Account extends SignedController
 
                 if (password_verify($password_original, $regInfo['password'])) {
                     //$result = $this->reg->update(['password' => Common::encryptPassword($password_new)], $id); // TODO: ?
-                    $result = $this->reg->update(['password' => Common::encryptPassword($password_new)], ['id' => $id]);
+                    $result = $this->reg->save(['password' => Common::encryptPassword($password_new)]);
                     if ($result) {
                         Db::name('debug')->insert([
                             'k' => 'passwd_mod',
@@ -93,6 +93,7 @@ class Account extends SignedController
                                 'created' => self::datetimeNow(),
                             ]),
                         ]);
+                        \session(null);
                         return self::retTemp();
                     }
                 }
