@@ -96,8 +96,6 @@ class OrderVisitor extends Order
         return self::retTemp(self::$scNotFound);
     }
 
-    //endregion
-
     /**
      * Get order description.
      * @return array|Response
@@ -123,4 +121,63 @@ class OrderVisitor extends Order
             return self::retTemp(self::$scNotFound);
         }
     }
+
+    /**
+     * Upload bank receipt.
+     * @see \app\dashboard\controller\v1\Order::uploadBillFlow
+     */
+    public function uploadBillFlow($reg_id = null)
+    {
+        return parent::uploadBillFlow($reg_id);
+    }
+
+    //endregion
+
+    //region Order confirmation
+
+    /**
+     * Set order with bank receipt.
+     * @param null|string $receipt_img_file Receipt image file
+     * @return array|\think\Response
+     * @throws \Exception
+     */
+    public function setOrder($receipt_img_file = null)
+    {
+        try {
+            self::checkInputString($receipt_img_file, 'receipt image file');
+        } catch (\RuntimeException $exception) {
+            return self::retTemp(self::$scOK, $exception->getMessage());
+        }
+
+        if (is_string($receipt_img_file) && strlen($receipt_img_file)) {
+            $order = model\Order::get(['reg_id' => $this->regId]);
+
+            if ($order) {
+                if ($order['status'] == $order::STATUS_UNPAID) {
+                    $input['status'] = $order::STATUS_RECEIPT_UPLOADED;
+                    // TODO: could be opt by checking storage
+
+                    $result = $order->save([
+                        'status' => $order::STATUS_RECEIPT_UPLOADED,
+                        'receipt_img_file' => $receipt_img_file,
+                    ]);
+
+                    if ($result) {
+                        return self::retTemp(self::$scOK, null, ['key' => $order->save()]);
+                    }
+                } else {
+                    return self::retTemp(
+                        self::$scNotFound,
+                        'Order is not in correct status for this action'
+                    );
+                }
+            } else {
+                return self::retTemp(self::$scNotFound, 'No order existence');
+            }
+        }
+
+        return self::retTemp(self::$scNotFound);
+    }
+
+    //endregion
 }

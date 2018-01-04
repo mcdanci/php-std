@@ -18,8 +18,6 @@ use think\Session;
  */
 class Account extends SignedController
 {
-    protected $reg;
-
     /**
      * Get profile of registrant.
      * @return array|\think\Response

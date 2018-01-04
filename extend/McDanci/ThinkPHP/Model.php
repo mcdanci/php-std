@@ -21,6 +21,7 @@ class Model extends \think\Model
     const TIME_UPDATE = '';
 
     const DATETIME = 'datetime';
+    const DELETED = 'deleted';
 
     /**
      * @todo

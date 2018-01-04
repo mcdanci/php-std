@@ -7,6 +7,9 @@ class CreateRegExhibitorStaffTable extends Migrator
 {
     const KEY_PRIMARY = 'order_id';
 
+    /**
+     * @todo offset auto increment
+     */
     public function change()
     {
         $this->table('reg_exhibitor_staff', [
@@ -15,15 +18,15 @@ class CreateRegExhibitorStaffTable extends Migrator
             Phinx::ID => false,
             Phinx::KEY_PRIMARY => [
                 self::KEY_PRIMARY,
-                'seq',
+                'offset',
             ],
         ])
             ->addColumn(self::KEY_PRIMARY, Phinx::COL_TYP_INT, [Phinx::SIGNED => false])
-            ->addColumn('seq', Phinx::COL_TYP_INT, [
+            ->addColumn('offset', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_LIMIT => MysqlAdapter::INT_TINY,
                 Phinx::SIGNED => false,
                 Phinx::COL_OPT_NULL => false,
-                Phinx::COL_OPT_DEFAULT => 1,
+                Phinx::COL_OPT_DEFAULT => 0,
             ])
 
             ->addColumn(Phinx::CREATED, Phinx::COL_TYP_DATETIME, [Phinx::COL_OPT_NULL => false])

@@ -58,4 +58,5 @@ return [
     'default_filter' => 'trim',
 
     'exhibitor_pay_deadline_in_min' => 30,
+    'exhibitor_staff_count_max' => 4,
 ];

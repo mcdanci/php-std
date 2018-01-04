@@ -97,7 +97,7 @@ class Order extends SignedController
     }
 
     /**
-     * 上传水单。
+     * Upload bank receipt.
      * $param resource $img_file 水单图
      * @param null| $reg_id registrant ID *optional*
      * @return array|\think\Response
@@ -254,7 +254,7 @@ class Order extends SignedController
     //region Order confirmation
 
     /**
-     * Set bank receipt.
+     * Set order with bank receipt.
      * @param null|string $receipt_img_file Receipt image file
      * @return array|\think\Response
      * @throws \Exception

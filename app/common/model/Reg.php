@@ -23,9 +23,9 @@ class Reg extends Model
     //region Configuration
 
     protected
-        $autoWriteTimestamp = 'datetime',
+        $autoWriteTimestamp = self::DATETIME,
         $updateTime = false,
-        $deleteTime = 'deleted';
+        $deleteTime = self::DELETED;
 
     protected $readonly = [
         'created',
@@ -94,6 +94,11 @@ class Reg extends Model
 
         self::bindMap($bindList, 2);
         return $this->hasOne('RegVisitor')->bind($bindList);
+    }
+
+    public function tableOrder()
+    {
+        return $this->hasOne('Order');
     }
 
     //endregion

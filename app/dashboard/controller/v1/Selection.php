@@ -93,6 +93,7 @@ class Selection extends SignedController
     public function select($reg_id = null, $type = null, $opt = null)
     {
         $this->regId = $this->regId ?: $reg_id;
+        
         if (!$this->regId) {
             return self::retTemp(self::$scNotFound, 'Registrant ID could not be empty');
         }
