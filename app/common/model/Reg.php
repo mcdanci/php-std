@@ -45,7 +45,7 @@ class Reg extends Model
         'iso3166',
         'website',
         'cat',
-        'password',
+        //'password', // TODO
     ];
 
     //endregion

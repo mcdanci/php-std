@@ -57,7 +57,7 @@ class Account extends SignedController
     }
 
     /**
-     * 修改密码。
+     * Change password.
      * @param null $password_original
      * @param null $password_new
      * @return array|\think\Response
@@ -69,12 +69,6 @@ class Account extends SignedController
             $password_new &&
             $this->reg = Reg::get($this->regId)
         ) {
-            /**
-             * @var int Registrant ID
-             * @deprecated
-             */
-            $id = $this->regId;
-
             if ($password_original &&
                 $password_new
             ) {
@@ -83,6 +77,7 @@ class Account extends SignedController
                 if (password_verify($password_original, $regInfo['password'])) {
                     //$result = $this->reg->update(['password' => Common::encryptPassword($password_new)], $id); // TODO: ?
                     $result = $this->reg->save(['password' => Common::encryptPassword($password_new)]);
+
                     if ($result) {
                         Db::name('debug')->insert([
                             'k' => 'passwd_mod',
@@ -95,7 +90,7 @@ class Account extends SignedController
                                 'created' => self::datetimeNow(),
                             ]),
                         ]);
-                        \session(null);
+                        \session(null); // TODO
                         return self::retTemp();
                     }
                 }
