@@ -14,6 +14,23 @@ class AccountExhibitor extends Account
 
     protected $staff;
 
+    public function listStaff()
+    {
+        $staffList = RegExhibitorStaff::all(['order_id' => $orderId = $this->reg->tableOrder->id]);
+
+        if ($staffList) {
+            return self::retTemp(self::$scOK, null, $staffList);
+        }
+
+        return self::retTemp(self::$scNotFound, 'Something wrong');
+    }
+
+    /**
+     * @param string $email
+     * @param string $position
+     * @param string $name_full
+     * @return array|\think\Response
+     */
     public function createStaff($email = null, $position = null, $name_full = null)
     {
         /**
