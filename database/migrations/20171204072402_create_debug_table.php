@@ -1,5 +1,6 @@
 <?php
 use think\migration\Migrator;
+//use think\migration\db\Column;
 use McDanci\ThinkPHP\Phinx;
 
 class CreateDebugTable extends Migrator
