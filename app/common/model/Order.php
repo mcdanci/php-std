@@ -19,7 +19,8 @@ class Order extends Model
     const
         STATUS_INVALID = 0,
         STATUS_UNPAID = 1,
-        STATUS_RECEIPT_UPLOADED = 2;
+        STATUS_RECEIPT_UPLOADED = 2,
+        STATUS_PAID = 3;
 
     protected
         $autoWriteTimestamp = self::DATETIME,

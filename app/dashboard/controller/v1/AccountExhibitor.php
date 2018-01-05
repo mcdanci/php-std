@@ -26,14 +26,10 @@ class AccountExhibitor extends Account
         $staffList = RegExhibitorStaff::all(['order_id' => $orderId = $this->reg->tableOrder->id]);
 
         if ($staffList) {
-            if ($this->staff->toArray()) {
-                return self::retTemp(self::$scOK, null, $staffList);
-            } else {
-                return self::retTemp(self::$scNotFound, 'No staff registered');
-            }
+            return self::retTemp(self::$scOK, null, $staffList);
+        } else {
+            return self::retTemp(self::$scNotFound, 'No staff registered');
         }
-
-        return self::retTemp(self::$scNotFound, 'Something wrong');
     }
 
     /**
@@ -101,7 +97,7 @@ class AccountExhibitor extends Account
      * @param string $name_full
      * @return array|\think\Response
      * @todo run
-     * @todo 是否應限定修訂的最後期限
+     * @todo 是否應限定增加、修訂同刪除的最後期限
      */
     public function edit($offset = null, $position = null, $name_full = null)
     {

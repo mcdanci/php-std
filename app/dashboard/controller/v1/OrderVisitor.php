@@ -6,6 +6,7 @@
 namespace app\dashboard\controller\v1;
 
 use app\common\model;
+use McDanci\ThinkPHP\Helper;
 use think\Db;
 use think\Response;
 
@@ -73,10 +74,12 @@ class OrderVisitor extends Order
                 $result = $order->together('orderVisitor')->save();
 
                 if ($result) {
-                    Db::name('debug')->insert([
-                        'k' => 'visitor_ticket',
-                        'body' => json_encode(array_merge($data, ['created' => self::datetimeNow()])),
-                    ]); // TODO
+                    if (Helper::isAppDebug()) {
+                        Db::name('debug')->insert([
+                            'k' => 'visitor_ticket',
+                            'body' => json_encode(array_merge($data, ['created' => self::datetimeNow()])),
+                        ]); // TODO
+                    }
                     return self::retTemp(self::$scOK, null, [
                         '_debug' => [
                             'result' => $result,
