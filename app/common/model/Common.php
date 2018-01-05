@@ -42,16 +42,6 @@ p {line-height: 1.6em; font-size: 42px}
 <h1>Welcome</h1>
 <p>to :-) ' . Config::get('name') . '</p>
 </div>
-
-<div>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- 小正方形 -->
-<ins class="adsbygoogle"
-     style="display: inline-block; width: 200px; height: 200px;"
-     data-ad-client="ca-pub-2277931214379968"
-     data-ad-slot="5522321905"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
 </body>
 </html>';
     }

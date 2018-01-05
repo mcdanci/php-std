@@ -4,6 +4,8 @@ use McDanci\ThinkPHP\Phinx;
 
 class CreateOrderTable extends Migrator
 {
+    const AAA = 1;
+
     /**
      * Create table of order.
      * @todo Set `id(10)` into `unsigned`
@@ -37,7 +39,7 @@ class CreateOrderTable extends Migrator
                 Phinx::COL_OPT_LIMIT => \Phinx\Db\Adapter\MysqlAdapter::INT_TINY,
                 Phinx::COL_OPT_NULL => false,
                 Phinx::COL_OPT_DEFAULT => 1,
-                Phinx::COMMENT => 'Status {0: invalid, 1: unpaid, 2: receipt uploaded}',
+                Phinx::COMMENT => Phinx::columnComment(\app\common\model\Order::$mapAttrStatus),
             ])
             ->addColumn('amount', Phinx::COL_TYP_DECIMAL, [
                 Phinx::COL_OPT_PRECISION => 10,

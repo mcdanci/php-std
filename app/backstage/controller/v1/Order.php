@@ -6,6 +6,7 @@
 namespace app\backstage\controller\v1;
 
 use app\common\model;
+use McDanci\ThinkPHP\Phinx;
 
 class Order extends Controller
 {

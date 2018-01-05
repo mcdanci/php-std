@@ -12,15 +12,9 @@ use traits\model\SoftDelete;
  */
 class Order extends Model
 {
-    use SoftDelete;
-
     //region Configuration
 
-    const
-        STATUS_INVALID = 0,
-        STATUS_UNPAID = 1,
-        STATUS_RECEIPT_UPLOADED = 2,
-        STATUS_PAID = 3;
+    use SoftDelete;
 
     protected
         $autoWriteTimestamp = self::DATETIME,
@@ -42,6 +36,27 @@ class Order extends Model
      * @var bool
      */
     public $isExhibitor = false;
+
+    //region Attribute
+
+    //region Status
+
+    const
+        STATUS_INVALID = 0,
+        STATUS_UNPAID = 1,
+        STATUS_RECEIPT_UPLOADED = 2,
+        STATUS_PAID = 3;
+
+    public static $mapAttrStatus = [
+        self::STATUS_INVALID => 'invalid',
+        self::STATUS_UNPAID => 'unpaid',
+        self::STATUS_RECEIPT_UPLOADED => 'receipt uploaded',
+        self::STATUS_PAID => 'paid',
+    ];
+
+    //endregion Status
+
+    //endregion Attribute
 
     //endregion
 

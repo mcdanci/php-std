@@ -7,6 +7,8 @@ namespace McDanci\ThinkPHP;
 
 class Phinx
 {
+    //region Const
+
     const ID = 'id';
     const SIGNED = 'signed';
     const COMMENT = 'comment';
@@ -122,4 +124,31 @@ class Phinx
         CREATED = 'created',
         UPDATED = 'updated',
         DELETED = 'deleted';
+
+    //endregion Const
+
+    /**
+     * @param $list
+     * @return string
+     * @todo null 以 empty string 表示
+     */
+    public static function columnComment($list)
+    {
+        $comment = '';
+
+        if ($list) {
+            static
+            $D_LEFT = '{',
+            $D_RIGHT = '}';
+
+            foreach ($list as $key => &$value) {
+                $value = implode(': ', [$key, $value]);
+            }
+
+            $list = implode(', ', $list);
+            $comment = $D_LEFT . $list . $D_RIGHT;
+        }
+
+        return $comment;
+    }
 }

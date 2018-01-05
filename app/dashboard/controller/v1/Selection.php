@@ -83,7 +83,7 @@ class Selection extends SignedController
     }
 
     /**
-     * 展位选定。
+     * Booth selection.
      * @param null|int $reg_id 登记人 ID *optional*
      * @param null|int $type 类型 {1: 单个最小展位单元选定, 2: 多个最小展位单元组合选定}
      * @param null|string $opt 传入的资料，依 `$type` 而不同 TODO
@@ -93,7 +93,7 @@ class Selection extends SignedController
     public function select($reg_id = null, $type = null, $opt = null)
     {
         $this->regId = $this->regId ?: $reg_id;
-        
+
         if (!$this->regId) {
             return self::retTemp(self::$scNotFound, 'Registrant ID could not be empty');
         }
