@@ -11,4 +11,14 @@ class AccountVisitor extends Account
     {
         parent::_initialize();
     }
+
+    /**
+     * @todo
+     */
+    public function getTicket()
+    {
+        if ($this->reg->tableOrder()->where(['status' => \app\common\model\Order::STATUS_UNPAID])) {
+            //
+        }
+    }
 }
