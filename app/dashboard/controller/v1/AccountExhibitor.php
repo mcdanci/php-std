@@ -26,7 +26,11 @@ class AccountExhibitor extends Account
         $staffList = RegExhibitorStaff::all(['order_id' => $orderId = $this->reg->tableOrder->id]);
 
         if ($staffList) {
-            return self::retTemp(self::$scOK, null, $staffList);
+            if ($this->staff->toArray()) {
+                return self::retTemp(self::$scOK, null, $staffList);
+            } else {
+                return self::retTemp(self::$scNotFound, 'No staff registered');
+            }
         }
 
         return self::retTemp(self::$scNotFound, 'Something wrong');
