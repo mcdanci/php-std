@@ -19,12 +19,21 @@ if (!function_exists('is_not_json')) {
 
 if (!function_exists('json_valid')) {
     /**
-     * @param $str
+     * @param $json
      * @return bool
      */
-    function json_valid($str)
+    function json_valid($json)
     {
-        return !is_not_json($str); // TODO: 不严谨
+        return !is_not_json($json); // TODO: 不严谨
+    }
+}
+
+if (!function_exists('is_app_debug')) {
+    /**
+     * @return bool
+     */
+    function is_app_debug() {
+        return \McDanci\ThinkPHP\Helper::isAppDebug();
     }
 }
 

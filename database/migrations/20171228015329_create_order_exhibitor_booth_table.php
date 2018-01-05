@@ -2,6 +2,10 @@
 use think\migration\Migrator;
 use McDanci\ThinkPHP\Phinx;
 
+/**
+ * Class CreateOrderExhibitorBoothTable
+ * @todo
+ */
 class CreateOrderExhibitorBoothTable extends Migrator
 {
     const KEY_PRIMARY = 'order_id';
@@ -16,7 +20,7 @@ class CreateOrderExhibitorBoothTable extends Migrator
             Phinx::TABLE_ENGINE => Phinx::TABLE_ENGINE_INNO,
 
             Phinx::ID => false,
-            Phinx::KEY_PRIMARY => self::KEY_PRIMARY,
+            Phinx::KEY_PRIMARY => [self::KEY_PRIMARY, 'booth_id'],
         ])->addColumn(self::KEY_PRIMARY, Phinx::COL_TYP_INT, [Phinx::SIGNED => false])
             ->addColumn('booth_id', Phinx::COL_TYP_INT, [
                 Phinx::COL_OPT_NULL => false,

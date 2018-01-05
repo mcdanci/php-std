@@ -4,10 +4,10 @@
  * @author <mc@dancis.info>
  */
 return [
-    // Development
+    // Development local
     'http://localhost:8080',
 
-    // Development test
+    // Development online
     'http://test.ershaoyes.com',
     'https://web.s-show.fmnii.e13.cc',
 ];

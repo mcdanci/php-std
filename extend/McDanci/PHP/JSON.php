@@ -3,6 +3,7 @@
  * Class JSON
  * @copyright since 14:39 5/1/2018
  * @author <mc@dancis.info>
+ * @todo stdClass
  */
 class JSON
 {
@@ -15,7 +16,7 @@ class JSON
      * @param int $options
      * @todo
      */
-    public static function decode($json, $assoc = false, $depth = 512, $options = 0)
+    public static function json_decode($json, $assoc = false, $depth = 512, $options = 0)
     {
     }
 

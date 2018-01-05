@@ -12,7 +12,6 @@ use McDanci\ThinkPHP\Helper;
 use McDanci\ThinkPHP\Request;
 use think\Db;
 use app\common\model;
-use function time;
 
 class Selection extends SignedController
 {
@@ -83,16 +82,47 @@ class Selection extends SignedController
         return self::retTemp(self::$scOK, null, $resultArr);
     }
 
-    private static function calcAmount()
+    private static function calcAmount($boothList)
     {
-        return 0.01;
+        $amount = 0;
+
+        if (is_array($boothList) && $boothList) {
+            foreach ($boothList as &$boothId) {
+                $priceHE = Config::get('booth_type')[3]['price'];
+                $priceStd = Config::get('booth_type')[0]['price'];
+
+                $specialList = [
+                    147 => $priceHE * 2,
+                    151 => $priceHE * 2,
+                    212 => $priceHE * 2,
+                    216 => $priceHE * 2,
+
+                    303 => $priceStd * 4,
+                    371 => $priceStd * 4,
+
+                    346 => $priceHE * 2,
+                    350 => $priceHE * 2,
+                    409 => $priceHE * 2,
+                    413 => $priceHE * 2,
+                ];
+
+                if (in_array($boothId, array_keys($specialList))) { // 特殊价位的展位处理
+                    $amount += $specialList[$boothId];
+                } else {
+                    $type = Booth::get($boothId)->value('type');
+                    $amount += Config::get('booth_type')[$type]['price'];
+                }
+            }
+        }
+
+        return $amount;
     }
 
     /**
      * Booth selection.
      * @param null|int $reg_id 登记人 ID *optional* TODO **deprecated**
      * @param null|int $type 类型 {1: 单个最小展位单元选定, 2: 多个最小展位单元组合选定}
-     * @param null|string $opt 传入的资料，依 `$type` 而不同 TODO
+     * @param null|string $opt 传入的资料，或依 `$type` 而不同 TODO
      * @return array|\think\Response
      */
     public function select($reg_id = null, $type = null, $opt = null)
@@ -100,10 +130,15 @@ class Selection extends SignedController
         unset($reg_id);
 
         if (!$this->regId || !$this->reg) {
-            return self::retTemp(self::$scNotFound, 'Error on registrant', [
-                'id' => $this->regId,
-                'obj' => $this->reg,
-            ]);
+            $debugBody = null;
+            if (Helper::isAppDebug()) {
+                $debugBody = [
+                    'id' => $this->regId,
+                    'obj' => $this->reg,
+                ];
+            }
+
+            return self::retTemp(self::$scNotFound, 'Error on registrant', $debugBody);
         } else {
             if ($order = model\Order::get(['reg_id' => $this->regId])) {
                 // TODO: update?
@@ -115,12 +150,41 @@ class Selection extends SignedController
                     //    self::$formatMySQLDatetime,
                     //    time() + 60 * Config::get('exhibitor_pay_deadline_in_min')
                     //),
-                    'amount' => self::calcAmount(), // TODO
                 ];
 
                 $order = new model\Order($data);
                 $order->isExhibitor = true;
                 $result = $order->save();
+
+                if ($opt && json_valid($opt)) {
+                    $boothList = json_decode($opt, true);
+
+                    /**
+                     * @todo Checking
+                     */
+                    foreach ($boothList as &$boothId) {
+                        if (!is_numeric($boothId)) {
+                            return self::retTemp(self::$scNotFound, 'Invalid option provided');
+                        } else {
+                            $boothId = (int)$boothId;
+                        }
+                    }
+
+                    /**
+                     * @todo Price calculation
+                     */
+                    $amount = self::calcAmount($boothList);
+
+                    foreach ($boothList as &$boothId) {
+                        $boothId = ['booth_id' => $boothId];
+                    }
+                    $order->orderExhibitorBooth()->saveAll($boothList);
+                    $order->amount = $amount;
+                    $order->save();
+
+                } else {
+                    return self::retTemp(self::$scNotFound, 'No booth selected');
+                }
 
                 if ($result) {
                     if (Helper::isAppDebug()) {

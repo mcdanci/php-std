@@ -56,5 +56,5 @@ return [
             'side' => 'fabe00',
         ],
     ],
-    null => null,
+    '' => null,
 ];
