@@ -100,7 +100,10 @@ class Selection extends SignedController
         unset($reg_id);
 
         if (!$this->regId || !$this->reg) {
-            return self::retTemp(self::$scNotFound, 'Error on registrant');
+            return self::retTemp(self::$scNotFound, 'Error on registrant', [
+                'id' => $this->regId,
+                'obj' => $this->reg,
+            ]);
         } else {
             if ($order = model\Order::get(['reg_id' => $this->regId])) {
                 // TODO: update?
