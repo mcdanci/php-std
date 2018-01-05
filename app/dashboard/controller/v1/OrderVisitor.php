@@ -45,6 +45,7 @@ class OrderVisitor extends Order
      * @param null|string $bank_account_name
      * @param null|int $ticket_type {1: single, 2: both}
      * @return array|\think\Response
+     * @todo 500
      */
     public function checkout($bank_account_name = null, $ticket_type = null)
     {
