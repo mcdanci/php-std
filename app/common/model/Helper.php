@@ -1,6 +1,8 @@
 <?php
 namespace app\common\model;
 
+use think\Db;
+
 class Helper extends Model
 {
     const A_ID_OFFSET = 64;
@@ -37,5 +39,18 @@ class Helper extends Model
         }
 
         return false;
+    }
+
+    /**
+     * @param string $key
+     * @param $body
+     * @return int|string
+     */
+    public static function logDebug($key, $body)
+    {
+        return Db::name('debug')->insert([
+            'k' => $key,
+            'body' => json_encode($body),
+        ]);
     }
 }

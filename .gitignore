@@ -1,17 +1,17 @@
 # Environment
 /.env
+*.log
 
 ## Development
 .idea
-
-## Deployment TODO: check
-/.user.ini
+/phpDocumentor.phar
+/runtime/docs/
 
 ## Runtime
 /composer.phar
-/vendor/
 /thinkphp/
-*.log
+/vendor/
+
 /s-show.fmnii.e13.cc/cgi-bin/
 /s-show.fmnii.e13.cc/document_errors/
 /s-show.fmnii.e13.cc/logs/
@@ -22,4 +22,5 @@
 # Direct file transfer
 /s-show.fmnii.e13.cc/public_html/postman/
 
-/runtime/docs/
+### TODO: check
+/.user.ini

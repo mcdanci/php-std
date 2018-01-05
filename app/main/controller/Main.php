@@ -2,7 +2,6 @@
 namespace app\main\controller;
 
 use app\common\model\Common;
-use think\Config;
 use think\Controller;
 
 /**
@@ -12,7 +11,7 @@ use think\Controller;
 class Main extends Controller
 {
     /**
-     * Welcome
+     * Welcome.
      * @return string Welcome information
      */
     public function main()

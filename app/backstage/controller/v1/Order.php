@@ -10,6 +10,46 @@ use McDanci\ThinkPHP\Phinx;
 
 class Order extends Controller
 {
+    //region Debug
+
+    /**
+     * @todo
+     */
+    private function debug()
+    {
+//        $data = <<< EOT
+//app/dashboard/controller/v1/Account.php
+//app/dashboard/controller/v1/AccountExhibitor.php
+//app/dashboard/controller/v1/AccountVisitor.php
+//app/dashboard/controller/v1/Controller.php
+//app/dashboard/controller/v1/Dashboard.php
+//app/dashboard/controller/v1/Main.php
+//app/dashboard/controller/v1/Selection.php
+//app/dashboard/controller/v1/SignedController.php
+//app/dashboard/controller/v1/SignedVisitor.php
+//EOT;
+        $data = <<< EOT
+app/dashboard/controller/v1/Account.php
+app/dashboard/controller/v1/AccountExhibitor.php
+app/dashboard/controller/v1/AccountVisitor.php
+app/dashboard/controller/v1/Controller.php
+app/dashboard/controller/v1/Dashboard.php
+app/dashboard/controller/v1/Main.php
+app/dashboard/controller/v1/Selection.php
+app/dashboard/controller/v1/SignedController.php
+app/dashboard/controller/v1/SignedVisitor.php
+EOT;
+        $data = explode("\n", $data);
+        foreach ($data as &$filename) {
+            $filename = '.' . '/' . $filename;
+        }
+        $data = implode(' -s ', $data);
+        $data = '-s ' . $data;
+        return self::retTemp(self::$scOK, null, ['opt' => $data]);
+    }
+
+    //endregion Debug
+
     /**
      * @param null $type
      * @param null $status

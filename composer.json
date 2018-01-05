@@ -31,9 +31,6 @@
     "topthink/think-helper": "^1.0",
     "mcdanci/ucpaas": "^0.4.1"
   },
-  "require-dev": {
-    "phpdocumentor/phpdocumentor": "2.*"
-  },
   "extra": {
     "think-path": "thinkphp"
   },
@@ -47,6 +44,6 @@
     }
   },
   "scripts": {
-    "apigen": "apigen generate -q -s ./app/backstage/controller -s ./app/dashboard/controller -d ./runtime/docs --access-levels=public --no-source-code"
+    "apigen": "apigen generate -q -s ./app/dashboard -s ./app/backstage -d ./runtime/docs --access-levels=public --no-source-code"
   }
 }
