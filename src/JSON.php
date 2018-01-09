@@ -91,14 +91,14 @@ class JSON
      * @param int $depth
      * @return string
      */
-    public static function encode($value, $options = 0, int $depth = 512)
+    public static function encode($value, $options = 0, $depth = 512)
     {
         if ($depth < 1) {
             throw new \Exception;
         } else {
             $result = json_encode($value, $options, $depth);
 
-            if ($result === false) {
+            if ($value !== false && $result === false) {
                 throw new \Exception;
             } else {
                 return $result;
