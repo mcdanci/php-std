@@ -1,6 +1,6 @@
 {
     "name": "mcdanci/std",
-    "description": "Standard library",
+    "description": "Standard library within namespace",
     "license": "Apache-2.0",
     "authors": [
         {
