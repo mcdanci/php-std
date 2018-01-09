@@ -1,0 +1,23 @@
+{
+    "name": "mcdanci/std",
+    "description": "Standard library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "McDanci",
+            "email": "mc@dancis.info"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "curl/curl": "^1.8"
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "autoload": {
+        "psr-4": {
+            "McDanci\\std\\": "src/"
+        }
+    }
+}
