@@ -106,5 +106,21 @@ class JSON
         }
     }
 
+    public static function getErrorLastMsg()
+    {
+        $result = json_last_error_msg();
+
+        if ($result === false) {
+            throw new \RuntimeException;
+        } else {
+            return $result;
+        }
+    }
+
+    public static function getErrorLast()
+    {
+        return json_last_error();
+    }
+
     //endregion
 }
