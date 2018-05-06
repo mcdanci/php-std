@@ -6,4 +6,4 @@ Within Namespace `McDanci`.
 - JSON wrapper.
 
 ## Donation
-- ![Alipay lucky tip QR code](https://mc.dancis.info/donation/asset/img/lALPBbCc1Ua3pC_NA1TNAjc_567_852.png "Alipay lucky tip")
+- [![Alipay lucky tip QR code](https://mc.dancis.info/donation/asset/img/lALPBbCc1Ua3pC_NA1TNAjc_567_852.png)](http://lwurl.to/cHdIp "Alipay lucky tip")
